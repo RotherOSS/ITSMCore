@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -57,6 +57,7 @@ $Self->True(
     $TypeID2,
     'Type 2 created.',
 );
+
 # ---
 # ITSMCore
 # ---
@@ -67,17 +68,20 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
+
 # ---
 
 my $ServiceID1 = $ServiceObject->ServiceAdd(
-    Name    => 'TestService1' . $Random,
-# ---
-# ITSMCore
-# ---
+    Name => 'TestService1' . $Random,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => 1,
     UserID  => 1,
 );
@@ -86,13 +90,15 @@ $Self->True(
     'Service 1 created.',
 );
 my $ServiceID2 = $ServiceObject->ServiceAdd(
-    Name    => 'TestService2' . $Random,
-# ---
-# ITSMCore
-# ---
+    Name => 'TestService2' . $Random,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => 1,
     UserID  => 1,
 );

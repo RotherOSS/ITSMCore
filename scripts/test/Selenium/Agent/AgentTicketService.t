@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -70,13 +70,15 @@ $Selenium->RunTest(
                 Name    => $ServiceName,
                 ValidID => 1,
                 Comment => 'Selenium Test',
-# ---
-# ITSMCore
-# ---
+
+                # ---
+                # ITSMCore
+                # ---
                 TypeID      => 1,
                 Criticality => '3 normal',
-# ---
-                UserID  => 1,
+
+                # ---
+                UserID => 1,
             );
             $Self->True(
                 $ServiceID,
@@ -92,13 +94,15 @@ $Selenium->RunTest(
             Name      => $ServiceNames[1],
             ParentID  => $ServiceIDs[0],
             ValidID   => 1,
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => 1,
             Criticality => '3 normal',
-# ---
-            UserID    => 1,
+
+            # ---
+            UserID => 1,
         );
         $Self->True(
             $Success,
@@ -111,13 +115,15 @@ $Selenium->RunTest(
             ServiceID => $ServiceIDs[0],
             Name      => $ServiceNames[0],
             ValidID   => 2,
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => 1,
             Criticality => '3 normal',
-# ---
-            UserID    => 1,
+
+            # ---
+            UserID => 1,
         );
         $Self->True(
             $Success,
@@ -173,8 +179,7 @@ $Selenium->RunTest(
         $Element->VerifiedClick();
 
         # click on child service
-        $Selenium->find_element("//a[contains(\@href, \'Action=AgentTicketService;ServiceID=$ServiceIDs[1];\' )]")
-            ->VerifiedClick();
+        $Selenium->find_element("//a[contains(\@href, \'Action=AgentTicketService;ServiceID=$ServiceIDs[1];\' )]")->VerifiedClick();
 
         # check different views for filters
         for my $View (qw(Small Medium Preview)) {

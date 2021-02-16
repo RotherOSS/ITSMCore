@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -117,37 +117,41 @@ $Selenium->RunTest(
             $QueueID,
             "QueueID $QueueID is created",
         );
-# ---
-# ITSMCore
-# ---
 
-# Get the list of service types from general catalog.
-my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::Service::Type',
-);
+        # ---
+        # ITSMCore
+        # ---
 
-# Build a lookup hash.
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+        # Get the list of service types from general catalog.
+        my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::Service::Type',
+        );
 
-# Get the list of sla types from general catalog.
-my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::SLA::Type',
-);
+        # Build a lookup hash.
+        my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
-# Build a lookup hash.
-my %SLATypeName2ID = reverse %{ $SLATypeList };
-# ---
+        # Get the list of sla types from general catalog.
+        my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::SLA::Type',
+        );
+
+        # Build a lookup hash.
+        my %SLATypeName2ID = reverse %{$SLATypeList};
+
+        # ---
 
         # Create test service.
         my $ServiceName = 'Service' . $RandomID;
         my $ServiceID   = $ServiceObject->ServiceAdd(
-            Name    => $ServiceName,
-# ---
-# ITSMCore
-# ---
+            Name => $ServiceName,
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => $ServiceTypeName2ID{Training},
             Criticality => '3 normal',
-# ---
+
+            # ---
             ValidID => 1,
             UserID  => 1,
         );
@@ -169,13 +173,15 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
         my $SLAID   = $SLAObject->SLAAdd(
             ServiceIDs => [$ServiceID],
             Name       => $SLAName,
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID => $SLATypeName2ID{Other},
-# ---
-            ValidID    => 1,
-            UserID     => 1,
+
+            # ---
+            ValidID => 1,
+            UserID  => 1,
         );
         $Self->True(
             $TicketID,
@@ -302,8 +308,7 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
             );
 
             # Click on 'Free Fields' and switch window.
-            $Selenium->find_element("//a[contains(\@href, \'Action=AgentTicketFreeText;TicketID=$TicketID' )]")
-                ->click();
+            $Selenium->find_element("//a[contains(\@href, \'Action=AgentTicketFreeText;TicketID=$TicketID' )]")->click();
 
             $Selenium->WaitFor( WindowCount => 2 );
             my $Handles = $Selenium->get_window_handles();
@@ -562,9 +567,10 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
             $Success,
             "Relation SLAID $SLAID referenced to service ID $ServiceID is deleted",
         );
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         # Delete created test service preferences.
         $Success = $DBObject->Do(
             SQL => "DELETE FROM service_preferences WHERE service_id = $ServiceID",
@@ -573,7 +579,8 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
             $Success,
             "ServiceID $ServiceID prefereneces is deleted",
         );
-# ---
+
+        # ---
 
         # Delete created test service.
         $Success = $DBObject->Do(

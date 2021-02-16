@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -51,6 +51,7 @@ my $TestCustomerUserLogin = $Helper->TestCustomerUserCreate();
 
 # set user details
 my ( $TestUserLogin, $TestUserID ) = $Helper->TestUserCreate();
+
 # ---
 # ITSMCore
 # ---
@@ -61,7 +62,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -69,7 +70,8 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 #
@@ -77,13 +79,15 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
 #
 my @Services = (
     {
-        Name    => 'Service0' . $RandomID,
-# ---
-# ITSMCore
-# ---
+        Name => 'Service0' . $RandomID,
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID      => $ServiceTypeName2ID{Training},
         Criticality => '3 normal',
-# ---
+
+        # ---
         ValidID => 1,
         UserID  => 1,
     },
@@ -110,35 +114,41 @@ my @SLAs = (
     {
         Name       => 'SLA0' . $RandomID,
         ServiceIDs => [ $Services[0]->{ServiceID} ],
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID => $SLATypeName2ID{Other},
-# ---
-        ValidID    => 1,
-        UserID     => 1,
+
+        # ---
+        ValidID => 1,
+        UserID  => 1,
     },
     {
         Name       => 'SLA1' . $RandomID,
         ServiceIDs => [ $Services[0]->{ServiceID} ],
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID => $SLATypeName2ID{Other},
-# ---
-        ValidID    => 1,
-        UserID     => 1,
+
+        # ---
+        ValidID => 1,
+        UserID  => 1,
     },
     {
         Name       => 'SLA2' . $RandomID,
         ServiceIDs => [],
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID => $SLATypeName2ID{Other},
-# ---
-        ValidID    => 1,
-        UserID     => 1,
+
+        # ---
+        ValidID => 1,
+        UserID  => 1,
     },
 );
 

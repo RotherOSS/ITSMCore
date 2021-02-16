@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -60,12 +60,14 @@ $Selenium->RunTest(
             Comment => 'Some Comment',
             ValidID => 1,
             UserID  => 1,
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => 1,
             Criticality => '3 normal',
-# ---
+
+            # ---
         );
         $Self->True(
             $ServiceID,
@@ -152,8 +154,7 @@ $Selenium->RunTest(
         $Selenium->find_element("//button[\@value='Search'][\@type='submit']")->VerifiedClick();
 
         $Self->Is(
-            $Selenium->find_element("//input[contains(\@title, \'Toggle active state for $CustomerUserName' )]")
-                ->is_selected(),
+            $Selenium->find_element("//input[contains(\@title, \'Toggle active state for $CustomerUserName' )]")->is_selected(),
             1,
             "Service $ServiceName is active for CustomerUser $CustomerUserName",
         ) || die;

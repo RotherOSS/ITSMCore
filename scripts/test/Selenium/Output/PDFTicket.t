@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -83,50 +83,53 @@ $Selenium->RunTest(
             $QueueID,
             "Created QueueID $QueueID"
         );
-# ---
-# ITSMCore
-# ---
 
-# get the list of service types from general catalog
-my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::Service::Type',
-);
+        # ---
+        # ITSMCore
+        # ---
 
-# build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+        # get the list of service types from general catalog
+        my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::Service::Type',
+        );
 
-# get the list of sla types from general catalog
-my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::SLA::Type',
-);
+        # build a lookup hash
+        my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
-# build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+        # get the list of sla types from general catalog
+        my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::SLA::Type',
+        );
 
-# Get the current setting for customer ticket print
-my %CustomerTicketPrintSysConfig = $Kernel::OM->Get('Kernel::System::SysConfig')->SettingGet(
-    Name => 'CustomerFrontend::Module###CustomerTicketPrint',
-);
+        # build a lookup hash
+        my %SLATypeName2ID = reverse %{$SLATypeList};
 
-# Make sure CustomerTicket print is enabled.
-$Helper->ConfigSettingChange(
-    Valid => 1,
-    Key   => 'CustomerFrontend::Module###CustomerTicketPrint',
-    Value => $CustomerTicketPrintSysConfig{EffectiveValue},
-);
+        # Get the current setting for customer ticket print
+        my %CustomerTicketPrintSysConfig = $Kernel::OM->Get('Kernel::System::SysConfig')->SettingGet(
+            Name => 'CustomerFrontend::Module###CustomerTicketPrint',
+        );
 
-# ---
+        # Make sure CustomerTicket print is enabled.
+        $Helper->ConfigSettingChange(
+            Valid => 1,
+            Key   => 'CustomerFrontend::Module###CustomerTicketPrint',
+            Value => $CustomerTicketPrintSysConfig{EffectiveValue},
+        );
+
+        # ---
 
         # Create Service.
         my $ServiceName = 'Servi' . $RandomID;
         my $ServiceID   = $Kernel::OM->Get('Kernel::System::Service')->ServiceAdd(
-            Name    => $ServiceName,
-# ---
-# ITSMCore
-# ---
+            Name => $ServiceName,
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => $ServiceTypeName2ID{Training},
             Criticality => '3 normal',
-# ---
+
+            # ---
             ValidID => 1,
             Comment => 'Selenium Service',
             UserID  => 1,
@@ -139,24 +142,28 @@ $Helper->ConfigSettingChange(
         # Create SLA.
         my $SLAName = 'SL' . $RandomID;
         my $SLAID   = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-            ServiceIDs        => [$ServiceID],
-            Name              => $SLAName,
-# ---
-# ITSMCore
-# ---
+            ServiceIDs => [$ServiceID],
+            Name       => $SLAName,
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID => $SLATypeName2ID{Other},
-# ---
+
+            # ---
             FirstResponseTime => 50,
             UpdateTime        => 100,
             SolutionTime      => 200,
             ValidID           => 1,
             Comment           => 'Selenium SLA',
-# ---
-# ITSMCore
-# ---
-            TypeID            => $ServiceTypeName2ID{Training},
-# ---
-            UserID            => 1,
+
+            # ---
+            # ITSMCore
+            # ---
+            TypeID => $ServiceTypeName2ID{Training},
+
+            # ---
+            UserID => 1,
         );
         $Self->True(
             $QueueID,
@@ -1128,15 +1135,17 @@ $Helper->ConfigSettingChange(
                 Bind    => $SLAID,
                 Message => "SLAID $SLAID is deleted",
             },
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             {
                 SQL     => "DELETE FROM service_preferences WHERE service_id = ?",
                 Bind    => $ServiceID,
                 Message => "Service preferences for $ServiceID is deleted",
             },
-# ---
+
+            # ---
             {
                 SQL     => "DELETE FROM service WHERE id = ?",
                 Bind    => $ServiceID,

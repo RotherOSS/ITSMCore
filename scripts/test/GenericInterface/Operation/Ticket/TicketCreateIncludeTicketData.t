@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -18,7 +18,6 @@
 # did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
 # --
 
-## no critic (Modules::RequireExplicitPackage)
 use strict;
 use warnings;
 use utf8;
@@ -212,6 +211,7 @@ $Self->True(
 
 # create service object
 my $ServiceObject = $Kernel::OM->Get('Kernel::System::Service');
+
 # ---
 # ITSMCore
 # ---
@@ -222,7 +222,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -230,18 +230,21 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 # create new service
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name    => 'TestService' . $RandomID,
-# ---
-# ITSMCore
-# ---
+    Name => 'TestService' . $RandomID,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => 1,
     UserID  => 1,
 );
@@ -278,13 +281,15 @@ my $SLAObject = $Kernel::OM->Get('Kernel::System::SLA');
 my $SLAID = $SLAObject->SLAAdd(
     Name       => 'TestSLA' . $RandomID,
     ServiceIDs => [$ServiceID],
-# ---
-# ITSMCore
-# ---
-    TypeID     => $SLATypeName2ID{Other},
-# ---
-    ValidID    => 1,
-    UserID     => 1,
+
+    # ---
+    # ITSMCore
+    # ---
+    TypeID => $SLATypeName2ID{Other},
+
+    # ---
+    ValidID => 1,
+    UserID  => 1,
 );
 
 # sanity check
@@ -851,8 +856,7 @@ for my $Test (@Tests) {
         # Check for type of key containing article dynamic field data, since it might be a hash on systems without
         #   multiple fields defined. In this case normalize it to an array of hashes for easier comparison later.
         if ( ref $RequesterResult->{Data}->{Ticket}->{Article}->{DynamicField} eq 'HASH' ) {
-            $RequesterResult->{Data}->{Ticket}->{Article}->{DynamicField}
-                = [ $RequesterResult->{Data}->{Ticket}->{Article}->{DynamicField} ];
+            $RequesterResult->{Data}->{Ticket}->{Article}->{DynamicField} = [ $RequesterResult->{Data}->{Ticket}->{Article}->{DynamicField} ];
         }
 
         LOCALRESULTARTICLE:

@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -933,6 +933,7 @@ $TypeObject->TypeUpdate(
     ValidID => 2,
     UserID  => 1,
 );
+
 # ---
 # ITSMCore
 # ---
@@ -943,7 +944,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -951,7 +952,8 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 # create a test service
@@ -959,13 +961,15 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Name    => 'Service' . $Helper->GetRandomID(),
     ValidID => 1,
     Comment => 'Unit Test Comment',
-# ---
-# ITSMCore
-# ---
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
-    UserID  => 1,
+
+    # ---
+    UserID => 1,
 );
 
 # wait 1 seconds
@@ -1041,12 +1045,14 @@ my $SLAID = $SLAObject->SLAAdd(
     Name    => 'SLA' . $Helper->GetRandomID(),
     ValidID => 1,
     Comment => 'Unit Test Comment',
-# ---
-# ITSMCore
-# ---
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID => $SLATypeName2ID{Other},
-# ---
-    UserID  => 1,
+
+    # ---
+    UserID => 1,
 );
 
 # wait 5 seconds
@@ -1951,9 +1957,9 @@ for my $State ( values %StateList ) {
         "TicketSearch() - StateTypeID - found ticket",
     );
 
-# if it is not equal then there is in the using of StateType or StateTypeID an error
-# check if you get the same result if you use the StateType attribute or the StateTypeIDs attribute.
-# State($State) StateType($StateAsKeyAndStateTypeAsValue{$State}->{Name}) and StateTypeIDs($StateAsKeyAndStateTypeAsValue{$State}->{ID})
+    # if it is not equal then there is in the using of StateType or StateTypeID an error
+    # check if you get the same result if you use the StateType attribute or the StateTypeIDs attribute.
+    # State($State) StateType($StateAsKeyAndStateTypeAsValue{$State}->{Name}) and StateTypeIDs($StateAsKeyAndStateTypeAsValue{$State}->{ID})
     $Self->Is(
         scalar @TicketIDs,
         scalar @TicketIDsType,
@@ -2581,13 +2587,15 @@ for my $Index ( 1 .. 3 ) {
         Name    => $ServiceName,
         ValidID => 1,
         Comment => 'Unit Test Comment',
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID      => $ServiceTypeName2ID{Training},
         Criticality => '3 normal',
-# ---
-        UserID  => 1,
+
+        # ---
+        UserID => 1,
     ) || die "ServiceAdd() error.";
 
     push @Services, {
@@ -2601,12 +2609,14 @@ for my $Index ( 1 .. 3 ) {
         Name    => $SLAName,
         ValidID => 1,
         Comment => 'Unit Test Comment',
-# ---
-# ITSMCore
-# ---
+
+        # ---
+        # ITSMCore
+        # ---
         TypeID => $SLATypeName2ID{Other},
-# ---
-        UserID  => 1,
+
+        # ---
+        UserID => 1,
     ) || die "SLAAdd() error.";
 
     push @SLAs, {

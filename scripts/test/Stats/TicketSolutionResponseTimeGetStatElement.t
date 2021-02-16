@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -38,6 +38,7 @@ my $TicketObject         = $Kernel::OM->Get('Kernel::System::Ticket');
 my $ArticleObject        = $Kernel::OM->Get('Kernel::System::Ticket::Article');
 my $ArticleBackendObject = $ArticleObject->BackendForChannel( ChannelName => 'Internal' );
 my $ServiceObject        = $Kernel::OM->Get('Kernel::System::Service');
+
 # ---
 # ITSMCore
 # ---
@@ -48,7 +49,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -56,7 +57,8 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 # Enable Service.
@@ -114,13 +116,15 @@ $Self->True(
 
 # Add test Service.
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name    => "TestService - " . $Helper->GetRandomID(),
-# ---
-# ITSMCore
-# ---
+    Name => "TestService - " . $Helper->GetRandomID(),
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => 1,
     UserID  => 1,
 );
@@ -139,13 +143,15 @@ $ServiceObject->CustomerUserServiceMemberAdd(
 
 # Add test SLA.
 my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-    Name                => "TestSLA - " . $Helper->GetRandomID(),
-    ServiceIDs          => [$ServiceID],
-# ---
-# ITSMCore
-# ---
+    Name       => "TestSLA - " . $Helper->GetRandomID(),
+    ServiceIDs => [$ServiceID],
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID => $SLATypeName2ID{Other},
-# ---
+
+    # ---
     FirstResponseTime   => 5,
     FirstResponseNotify => 60,
     UpdateTime          => 10,

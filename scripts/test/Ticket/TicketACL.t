@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -117,6 +117,7 @@ $Self->True(
     $NewQueueID,
     "QueueAdd() ID ($NewQueueID) added successfully"
 );
+
 # ---
 # ITSMCore
 # ---
@@ -127,7 +128,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -135,19 +136,22 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 # set service options
 my $ServiceName = 'Service_' . $RandomID;
 my $ServiceID   = $ServiceObject->ServiceAdd(
-    Name    => $ServiceName,
-# ---
-# ITSMCore
-# ---
+    Name => $ServiceName,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => $ValidList{'valid'},
     UserID  => 1,
 );
@@ -160,13 +164,15 @@ $Self->True(
 
 my $NewServiceName = 'NewService_' . $RandomID;
 my $NewServiceID   = $ServiceObject->ServiceAdd(
-    Name    => $NewServiceName,
-# ---
-# ITSMCore
-# ---
+    Name => $NewServiceName,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => $ValidList{'valid'},
     UserID  => 1,
 );
@@ -234,12 +240,14 @@ $Self->True(
 # set SLA options
 my $SLAName = 'SLA_' . $RandomID;
 my $SLAID   = $SLAObject->SLAAdd(
-    Name    => $SLAName,
-# ---
-# ITSMCore
-# ---
+    Name => $SLAName,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID => $SLATypeName2ID{Other},
-# ---
+
+    # ---
     ValidID => $ValidList{'valid'},
     UserID  => 1,
 );
@@ -252,12 +260,14 @@ $Self->True(
 
 my $NewSLAName = 'NewSLA_' . $RandomID;
 my $NewSLAID   = $SLAObject->SLAAdd(
-    Name    => $NewSLAName,
-# ---
-# ITSMCore
-# ---
+    Name => $NewSLAName,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID => $SLATypeName2ID{Other},
-# ---
+
+    # ---
     ValidID => $ValidList{'valid'},
     UserID  => 1,
 );

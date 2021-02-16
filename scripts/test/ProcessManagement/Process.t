@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -116,6 +116,7 @@ my $TestCustomerUserLogin = $Helper->TestCustomerUserCreate();
 
 # Get ServiceObject.
 my $ServiceObject = $Kernel::OM->Get('Kernel::System::Service');
+
 # ---
 # ITSMCore
 # ---
@@ -126,7 +127,7 @@ my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemLi
 );
 
 # build a lookup hash
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
 # get the list of sla types from general catalog
 my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
@@ -134,17 +135,20 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 );
 
 # build a lookup hash
-my %SLATypeName2ID = reverse %{ $SLATypeList };
+my %SLATypeName2ID = reverse %{$SLATypeList};
+
 # ---
 
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name    => $RandomID,
-# ---
-# ITSMCore
-# ---
+    Name => $RandomID,
+
+    # ---
+    # ITSMCore
+    # ---
     TypeID      => $ServiceTypeName2ID{Training},
     Criticality => '3 normal',
-# ---
+
+    # ---
     ValidID => 1,
     UserID  => 1,
 );
@@ -158,14 +162,16 @@ $ServiceObject->CustomerUserServiceMemberAdd(
 
 my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
     ServiceIDs => [$ServiceID],
-# ---
-# ITSMCore
-# ---
-    TypeID     => $SLATypeName2ID{Other},
-# ---
-    Name       => $RandomID,
-    ValidID    => 1,
-    UserID     => 1,
+
+    # ---
+    # ITSMCore
+    # ---
+    TypeID => $SLATypeName2ID{Other},
+
+    # ---
+    Name    => $RandomID,
+    ValidID => 1,
+    UserID  => 1,
 );
 
 my $TicketID = $CommonObject{TicketObject}->TicketCreate(
@@ -1960,7 +1966,7 @@ my @Tests = (
         }
     },
 
- # Transition + TicketServiceSet + TicketSLASet TransitionAction on matching Transition change Service and SLA on Ticket
+    # Transition + TicketServiceSet + TicketSLASet TransitionAction on matching Transition change Service and SLA on Ticket
     {
         ProcessTransition => {
             Config => {

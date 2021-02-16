@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -14,7 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
-package var::packagesetup::ITSMCore;    ## no critic
+package var::packagesetup::ITSMCore;
 
 use strict;
 use warnings;
@@ -153,7 +153,7 @@ my $Result = $CodeObject->CodeUpgradeFromLowerThan_3_2_91();
 
 =cut
 
-sub CodeUpgradeFromLowerThan_3_2_91 {    ## no critic
+sub CodeUpgradeFromLowerThan_3_2_91 {    ## no critic qw(OTOBO::RequireCamelCase)
     my ( $Self, %Param ) = @_;
 
     # migrate the values for Criticality and the Impact from GeneralCatalog to DynamicFields
@@ -170,7 +170,7 @@ my $Result = $CodeObject->CodeUpgradeFromLowerThan_4_0_2();
 
 =cut
 
-sub CodeUpgradeFromLowerThan_4_0_2 {    ## no critic
+sub CodeUpgradeFromLowerThan_4_0_2 {    ## no critic qw(OTOBO::RequireCamelCase)
     my ( $Self, %Param ) = @_;
 
     # migrate the DTL Content in the SysConfig
@@ -187,7 +187,7 @@ my $Result = $CodeObject->CodeUpgradeFromLowerThan_4_0_91();
 
 =cut
 
-sub CodeUpgradeFromLowerThan_4_0_91 {    ## no critic
+sub CodeUpgradeFromLowerThan_4_0_91 {    ## no critic qw(OTOBO::RequireCamelCase)
     my ( $Self, %Param ) = @_;
 
     # change configurations to match the new module location.

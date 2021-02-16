@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -166,36 +166,40 @@ $Selenium->RunTest(
             $QueueID,
             "QueueID $QueueID is created"
         );
-# ---
-# ITSMCore
-# ---
 
-# Get the list of service types from general catalog.
-my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::Service::Type',
-);
+        # ---
+        # ITSMCore
+        # ---
 
-# Build a lookup hash.
-my %ServiceTypeName2ID = reverse %{ $ServiceTypeList };
+        # Get the list of service types from general catalog.
+        my $ServiceTypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::Service::Type',
+        );
 
-# Get the list of sla types from general catalog.
-my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
-    Class => 'ITSM::SLA::Type',
-);
+        # Build a lookup hash.
+        my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 
-# Build a lookup hash.
-my %SLATypeName2ID = reverse %{ $SLATypeList };
-# ---
+        # Get the list of sla types from general catalog.
+        my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
+            Class => 'ITSM::SLA::Type',
+        );
+
+        # Build a lookup hash.
+        my %SLATypeName2ID = reverse %{$SLATypeList};
+
+        # ---
 
         # Create test service.
         my $ServiceID = $Kernel::OM->Get('Kernel::System::Service')->ServiceAdd(
-            Name    => $TicketData{Service},
-# ---
-# ITSMCore
-# ---
+            Name => $TicketData{Service},
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID      => $ServiceTypeName2ID{Training},
             Criticality => '3 normal',
-# ---
+
+            # ---
             ValidID => 1,
             Comment => 'Selenium Service',
             UserID  => 1,
@@ -212,13 +216,15 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
             SolutionTime      => 50,
         );
         my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-            ServiceIDs        => [$ServiceID],
-            Name              => $TicketData{SLA},
-# ---
-# ITSMCore
-# ---
+            ServiceIDs => [$ServiceID],
+            Name       => $TicketData{SLA},
+
+            # ---
+            # ITSMCore
+            # ---
             TypeID => $SLATypeName2ID{Other},
-# ---
+
+            # ---
             FirstResponseTime => $EscalationTimes{FirstResponseTime},
             UpdateTime        => $EscalationTimes{UpdateTime},
             SolutionTime      => $EscalationTimes{SolutionTime},
@@ -517,14 +523,16 @@ my %SLATypeName2ID = reverse %{ $SLATypeList };
                 SQL     => "DELETE FROM sla WHERE id = $SLAID",
                 Message => "SLAID $SLAID is deleted",
             },
-# ---
-# ITSMCore
-# ---
+
+            # ---
+            # ITSMCore
+            # ---
             {
                 SQL     => "DELETE FROM service_preferences WHERE service_id = $ServiceID",
                 Message => "Service preferences for $ServiceID is deleted",
             },
-# ---
+
+            # ---
             {
                 SQL     => "DELETE FROM service WHERE id = $ServiceID",
                 Message => "ServiceID $ServiceID is deleted",

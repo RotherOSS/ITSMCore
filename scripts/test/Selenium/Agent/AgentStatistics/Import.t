@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -69,12 +69,14 @@ $Selenium->RunTest(
 
             my $ServiceID = $ServiceObject->ServiceAdd(
                 %{$Service},
-# ---
-# ITSMCore
-# ---
+
+                # ---
+                # ITSMCore
+                # ---
                 TypeID      => 1,
                 Criticality => '3 normal',
-# ---
+
+                # ---
                 ValidID => 1,
                 UserID  => 1,
             );
@@ -105,11 +107,13 @@ $Selenium->RunTest(
 
             my $SLAID = $SLAObject->SLAAdd(
                 %{$SLA},
-# ---
-# ITSMCore
-# ---
+
+                # ---
+                # ITSMCore
+                # ---
                 TypeID => 1,
-# ---
+
+                # ---
                 ValidID => 1,
                 UserID  => 1,
             );
@@ -209,8 +213,7 @@ $Selenium->RunTest(
         );
 
         # Go to imported stat to run it.
-        $Selenium->find_element("//a[contains(\@href, \'AgentStatistics;Subaction=Edit;StatID=$StatsIDLast\' )]")
-            ->VerifiedClick();
+        $Selenium->find_element("//a[contains(\@href, \'AgentStatistics;Subaction=Edit;StatID=$StatsIDLast\' )]")->VerifiedClick();
 
         # Change preview format to Print.
         $Selenium->find_element("//button[contains(\@data-format, \'Print')]")->click();

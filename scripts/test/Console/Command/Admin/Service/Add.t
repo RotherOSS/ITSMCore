@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2020 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -53,6 +53,7 @@ $Self->Is(
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ParentServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $Self->Is(
     $ExitCode,
@@ -66,6 +67,7 @@ $Self->Is(
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ParentServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $Self->Is(
     $ExitCode,
@@ -79,6 +81,7 @@ $Self->Is(
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ChildServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ChildServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $Self->Is(
     $ExitCode,
@@ -92,6 +95,7 @@ $Self->Is(
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ParentServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $Self->Is(
     $ExitCode,
@@ -105,6 +109,7 @@ $Self->Is(
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ParentServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ChildServiceName, '--parent-name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $Self->Is(
     $ExitCode,
@@ -117,7 +122,9 @@ $Self->Is(
 # ITSMCore
 # ---
 #$ExitCode = $CommandObject->Execute( '--name', $ParentServiceName, '--parent-name', $ParentServiceName );
-$ExitCode = $CommandObject->Execute( '--name', $ParentServiceName, '--parent-name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+$ExitCode
+    = $CommandObject->Execute( '--name', $ParentServiceName, '--parent-name', $ParentServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 my $ServiceName = $ParentServiceName . '::' . $ParentServiceName;
 $Self->Is(
@@ -132,6 +139,7 @@ $Self->Is(
 # ---
 #$ExitCode    = $CommandObject->Execute( '--name', $ParentServiceName, '--parent-name', $ServiceName );
 $ExitCode = $CommandObject->Execute( '--name', $ParentServiceName, '--parent-name', $ServiceName, '--criticality', '3 normal', '--type', 'Demonstration' );
+
 # ---
 $ServiceName = $ServiceName . '::' . $ParentServiceName;
 $Self->Is(
