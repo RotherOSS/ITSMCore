@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 2ca1573db4610a7ef0c1cc6da129352067c23a30 - Kernel/System/Service.pm
+# $origin: otobo - d2d6be92c1665473091303dbf300e0c830d6d9be - Kernel/System/Service.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -1044,8 +1044,7 @@ sub ServiceSearch {
     $Param{Limit} ||= 1000;
 
     # create sql query
-    my $SQL
-        = "SELECT id FROM service WHERE valid_id IN ( ${\(join ', ', $Kernel::OM->Get('Kernel::System::Valid')->ValidIDsGet())} )";
+    my $SQL = "SELECT id FROM service WHERE valid_id IN ( ${\(join ', ', $Kernel::OM->Get('Kernel::System::Valid')->ValidIDsGet())} )";
     my @Bind;
 
     # get database object
@@ -1156,8 +1155,7 @@ sub CustomerUserServiceMemberList {
     }
 
     # get options for default services for unknown customers
-    my $DefaultServiceUnknownCustomer
-        = $Kernel::OM->Get('Kernel::Config')->Get('Ticket::Service::Default::UnknownCustomer');
+    my $DefaultServiceUnknownCustomer = $Kernel::OM->Get('Kernel::Config')->Get('Ticket::Service::Default::UnknownCustomer');
     if (
         $DefaultServiceUnknownCustomer
         && $Param{DefaultServices}

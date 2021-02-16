@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 2ca1573db4610a7ef0c1cc6da129352067c23a30 - Kernel/System/SLA.pm
+# $origin: otobo - eaafbcf14a45d967ce10948ca73bf4c8dc464575 - Kernel/System/SLA.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
