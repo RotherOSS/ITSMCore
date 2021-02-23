@@ -4,7 +4,7 @@
 <!-- nofilter(TidyAll::Plugin::OTOBO::SOPM::DocumentationPresent) -->
     <Version>0.0.0</Version>
     <Framework>10.0.x</Framework>
-    <PackageRequired Version="10.0.2">GeneralCatalog</PackageRequired>
+    <PackageRequired Version="10.0.3">GeneralCatalog</PackageRequired>
     <Vendor>Rother OSS GmbH</Vendor>
     <URL>https://otobo.de/</URL>
     <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
@@ -468,7 +468,7 @@
         <br/>
         <strong>REQUIRED OTOBO PACKAGES</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -487,7 +487,7 @@
         <br/>
         <strong>BENÖTIGTE OTOBO-PAKETE</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -506,7 +506,7 @@
         <br/>
         <strong>PAQUETES REQUERIDOS</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -525,7 +525,7 @@
         <br/>
         <strong>SZÜKSÉGES OTOBO CSOMAGOK</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -608,7 +608,7 @@
         <br/>
         <strong>REQUIRED OTOBO PACKAGES</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -627,7 +627,7 @@
         <br/>
         <strong>BENÖTIGTE OTOBO-PAKETE</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -646,7 +646,7 @@
         <br/>
         <strong>PAQUETES REQUERIDOS</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
@@ -665,7 +665,7 @@
         <br/>
         <strong>SZÜKSÉGES OTOBO CSOMAGOK</strong>
         <ul>
-        <li>GeneralCatalog 10.0.2</li>
+        <li>GeneralCatalog 10.0.3</li>
         </ul>
         <br/>
         <br/>
