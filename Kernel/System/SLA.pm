@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - eaafbcf14a45d967ce10948ca73bf4c8dc464575 - Kernel/System/SLA.pm
+# $origin: otobo - b1c1ab35d59104476ebde772a12c7f3cd36e5211 - Kernel/System/SLA.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -558,10 +558,10 @@ sub SLAAdd {
             . 'type_id, min_time_bet_incidents) VALUES '
             . '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp, ?, current_timestamp, ?, ?, ?)',
         Bind => [
-            \$Param{Name},                \$Param{Calendar},   \$Param{FirstResponseTime},
-            \$Param{FirstResponseNotify}, \$Param{UpdateTime}, \$Param{UpdateNotify},
-            \$Param{SolutionTime}, \$Param{SolutionNotify}, \$Param{ValidID}, \$Param{Comment},
-            \$Param{UserID}, \$Param{UserID}, \$Param{TypeID}, \$Param{MinTimeBetweenIncidents},
+            \$Param{Name},                \$Param{Calendar},       \$Param{FirstResponseTime},
+            \$Param{FirstResponseNotify}, \$Param{UpdateTime},     \$Param{UpdateNotify},
+            \$Param{SolutionTime},        \$Param{SolutionNotify}, \$Param{ValidID}, \$Param{Comment},
+            \$Param{UserID},              \$Param{UserID},         \$Param{TypeID},  \$Param{MinTimeBetweenIncidents},
         ],
 # ---
     );
@@ -755,10 +755,10 @@ sub SLAUpdate {
             . 'type_id = ?, min_time_bet_incidents = ? '
             . 'WHERE id = ?',
         Bind => [
-            \$Param{Name},                \$Param{Calendar},   \$Param{FirstResponseTime},
-            \$Param{FirstResponseNotify}, \$Param{UpdateTime}, \$Param{UpdateNotify},
-            \$Param{SolutionTime}, \$Param{SolutionNotify}, \$Param{ValidID}, \$Param{Comment},
-            \$Param{UserID}, \$Param{TypeID}, \$Param{MinTimeBetweenIncidents}, \$Param{SLAID},
+            \$Param{Name},                \$Param{Calendar},       \$Param{FirstResponseTime},
+            \$Param{FirstResponseNotify}, \$Param{UpdateTime},     \$Param{UpdateNotify},
+            \$Param{SolutionTime},        \$Param{SolutionNotify}, \$Param{ValidID}, \$Param{Comment},
+            \$Param{UserID},              \$Param{TypeID},         \$Param{MinTimeBetweenIncidents}, \$Param{SLAID},
         ],
 # ---
     );

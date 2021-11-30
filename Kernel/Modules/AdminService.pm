@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - eaafbcf14a45d967ce10948ca73bf4c8dc464575 - Kernel/Modules/AdminService.pm
+# $origin: otobo - 866ca7d0103f52a61cedf7c5b10cac6b9cb56991 - Kernel/Modules/AdminService.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -233,8 +233,8 @@ sub Run {
         $Output .= $LayoutObject->NavigationBar();
         $Output .= $Error{Message}
             ? $LayoutObject->Notify(
-            Priority => 'Error',
-            Info     => $Error{Message},
+                Priority => 'Error',
+                Info     => $Error{Message},
             )
             : '';
 
@@ -263,7 +263,7 @@ sub Run {
             $Output .= $LayoutObject->Notify(
                 Priority => 'Error',
                 Data     => $LayoutObject->{LanguageObject}->Translate( "Please activate %s first!", "Service" ),
-                Link =>
+                Link     =>
                     $LayoutObject->{Baselink}
                     . 'Action=AdminSystemConfiguration;Subaction=View;Setting=Ticket%3A%3AService;',
             );
