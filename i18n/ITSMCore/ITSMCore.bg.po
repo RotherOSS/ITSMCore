@@ -2,13 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-11-24 18:00+0000\n"
+"Last-Translator: Yasen Arsov <jarsov@gmail.com>\n"
+"Language-Team: Bulgarian <https://translate.otobo.org/projects/otobo10/"
+"itsmcore/bg/>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Criticality ↔ Impact ↔ Priority"
@@ -17,10 +20,12 @@ msgstr "Критичност↔Влияние↔Приотитет"
 #. Template: AdminITSMCIPAllocate
 msgid "Manage the priority result of combinating Criticality ↔ Impact."
 msgstr ""
+"Управлявайте приоритетния резултат от комбинирането на Критичност ↔ "
+"Въздействие."
 
 #. Template: AdminITSMCIPAllocate
 msgid "Priority allocation"
-msgstr ""
+msgstr "Приоритетно разпределение"
 
 #. Template: AdminSLA
 msgid "Minimum Time Between Incidents"
@@ -32,7 +37,7 @@ msgstr "Критичност"
 
 #. Template: AgentITSMSLAZoom
 msgid "SLA Information"
-msgstr ""
+msgstr "Информация за SLA"
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed"
@@ -44,15 +49,15 @@ msgstr "Последно променен от"
 
 #. Template: AgentITSMSLAZoom
 msgid "Associated Services"
-msgstr ""
+msgstr "Свързани услуги"
 
 #. Template: AgentITSMServiceZoom
 msgid "Service Information"
-msgstr ""
+msgstr "Сервизна информация"
 
 #. Template: AgentITSMServiceZoom
 msgid "Current incident state"
-msgstr ""
+msgstr "Текущо състояние на инцидента"
 
 #. Template: AgentITSMServiceZoom
 msgid "Associated SLAs"
@@ -64,35 +69,35 @@ msgstr "Влияние"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "No SLAID is given!"
-msgstr ""
+msgstr "Не определен SLAID!"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "SLAID %s not found in database!"
-msgstr ""
+msgstr "SLAID %s не е намерен в базата данни!"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "Calendar Default"
-msgstr ""
+msgstr "Календар по подразбиране"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "operational"
-msgstr ""
+msgstr "оперативен"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "warning"
-msgstr ""
+msgstr "внимание"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "incident"
-msgstr ""
+msgstr "инцидент"
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "No ServiceID is given!"
-msgstr ""
+msgstr "Не е даден ID на услугата!"
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "ServiceID %s not found in database!"
-msgstr ""
+msgstr "ID на услугата %s не е намерен в базата данни!"
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "Current Incident State"
@@ -116,11 +121,11 @@ msgstr "Услуги за крайни потребители"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Front End"
-msgstr "Клиентска система/Frontend"
+msgstr "Клиентски интерфейс"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Back End"
-msgstr "Основна система/Backend"
+msgstr "Сървърна част"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "IT Management"
@@ -437,4 +442,3 @@ msgstr ""
 #. SysConfig
 msgid "Width of ITSM textareas."
 msgstr ""
-
