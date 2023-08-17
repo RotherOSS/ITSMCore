@@ -17,6 +17,14 @@
 use strict;
 use warnings;
 
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+
 our $Self;
 
 my $CIPAllocateObject = $Kernel::OM->Get('Kernel::System::ITSMCIPAllocate');
@@ -124,4 +132,4 @@ my $Success4 = $CIPAllocateObject->AllocateUpdate(
 # check the result
 $Self->True( $Success4, 'AllocateUpdate()' );
 
-1;
+done_testing;

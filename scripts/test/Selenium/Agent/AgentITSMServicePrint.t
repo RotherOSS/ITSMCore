@@ -18,9 +18,18 @@ use strict;
 use warnings;
 use utf8;
 
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+use Kernel::System::UnitTest::Selenium;
+
 our $Self;
 
-my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
+my $Selenium = Kernel::System::UnitTest::Selenium->new;
 
 if ( $Selenium->{browser_name} ne 'firefox' ) {
     $Self->True(
@@ -127,4 +136,4 @@ $Selenium->RunTest(
     }
 );
 
-1;
+done_testing;

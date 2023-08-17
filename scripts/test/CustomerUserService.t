@@ -22,6 +22,14 @@ use strict;
 use warnings;
 use utf8;
 
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+
 our $Self;
 
 # get needed objects
@@ -432,6 +440,4 @@ $Self->Is(
     "Services allocated to new customer $NewCustomerUser1 after rename",
 );
 
-# cleanup is done by RestoreDatabase
-
-1;
+done_testing;

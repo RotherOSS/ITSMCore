@@ -22,6 +22,14 @@ use strict;
 use warnings;
 use utf8;
 
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+
 our $Self;
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::Service::Add');
@@ -148,6 +156,4 @@ $Self->Is(
     "Parent (two levels) and child service same name - $ServiceName - is created",
 );
 
-# cleanup is done by RestoreDatabase
-
-1;
+done_testing;

@@ -22,6 +22,14 @@ use strict;
 use warnings;
 use utf8;
 
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+
 our $Self;
 
 use Socket;
@@ -5071,4 +5079,4 @@ for my $DynamicFieldID ( sort keys %{$DeleteFieldList} ) {
 # cleanup cache
 $Kernel::OM->Get('Kernel::System::Cache')->CleanUp();
 
-1;
+done_testing;

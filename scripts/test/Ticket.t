@@ -29,7 +29,7 @@ use Test2::V0;
 use Capture::Tiny qw(capture);
 
 # OTOBO modules
-use Kernel::System::UnitTest::RegisterDriver;
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
 use Kernel::System::VariableCheck qw(IsHashRefWithData);
 
 our $Self;

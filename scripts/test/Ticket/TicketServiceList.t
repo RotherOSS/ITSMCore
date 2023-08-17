@@ -21,6 +21,15 @@
 use strict;
 use warnings;
 use utf8;
+
+# core modules
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+
 our $Self;
 
 # get helper object
@@ -308,6 +317,4 @@ for my $Test (@Tests) {
     }
 }
 
-# Cleanup is done by RestoreDatabase.
-
-1;
+done_testing;
