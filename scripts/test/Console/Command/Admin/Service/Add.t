@@ -26,7 +26,7 @@ our $Self;
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::Service::Add');
 
-my ( $Result, $ExitCode );
+my $ExitCode;
 
 # get helper object
 $Kernel::OM->ObjectParamAdd(

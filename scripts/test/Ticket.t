@@ -2737,7 +2737,6 @@ for my $Index ( 1 .. 3 ) {
     },
 );
 
-my %ExpectedResult;
 undef @TicketIDs;
 for my $Test (@Tests) {
     my $TicketID = $TicketObject->TicketCreate(

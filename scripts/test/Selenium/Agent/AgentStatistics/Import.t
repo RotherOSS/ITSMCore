@@ -60,7 +60,6 @@ $Selenium->RunTest(
 
         # Add Services.
         my @ServiceIDs;
-        my %ServicesNameToID;
         SERVICE:
         for my $Service ( @{ $Config->{Services} } ) {
 
