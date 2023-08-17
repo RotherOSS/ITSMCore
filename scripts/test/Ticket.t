@@ -2,7 +2,7 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2023 Rother OSS GmbH, https://otobo.de/
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -22,9 +22,17 @@ use strict;
 use warnings;
 use utf8;
 
-our $Self;
+# core modules
 
+# CPAN modules
+use Test2::V0;
+use Capture::Tiny qw(capture);
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;
 use Kernel::System::VariableCheck qw(IsHashRefWithData);
+
+our $Self;
 
 my $QueueObject          = $Kernel::OM->Get('Kernel::System::Queue');
 my $ServiceObject        = $Kernel::OM->Get('Kernel::System::Service');
@@ -207,7 +215,7 @@ my $ArticleID = $ArticleBackendObject->ArticleCreate(
     TicketID             => $TicketID,
     SenderType           => 'agent',
     IsVisibleForCustomer => 0,
-    From =>
+    From                 =>
         'Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent Some Agent <email@example.com>',
     To =>
         'Some Customer A Some Customer A Some Customer A Some Customer A Some Customer A Some Customer A  Some Customer ASome Customer A Some Customer A <customer-a@example.com>',
@@ -366,17 +374,12 @@ $Self->True(
     'TicketSearch() (HASH:TicketID as ARRAYREF)',
 );
 
-my $ErrorOutput = '';
-
-{
-    local *STDERR;
-    open STDERR, ">>", \$ErrorOutput;
-
-    %TicketIDs = $TicketObject->TicketSearch(
+( undef, my $ErrorOutput, undef ) = capture {
+    my %TicketIDs = $TicketObject->TicketSearch(
         TicketID => [],
         UserID   => 1,
     );
-}
+};
 
 # Verify that search does not fail SQL syntax check when an empty array reference is passed for the TicketID param.
 #   Please see bug#14227 for more information.
@@ -511,9 +514,9 @@ $Self->True(
 %TicketIDs = $TicketObject->TicketSearch(
     Result            => 'HASH',
     Limit             => 100,
-    TicketNumber      => [ $Ticket{TicketNumber}, 'ABC' ],
-    Title             => [ $Ticket{Title}, '123' ],
-    CustomerID        => [ $Ticket{CustomerID}, '1213421' ],
+    TicketNumber      => [ $Ticket{TicketNumber},   'ABC' ],
+    Title             => [ $Ticket{Title},          '123' ],
+    CustomerID        => [ $Ticket{CustomerID},     '1213421' ],
     CustomerUserLogin => [ $Ticket{CustomerUserID}, 'iadasd' ],
     UserID            => 1,
     Permission        => 'rw',
@@ -1654,7 +1657,7 @@ my @TicketIDsSortOrder = $TicketObject->TicketSearch(
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
     CustomerUser => 'unittest@otobo.com',
-    OrderBy      => [ 'Down', 'Up' ],
+    OrderBy      => [ 'Down',     'Up' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
     Limit        => 1,
@@ -1673,7 +1676,7 @@ $Self->Is(
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
     CustomerUser => 'unittest@otobo.com',
-    OrderBy      => [ 'Down', 'Down' ],
+    OrderBy      => [ 'Down',     'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
     Limit        => 1,
@@ -1771,7 +1774,7 @@ my $TicketIDSortOrder5 = $TicketObject->TicketCreate(
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
     CustomerUser => 'unittest@otobo.com',
-    OrderBy      => [ 'Down', 'Down' ],
+    OrderBy      => [ 'Down',     'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
     Limit        => 1,
@@ -1789,7 +1792,7 @@ $Self->Is(
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
     CustomerUser => 'unittest@otobo.com',
-    OrderBy      => [ 'Up', 'Down' ],
+    OrderBy      => [ 'Up',       'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
     Limit        => 1,
@@ -2887,4 +2890,4 @@ $Self->True(
     "TicketCountByAttribute() for more then 1000 entries correct"
 );
 
-1;
+done_testing;
