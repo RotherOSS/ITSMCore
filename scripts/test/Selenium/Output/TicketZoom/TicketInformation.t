@@ -23,7 +23,7 @@ use warnings;
 use utf8;
 use POSIX qw( floor );
 
-use vars (qw($Self));
+our $Self;
 
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');
 

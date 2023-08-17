@@ -19,7 +19,7 @@ use warnings;
 
 use utf8;
 
-use vars (qw($Self));
+our $Self;
 
 # get selenium object
 my $Selenium = $Kernel::OM->Get('Kernel::System::UnitTest::Selenium');

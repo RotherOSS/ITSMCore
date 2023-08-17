@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use utf8;
 
-use vars (qw($Self));
+our $Self;
 
 use Kernel::System::VariableCheck qw(:all);
 
@@ -1319,7 +1319,7 @@ my @Tests = (
             ActivityEntityID => 'A3',
             TicketID         => $TicketID,
             UserID           => 1,
-            Message =>
+            Message          =>
                 'ProcessTicketActivitySet() (Set ActivityEntityID on Ticket with no ProcessEntityID)',
             TestType => 'False',
         }
@@ -1368,7 +1368,7 @@ my @Tests = (
             ActivityEntityID => 'A3',
             TicketID         => undef,
             UserID           => 1,
-            Message =>
+            Message          =>
                 'ProcessTicketActivitySet() (Set ActivityEntityID on Ticket with no TicketID)',
             TestType => 'False',
         }
@@ -1417,7 +1417,7 @@ my @Tests = (
             ActivityEntityID => 'A3',
             TicketID         => $TicketID,
             UserID           => 1,
-            Message =>
+            Message          =>
                 'ProcessTicketActivitySet() (Set ActivityEntityID on Ticket with invalid ActivityEntityID)',
             TestType => 'False',
         }
@@ -1472,7 +1472,7 @@ my @Tests = (
             ActivityEntityID => 'A1',
             TicketID         => $TicketID,
             UserID           => 1,
-            Message =>
+            Message          =>
                 'ProcessTicketActivitySet() (Set ActivityEntityID on Ticket with invalid ProcessEntityID)',
             TestType => 'False',
         }
@@ -1527,7 +1527,7 @@ my @Tests = (
             ActivityEntityID => 'A1',
             TicketID         => $TicketID,
             UserID           => 1,
-            Message =>
+            Message          =>
                 'ProcessTicketActivitySet() (Set ActivityEntityID on Ticket with valid Config)',
             TestType => 'True',
         }

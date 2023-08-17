@@ -22,7 +22,7 @@ use strict;
 use warnings;
 use utf8;
 
-use vars (qw($Self));
+our $Self;
 
 use Socket;
 use MIME::Base64;

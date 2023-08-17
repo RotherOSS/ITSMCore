@@ -16,7 +16,8 @@
 
 use strict;
 use warnings;
-use vars qw($Self);
+
+our $Self;
 
 my $CIPAllocateObject = $Kernel::OM->Get('Kernel::System::ITSMCIPAllocate');
 

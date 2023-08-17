@@ -21,7 +21,7 @@
 use strict;
 use warnings;
 use utf8;
-use vars (qw($Self));
+our $Self;
 
 # get helper object
 $Kernel::OM->ObjectParamAdd(
