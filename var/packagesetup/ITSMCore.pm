@@ -491,7 +491,7 @@ sub _MigrateCriticalityAndImpactToDynamicFields {
 
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message =>
+            Message  =>
                 "Could not migrate Criticality and Impact from General Catalog to Dynamic Fields!",
         );
         return;
@@ -1012,7 +1012,7 @@ sub _FillupEmptyServiceCriticality {
     if ( !@CriticalityKeyList ) {
         $Kernel::OM->Get('Kernel::System::Log')->Log(
             Priority => 'error',
-            Message =>
+            Message  =>
                 "Can't find any possible values for ITSMCriticality in dynamic field configuration!",
         );
         return;

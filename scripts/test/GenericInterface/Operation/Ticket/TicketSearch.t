@@ -1875,8 +1875,8 @@ my @Tests = (
 
 for my $Item (
     qw(
-    TicketNumber Title MIMEBase_From MIMEBase_To MIMEBase_Cc MIMEBase_Subject
-    MIMEBase_Body CustomerID CustomerUserLogin StateType Fulltext
+        TicketNumber Title MIMEBase_From MIMEBase_To MIMEBase_Cc MIMEBase_Subject
+        MIMEBase_Body CustomerID CustomerUserLogin StateType Fulltext
     )
     )
 {
