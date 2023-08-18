@@ -306,14 +306,15 @@ $Selenium->RunTest(
             $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentTicketZoom;TicketID=$TicketID");
 
             # Wait until page has loaded.
-            $Selenium->WaitFor( JavaScript => 'return typeof($) === "function";' );
+            $Selenium->WaitFor(
+                JavaScript => 'return typeof($) === "function";'
+            );
 
             # Force sub menus to be visible in order to be able to click one of the links.
             $Selenium->execute_script("\$('#nav-Miscellaneous ul').css('height', 'auto');");
             $Selenium->execute_script("\$('#nav-Miscellaneous ul').css('opacity', '1');");
             $Selenium->WaitFor(
-                JavaScript =>
-                    "return \$('#nav-Miscellaneous ul').css('height') !== '0px' && \$('#nav-Miscellaneous ul').css('opacity') == '1';"
+                JavaScript => "return \$('#nav-Miscellaneous ul').css('height') !== '0px' && \$('#nav-Miscellaneous ul').css('opacity') == '1';"
             );
 
             # Click on 'Free Fields' and switch window.
@@ -324,7 +325,9 @@ $Selenium->RunTest(
             $Selenium->switch_to_window( $Handles->[1] );
 
             # Wait until page has loaded, if necessary.
-            $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length;' );
+            $Selenium->WaitFor(
+                JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length;'
+            );
 
             # Get NoMandatory/Mandatory fields for exist checking.
             my $CheckFields = $Test->{CheckFields};
@@ -374,14 +377,15 @@ $Selenium->RunTest(
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentTicketZoom;TicketID=$TicketID");
 
         # Wait until page has loaded.
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function";' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof($) === "function";'
+        );
 
         # Force sub menus to be visible in order to be able to click one of the links.
         $Selenium->execute_script("\$('#nav-Miscellaneous ul').css('height', 'auto');");
         $Selenium->execute_script("\$('#nav-Miscellaneous ul').css('opacity', '1');");
         $Selenium->WaitFor(
-            JavaScript =>
-                "return \$('#nav-Miscellaneous ul').css('height') !== '0px' && \$('#nav-Miscellaneous ul').css('opacity') == '1';"
+            JavaScript => "return \$('#nav-Miscellaneous ul').css('height') !== '0px' && \$('#nav-Miscellaneous ul').css('opacity') == '1';"
         );
 
         # Click on 'Free Fields' and switch window.
@@ -392,7 +396,9 @@ $Selenium->RunTest(
         $Selenium->switch_to_window( $Handles->[1] );
 
         # Wait until page has loaded, if necessary.
-        $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length;' );
+        $Selenium->WaitFor(
+            JavaScript => 'return typeof($) === "function" && $(".CancelClosePopup").length;'
+        );
 
         # Fill all free text fields.
         FREETEXTFIELDS:

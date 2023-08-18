@@ -32,11 +32,7 @@ our $Self;
 my $Selenium = Kernel::System::UnitTest::Selenium->new;
 
 if ( $Selenium->{browser_name} ne 'firefox' ) {
-    $Self->True(
-        1,
-        'PDF test currently supports Firefox only'
-    );
-    return 1;
+    skip_all("PDF tests are currently only supported on Firefox");
 }
 
 $Selenium->RunTest(

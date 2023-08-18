@@ -276,7 +276,7 @@ $Self->True(
 
 # update escalation times directly in the DB
 my $EscalationTime = $StartTime->ToEpoch() + 120;
-return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
+my $DoSuccess      = $Kernel::OM->Get('Kernel::System::DB')->Do(
     SQL => '
         UPDATE ticket
         SET escalation_time = ?, escalation_response_time = ?, escalation_update_time = ?,
@@ -291,6 +291,7 @@ return if !$Kernel::OM->Get('Kernel::System::DB')->Do(
         \$TicketID1,
     ],
 );
+bail_out('bailing out as UPDATE ticket failed') unless $DoSuccess;
 
 # create backend object and delegates
 my $BackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
