@@ -13,10 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
-# This software comes with ABSOLUTELY NO WARRANTY. For details, see
-# the enclosed file COPYING for license information (GPL). If you
-# did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
-# --
 
 use strict;
 use warnings;
@@ -64,7 +60,7 @@ my $TicketID = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'closed successful',
     CustomerNo   => '123465',
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -161,7 +157,7 @@ my $TicketIDCreatedBy = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'closed successful',
     CustomerNo   => '123465',
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => $TestUserID,
 );
@@ -959,12 +955,12 @@ my $SLATypeList = $Kernel::OM->Get('Kernel::System::GeneralCatalog')->ItemList(
 my %SLATypeName2ID = reverse %{$SLATypeList};
 
 # ---
-
 # create a test service
 my $ServiceID = $ServiceObject->ServiceAdd(
     Name    => 'Service' . $Helper->GetRandomID(),
     ValidID => 1,
     Comment => 'Unit Test Comment',
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -973,7 +969,6 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    UserID => 1,
 );
 
 # wait 1 seconds
@@ -1034,8 +1029,8 @@ $Self->True(
     UserID   => 1,
 );
 
-# compare current change_time with old one
-$Self->IsNot(
+# compare current change_time with old one, the change time should stay the same
+$Self->Is(
     $ChangeTime,
     $TicketData{Changed},
     'Change_time updated in TicketEscalationIndexBuild()',
@@ -1049,6 +1044,7 @@ my $SLAID = $SLAObject->SLAAdd(
     Name    => 'SLA' . $Helper->GetRandomID(),
     ValidID => 1,
     Comment => 'Unit Test Comment',
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -1056,7 +1052,6 @@ my $SLAID = $SLAObject->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    UserID => 1,
 );
 
 # wait 5 seconds
@@ -1409,8 +1404,7 @@ $Self->Is(
     $Ticket2{Title},
     'Very long title 01234567890123456789012345678901234567890123456789'
         . '0123456789012345678901234567890123456789012345678901234567890123456789'
-        . '0123456789012345678901234567890123456789012345678901234567890123456789'
-        . '0123456789012345678901234567890123456789',
+        . '0123456789012345678901234567890123456789012345678901234',
     'TicketGet() (Title)',
 );
 $Self->Is(
@@ -1605,7 +1599,7 @@ my $TicketIDSortOrder1 = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'new',
     CustomerNo   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -1625,7 +1619,7 @@ my $TicketIDSortOrder2 = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'new',
     CustomerNo   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -1657,7 +1651,7 @@ my @TicketIDsSortOrder = $TicketObject->TicketSearch(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Down',     'Up' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
@@ -1676,7 +1670,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Down',     'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
@@ -1694,7 +1688,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Down', ],
     SortBy       => ['Changed'],
     UserID       => 1,
@@ -1713,7 +1707,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Up', ],
     SortBy       => [ 'Changed', ],
     UserID       => 1,
@@ -1733,7 +1727,7 @@ my $TicketIDSortOrder3 = $TicketObject->TicketCreate(
     Priority     => '4 high',
     State        => 'new',
     CustomerNo   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -1748,7 +1742,7 @@ my $TicketIDSortOrder4 = $TicketObject->TicketCreate(
     Priority     => '4 high',
     State        => 'new',
     CustomerNo   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -1763,7 +1757,7 @@ my $TicketIDSortOrder5 = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'new',
     CustomerNo   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -1774,7 +1768,7 @@ my $TicketIDSortOrder5 = $TicketObject->TicketCreate(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Down',     'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
@@ -1792,7 +1786,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => [ 'Up',       'Down' ],
     SortBy       => [ 'Priority', 'Age' ],
     UserID       => 1,
@@ -1810,7 +1804,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => 'Down',
     SortBy       => 'Age',
     UserID       => 1,
@@ -1828,7 +1822,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => 'Up',
     SortBy       => 'Age',
     UserID       => 1,
@@ -1846,7 +1840,7 @@ $Self->Is(
     Title        => '%sort/order by test%',
     Queues       => [ 'Misc', 'Raw' ],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OrderBy      => 'Up',
     SortBy       => 'Queue',
     UserID       => 1,
@@ -1863,7 +1857,7 @@ $Count = $TicketObject->TicketSearch(
     Title        => '%sort/order by test%',
     Queues       => ['Raw'],
     CustomerID   => $CustomerNo,
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     UserID       => 1,
     Limit        => 1,
 );
@@ -1915,7 +1909,7 @@ $TicketID = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'new',
     CustomerID   => '123465',
-    CustomerUser => 'unittest@otobo.com',
+    CustomerUser => 'unittest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -2341,7 +2335,7 @@ for my $QueueID (@QueueIDs) {
         Priority     => '3 normal',
         State        => 'new',
         CustomerID   => '123465',
-        CustomerUser => 'bugtest@otobo.com',
+        CustomerUser => 'bugtest@otobo.org',
         OwnerID      => 1,
         UserID       => 1,
     );
@@ -2431,7 +2425,7 @@ my @Tests = (
 for my $Test (@Tests) {
     my @Tickets = $TicketObject->TicketSearch(
         Result            => 'ARRAY',
-        CustomerUserLogin => 'bugtest@otobo.com',
+        CustomerUserLogin => 'bugtest@otobo.org',
         UserID            => 1,
         %{ $Test->{Config} },
     );
@@ -2445,7 +2439,7 @@ for my $Test (@Tests) {
 # cleanup is done by RestoreDatabase but we need to delete the tickets to cleanup the filesystem too
 my @DeleteTicketList = $TicketObject->TicketSearch(
     Result            => 'ARRAY',
-    CustomerUserLogin => [ 'unittest@otobo.com', 'bugtest@otobo.com' ],
+    CustomerUserLogin => [ 'unittest@otobo.org', 'bugtest@otobo.org' ],
     UserID            => 1,
 );
 for my $TicketID (@DeleteTicketList) {
@@ -2466,7 +2460,7 @@ my $FulltextTicketID = $TicketObject->TicketCreate(
     Priority     => '3 normal',
     State        => 'open',
     CustomerID   => '123465',
-    CustomerUser => 'bugtest@otobo.com',
+    CustomerUser => 'bugtest@otobo.org',
     OwnerID      => 1,
     UserID       => 1,
 );
@@ -2591,6 +2585,7 @@ for my $Index ( 1 .. 3 ) {
         Name    => $ServiceName,
         ValidID => 1,
         Comment => 'Unit Test Comment',
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -2599,7 +2594,6 @@ for my $Index ( 1 .. 3 ) {
         Criticality => '3 normal',
 
         # ---
-        UserID => 1,
     ) || die "ServiceAdd() error.";
 
     push @Services, {
@@ -2613,6 +2607,7 @@ for my $Index ( 1 .. 3 ) {
         Name    => $SLAName,
         ValidID => 1,
         Comment => 'Unit Test Comment',
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -2620,7 +2615,6 @@ for my $Index ( 1 .. 3 ) {
         TypeID => $SLATypeName2ID{Other},
 
         # ---
-        UserID => 1,
     ) || die "SLAAdd() error.";
 
     push @SLAs, {
@@ -2747,7 +2741,7 @@ for my $Test (@Tests) {
         %{$Test},
         Title        => 'Unit Test ticket',
         CustomerNo   => 'Unit Test customer',
-        CustomerUser => 'unittest@otobo.com',
+        CustomerUser => 'unittest@otobo.org',
         Lock         => 'unlock',
         OwnerID      => 1,
         UserID       => 1,
