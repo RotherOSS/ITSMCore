@@ -29,6 +29,7 @@ use Test2::V0;
 
 # OTOBO modules
 use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+use Kernel::System::UnitTest::MockTime qw(:all);
 
 our $Self;
 
@@ -91,7 +92,7 @@ $Helper->ConfigSettingChange(
 );
 
 # Set fixed time.
-$Helper->FixedTimeSet();
+FixedTimeSet();
 
 my $RandomID = $Helper->GetRandomNumber();
 
@@ -208,7 +209,7 @@ for my $Item ( 1 .. 6 ) {
         UserID             => 1,
     );
 
-    $Helper->FixedTimeAddSeconds( 2 * $Item * 60 );
+    FixedTimeAddSeconds( 2 * $Item * 60 );
 
     my $Success = $TicketObject->TicketStateSet(
         StateID            => 4,
@@ -239,7 +240,7 @@ for my $Item ( 1 .. 6 ) {
     );
     $Self->True( $ArticleID, "ArticleCreate() Created article $ArticleID" );
 
-    $Helper->FixedTimeAddSeconds( $Item * 60 );
+    FixedTimeAddSeconds( $Item * 60 );
 
     # Close all ticket's except the last one.
     if ( $Item != 6 ) {
