@@ -939,7 +939,8 @@ for my $QueueData (@Queues) {
 
 # delete group
 $Success = $DBObject->Do(
-    SQL => "DELETE FROM groups WHERE id = $GroupID",
+    SQL  => 'DELETE FROM groups_table WHERE id = ?',
+    Bind => [ \$GroupID ],
 );
 $Self->True(
     $Success,
