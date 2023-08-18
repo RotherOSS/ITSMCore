@@ -24,12 +24,12 @@ use utf8;
 use Test2::V0;
 
 # OTOBO modules
-use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+use Kernel::System::UnitTest::RegisterDriver;
 use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 if ( $Selenium->{browser_name} ne 'firefox' ) {
     skip_all("PDF tests are currently only supported on Firefox");
@@ -122,7 +122,10 @@ $Selenium->RunTest(
         # Create Service.
         my $ServiceName = 'Servi' . $RandomID;
         my $ServiceID   = $Kernel::OM->Get('Kernel::System::Service')->ServiceAdd(
-            Name => $ServiceName,
+            Name    => $ServiceName,
+            ValidID => 1,
+            Comment => 'Selenium Service',
+            UserID  => 1,
 
             # ---
             # ITSMCore
@@ -131,9 +134,6 @@ $Selenium->RunTest(
             Criticality => '3 normal',
 
             # ---
-            ValidID => 1,
-            Comment => 'Selenium Service',
-            UserID  => 1,
         );
         $Self->True(
             $ServiceID,
@@ -143,8 +143,6 @@ $Selenium->RunTest(
         # Create SLA.
         my $SLAName = 'SL' . $RandomID;
         my $SLAID   = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-            ServiceIDs => [$ServiceID],
-            Name       => $SLAName,
 
             # ---
             # ITSMCore
@@ -152,11 +150,14 @@ $Selenium->RunTest(
             TypeID => $SLATypeName2ID{Other},
 
             # ---
+            ServiceIDs        => [$ServiceID],
+            Name              => $SLAName,
             FirstResponseTime => 50,
             UpdateTime        => 100,
             SolutionTime      => 200,
             ValidID           => 1,
             Comment           => 'Selenium SLA',
+            UserID            => 1,
 
             # ---
             # ITSMCore
@@ -164,7 +165,6 @@ $Selenium->RunTest(
             TypeID => $ServiceTypeName2ID{Training},
 
             # ---
-            UserID => 1,
         );
         $Self->True(
             $QueueID,

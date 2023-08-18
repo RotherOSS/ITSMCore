@@ -19,33 +19,31 @@ use warnings;
 use utf8;
 
 # core modules
+use Socket;
+use MIME::Base64;
 
 # CPAN modules
 use Test2::V0;
 
 # OTOBO modules
 use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
-
-our $Self;
-
-use Socket;
-use MIME::Base64;
-
 use Kernel::GenericInterface::Debugger;
 use Kernel::GenericInterface::Operation::Ticket::TicketCreate;
 use Kernel::GenericInterface::Operation::Session::SessionCreate;
 
 use Kernel::System::VariableCheck qw(IsArrayRefWithData IsHashRefWithData IsStringWithData);
 
+our $Self;
+
+# set up object attributes
 $Kernel::OM->ObjectParamAdd(
     'Kernel::System::UnitTest::Helper' => {
         SkipSSLVerify     => 1,
         DisableAsyncCalls => 1,
     },
 );
-my $Helper = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
-$Helper->{DestroyLog} = 1;
 
+my $Helper   = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
 my $RandomID = $Helper->GetRandomID();
 
 $Helper->ConfigSettingChange(
@@ -247,7 +245,9 @@ my %SLATypeName2ID = reverse %{$SLATypeList};
 
 # create new service
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name => 'TestService' . $RandomID,
+    Name    => 'TestService' . $RandomID,
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -256,8 +256,6 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 
 # sanity check
@@ -292,6 +290,8 @@ my $SLAObject = $Kernel::OM->Get('Kernel::System::SLA');
 my $SLAID = $SLAObject->SLAAdd(
     Name       => 'TestSLA' . $RandomID,
     ServiceIDs => [$ServiceID],
+    ValidID    => 1,
+    UserID     => 1,
 
     # ---
     # ITSMCore
@@ -299,8 +299,6 @@ my $SLAID = $SLAObject->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 
 # sanity check
@@ -415,6 +413,7 @@ my %DynamicFieldDropdownConfig = (
             1 => 'One',
             2 => 'Two',
             3 => 'Three',
+            0 => '0',
         },
     },
 );
@@ -557,7 +556,7 @@ my $RemoteSystem =
     . $Host
     . '/'
     . $ConfigObject->Get('ScriptAlias')
-    . '/nph-genericinterface.pl/WebserviceID/'
+    . 'nph-genericinterface.pl/WebserviceID/'
     . $WebserviceID;
 
 my $WebserviceConfig = {
@@ -685,7 +684,10 @@ my $TestTicketDelete = sub {
     # Allow some time for all history entries to be written to the ticket before deleting it,
     #   otherwise TicketDelete could fail.
     sleep 1;
+    TICKETID:
     for my $TicketID (@TicketIDs) {
+
+        next TICKETID unless $TicketID;
 
         my $TicketDelete = $TicketObject->TicketDelete(
             TicketID => $TicketID,
@@ -2131,7 +2133,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
             },
             DynamicField => {
                 Test => 1,
@@ -2180,7 +2182,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
                 ContentType          => 'Invalid' . $RandomID,
             },
             DynamicField => {
@@ -2230,7 +2232,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
             },
             DynamicField => {
                 Test => 1,
@@ -2279,7 +2281,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
                 ContentType          => 'text/plain; charset=UTF8',
                 HistoryType          => 'Invalid' . $RandomID,
             },
@@ -2330,7 +2332,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
                 ContentType          => 'text/plain; charset=UTF8',
                 HistoryType          => 'NewTicket',
                 HistoryComment       => '% % ',
@@ -2382,7 +2384,7 @@ my @Tests        = (
                 AutoResponseType     => 'auto reply',
                 SenderTypeID         => 1,
                 IsVisibleForCustomer => 1,
-                From                 => 'enjoy@otobo.com',
+                From                 => 'hello@otobo.org',
                 ContentType          => 'text/plain; charset=UTF8',
                 HistoryType          => 'NewTicket',
                 HistoryComment       => '% % ',
@@ -2435,7 +2437,7 @@ my @Tests        = (
                 AutoResponseType          => 'auto reply',
                 SenderTypeID              => 1,
                 IsVisibleForCustomer      => 1,
-                From                      => 'enjoy@otobo.com',
+                From                      => 'hello@otobo.org',
                 ContentType               => 'text/plain; charset=UTF8',
                 HistoryType               => 'NewTicket',
                 HistoryComment            => '% % ',
@@ -2491,7 +2493,7 @@ my @Tests        = (
                 AutoResponseType          => 'auto reply',
                 SenderTypeID              => 1,
                 IsVisibleForCustomer      => 1,
-                From                      => 'enjoy@otobo.com',
+                From                      => 'hello@otobo.org',
                 ContentType               => 'text/plain; charset=UTF8',
                 HistoryType               => 'NewTicket',
                 HistoryComment            => '% % ',
@@ -2545,7 +2547,7 @@ my @Tests        = (
                 AutoResponseType            => 'auto reply',
                 SenderTypeID                => 1,
                 IsVisibleForCustomer        => 1,
-                From                        => 'enjoy@otobo.com',
+                From                        => 'hello@otobo.org',
                 ContentType                 => 'text/plain; charset=UTF8',
                 HistoryType                 => 'NewTicket',
                 HistoryComment              => '% % ',
@@ -2602,7 +2604,7 @@ my @Tests        = (
                 AutoResponseType            => 'auto reply',
                 SenderTypeID                => 1,
                 IsVisibleForCustomer        => 1,
-                From                        => 'enjoy@otobo.com',
+                From                        => 'hello@otobo.org',
                 ContentType                 => 'text/plain; charset=UTF8',
                 HistoryType                 => 'NewTicket',
                 HistoryComment              => '% % ',
@@ -2657,7 +2659,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2715,7 +2717,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2771,7 +2773,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2827,7 +2829,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2883,7 +2885,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2940,7 +2942,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -2997,7 +2999,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3054,7 +3056,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3111,7 +3113,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3169,7 +3171,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3228,7 +3230,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3315,7 +3317,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3367,7 +3369,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3422,7 +3424,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 ArticleTypeID                   => 1,
                 SenderTypeID                    => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3477,7 +3479,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderType                      => 'agent',
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3528,7 +3530,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderType                      => 'agent',
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3579,7 +3581,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderType                      => 'agent',
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'enjoy@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3639,7 +3641,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderType                      => 'agent',
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3691,7 +3693,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderType                      => 'agent',
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3743,7 +3745,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3807,7 +3809,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3863,7 +3865,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3926,7 +3928,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -3988,7 +3990,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4014,6 +4016,60 @@ my @Tests        = (
             Attachment => {
                 Content     => 'VGhpcyBpcyBhIHRlc3QgdGV4dC4=',
                 ContentType => 'text/plain; charset=UTF8',
+                Disposition => 'attachment',
+                Filename    => 'Test.txt',
+            },
+        },
+        Operation => 'TicketCreate',
+    },
+    {
+        Name           => 'Create DynamicFields (with dropdown value 0)',    # see bug#14858
+        SuccessRequest => 1,
+        SuccessCreate  => 1,
+        RequestData    => {
+            Ticket => {
+                Title         => 'Ticket Title',
+                CustomerUser  => $TestCustomerUserLogin,
+                QueueID       => $Queues[0]->{QueueID},
+                TypeID        => $TypeID,
+                ServiceID     => $ServiceID,
+                SLAID         => $SLAID,
+                StateID       => $StateID,
+                PriorityID    => $PriorityID,
+                OwnerID       => $OwnerID,
+                ResponsibleID => $ResponsibleID,
+                PendingTime   => {
+                    Year   => 2012,
+                    Month  => 12,
+                    Day    => 16,
+                    Hour   => 20,
+                    Minute => 48,
+                },
+            },
+            Article => {
+                Subject                         => 'Article subject',
+                Body                            => 'Article body',
+                AutoResponseType                => 'auto reply',
+                SenderTypeID                    => 1,
+                IsVisibleForCustomer            => 1,
+                From                            => 'enjoy@otobo.org',
+                ContentType                     => 'text/plain; charset=utf8',
+                HistoryType                     => 'NewTicket',
+                HistoryComment                  => '% % ',
+                TimeUnit                        => 25,
+                ForceNotificationToUserID       => [$UserID],
+                ExcludeNotificationToUserID     => [$UserID],
+                ExcludeMuteNotificationToUserID => [$UserID],
+            },
+            DynamicField => [
+                {
+                    Name  => "Unittest2$RandomID",
+                    Value => '0',
+                },
+            ],
+            Attachment => {
+                Content     => 'VGhpcyBpcyBhIHRlc3QgdGV4dC4=',
+                ContentType => 'text/plain; charset=utf8',
                 Disposition => 'attachment',
                 Filename    => 'Test.txt',
             },
@@ -4050,7 +4106,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4116,7 +4172,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4178,7 +4234,7 @@ my @Tests        = (
                 AutoResponseType                => 'auto reply',
                 ArticleTypeID                   => 1,
                 SenderTypeID                    => 1,
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=US-ASCII',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4231,7 +4287,7 @@ my @Tests        = (
                 ArticleTypeID                   => 1,
                 SenderTypeID                    => 1,
                 CommunicationChannel            => 'Email',
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=US-ASCII',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4284,7 +4340,7 @@ my @Tests        = (
                 ArticleTypeID                   => 1,
                 SenderTypeID                    => 1,
                 CommunicationChannel            => 'Internal',
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=US-ASCII',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4337,7 +4393,7 @@ my @Tests        = (
                 ArticleTypeID                   => 1,
                 SenderTypeID                    => 1,
                 CommunicationChannel            => 'Phone',
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=US-ASCII',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4390,7 +4446,7 @@ my @Tests        = (
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
                 CommunicationChannel            => 'Test123',
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',
@@ -4496,433 +4552,435 @@ $Self->Is(
     'DebuggerObject instantiate correctly'
 );
 
-TEST:
 for my $Test (@Tests) {
 
-    if ( $Test->{Type} eq 'EmailCustomerUser' ) {
-        $Helper->ConfigSettingChange(
-            Valid => 1,
-            Key   => 'CheckEmailAddresses',
-            Value => 0,
-        );
-    }
-    else {
-        $Helper->ConfigSettingChange(
-            Valid => 1,
-            Key   => 'CheckEmailAddresses',
-            Value => 1,
-        );
-    }
+    subtest $Test->{Name} => sub {
 
-    # create local object
-    my $LocalObject = "Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}"->new(
-        DebuggerObject => $DebuggerObject,
-        WebserviceID   => $WebserviceID,
-    );
+        if ( $Test->{Type} && $Test->{Type} eq 'EmailCustomerUser' ) {
+            $Helper->ConfigSettingChange(
+                Valid => 1,
+                Key   => 'CheckEmailAddresses',
+                Value => 0,
+            );
+        }
+        else {
+            $Helper->ConfigSettingChange(
+                Valid => 1,
+                Key   => 'CheckEmailAddresses',
+                Value => 1,
+            );
+        }
 
-    $Self->Is(
-        "Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}",
-        ref $LocalObject,
-        "$Test->{Name} - Create local object"
-    );
-
-    my %Auth = (
-        UserLogin => $UserLogin,
-        Password  => $Password,
-    );
-    if ( IsHashRefWithData( $Test->{Auth} ) ) {
-        %Auth = %{ $Test->{Auth} };
-    }
-
-    # start requester with our web service
-    my $LocalResult = $LocalObject->Run(
-        WebserviceID => $WebserviceID,
-        Invoker      => $Test->{Operation},
-        Data         => {
-            %Auth,
-            %{ $Test->{RequestData} },
-        },
-    );
-
-    # check result
-    $Self->Is(
-        'HASH',
-        ref $LocalResult,
-        "$Test->{Name} - Local result structure is valid"
-    );
-
-    # create requester object
-    my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
-    $Self->Is(
-        'Kernel::GenericInterface::Requester',
-        ref $RequesterObject,
-        "$Test->{Name} - Create requester object"
-    );
-
-    # start requester with our web service
-    my $RequesterResult = $RequesterObject->Run(
-        WebserviceID => $WebserviceID,
-        Invoker      => $Test->{Operation},
-        Data         => {
-            %Auth,
-            %{ $Test->{RequestData} },
-        },
-    );
-
-    # TODO prevent failing test if enviroment on SaaS unit test system doesn't work.
-    if (
-        $Test->{SuccessCreate}
-        && $RequesterResult->{ErrorMessage} eq
-        'faultcode: Server, faultstring: Attachment could not be created, please contact the system administrator'
-        )
-    {
-
-        my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
-        $TestTicketDelete->(
-            TicketIDs => \@TicketIDs,
+        # create local object
+        my $LocalObject = "Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}"->new(
+            DebuggerObject => $DebuggerObject,
+            WebserviceID   => $WebserviceID,
         );
 
-        next TEST;
-    }
-
-    # check result
-    $Self->Is(
-        'HASH',
-        ref $RequesterResult,
-        "$Test->{Name} - Requester result structure is valid"
-    );
-
-    $Self->Is(
-        $RequesterResult->{Success},
-        $Test->{SuccessRequest},
-        "$Test->{Name} - Requester successful result"
-    );
-
-    # tests supposed to succeed
-    if ( $Test->{SuccessCreate} ) {
-
-        # local results
-        $Self->True(
-            $LocalResult->{Data}->{TicketID},
-            "$Test->{Name} - Local result TicketID with True."
-        );
-        $Self->True(
-            $LocalResult->{Data}->{TicketNumber},
-            "$Test->{Name} - Local result TicketNumber with True."
-        );
-        $Self->True(
-            $LocalResult->{Data}->{ArticleID},
-            "$Test->{Name} - Local result ArticleID with True."
-        );
-        $Self->IsDeeply(
-            $LocalResult->{Data}->{Error},
-            undef,
-            "$Test->{Name} - Local result Error is undefined."
-        );
-
-        # requester results
-        $Self->True(
-            $RequesterResult->{Data}->{TicketID},
-            "$Test->{Name} - Requester result TicketID with True."
-        );
-        $Self->True(
-            $RequesterResult->{Data}->{TicketNumber},
-            "$Test->{Name} - Requester result TicketNumber with True."
-        );
-        $Self->True(
-            $RequesterResult->{Data}->{ArticleID},
-            "$Test->{Name} - Requester result ArticleID with True."
-        );
-        $Self->IsDeeply(
-            $RequesterResult->{Data}->{Error},
-            undef,
-            "$Test->{Name} - Requester result Error is undefined."
-        );
-
-        # get the Ticket entry (from local result)
-        my %LocalTicketData = $TicketObject->TicketGet(
-            TicketID      => $LocalResult->{Data}->{TicketID},
-            DynamicFields => 1,
-            UserID        => 1,
-        );
-
-        $Self->True(
-            scalar %LocalTicketData,
-            "$Test->{Name} - created local ticket structure with True."
-        );
-
-        # get the Ticket entry (from requester result)
-        my %RequesterTicketData = $TicketObject->TicketGet(
-            TicketID      => $RequesterResult->{Data}->{TicketID},
-            DynamicFields => 1,
-            UserID        => 1,
-        );
-
-        $Self->True(
-            scalar %RequesterTicketData,
-            "$Test->{Name} - created requester ticket structure with True."
-        );
-
-        # check ticket attributes as defined in the test
         $Self->Is(
-            $LocalTicketData{Title},
-            $Test->{RequestData}->{Ticket}->{Title},
-            "$Test->{Name} - local Ticket->Title match test definition."
-
+            "Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}",
+            ref $LocalObject,
+            "Create local object"
         );
 
-        # external customers only set it's value in article (if no From is defined)
-        # or CustomerUser is set as valid address.
-        # See bug#14288 for more information.
-        if ( $Test->{ExternalCustomer} ) {
-            $Self->Is(
-                $LocalTicketData{CustomerUserID},
-                $Test->{RequestData}->{Ticket}->{CustomerUser},
-                "$Test->{Name} - local Ticket->CustomerUser is empty."
-            );
-        }
-        else {
-            my $ExpectedCustomerUserID = $Test->{RequestData}->{Ticket}->{CustomerUser};
-
-            if ( $Test->{Type} eq 'EmailCustomerUser' ) {
-                $ExpectedCustomerUserID = $CustomerRand;
-            }
-
-            $Self->Is(
-                $LocalTicketData{CustomerUserID},
-                $ExpectedCustomerUserID,
-                "$Test->{Name} - local Ticket->CustomerUser match test definition."
-            );
+        my %Auth = (
+            UserLogin => $UserLogin,
+            Password  => $Password,
+        );
+        if ( IsHashRefWithData( $Test->{Auth} ) ) {
+            %Auth = %{ $Test->{Auth} };
         }
 
-        for my $Attribute (qw(Queue Type Service SLA State Priority Owner Responsible)) {
-            if ( $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' } ) {
+        # start requester with our web service
+        my $LocalResult = $LocalObject->Run(
+            WebserviceID => $WebserviceID,
+            Invoker      => $Test->{Operation},
+            Data         => {
+                %Auth,
+                %{ $Test->{RequestData} },
+            },
+        );
+
+        # check result
+        $Self->Is(
+            'HASH',
+            ref $LocalResult,
+            "Local result structure is valid"
+        );
+
+        # create requester object
+        my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
+        $Self->Is(
+            'Kernel::GenericInterface::Requester',
+            ref $RequesterObject,
+            "Create requester object"
+        );
+
+        # start requester with our web service
+        my $RequesterResult = $RequesterObject->Run(
+            WebserviceID => $WebserviceID,
+            Invoker      => $Test->{Operation},
+            Data         => {
+                %Auth,
+                %{ $Test->{RequestData} },
+            },
+        );
+
+        # TODO prevent failing test if enviroment on SaaS unit test system doesn't work.
+        if (
+            $Test->{SuccessCreate}
+            && $RequesterResult->{ErrorMessage}
+            && $RequesterResult->{ErrorMessage} eq
+            'faultcode: Server, faultstring: Attachment could not be created, please contact the system administrator'
+            )
+        {
+
+            my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
+            $TestTicketDelete->(
+                TicketIDs => \@TicketIDs,
+            );
+
+            return;
+        }
+
+        # check result
+        $Self->Is(
+            'HASH',
+            ref $RequesterResult,
+            "Requester result structure is valid"
+        );
+
+        $Self->Is(
+            $RequesterResult->{Success},
+            $Test->{SuccessRequest},
+            "Requester successful result"
+        );
+
+        # tests supposed to succeed
+        if ( $Test->{SuccessCreate} ) {
+
+            # local results
+            $Self->True(
+                $LocalResult->{Data}->{TicketID},
+                "Local result TicketID with True."
+            );
+            $Self->True(
+                $LocalResult->{Data}->{TicketNumber},
+                "Local result TicketNumber with True."
+            );
+            $Self->True(
+                $LocalResult->{Data}->{ArticleID},
+                "Local result ArticleID with True."
+            );
+            $Self->IsDeeply(
+                $LocalResult->{Data}->{Error},
+                undef,
+                "Local result Error is undefined."
+            );
+
+            # requester results
+            $Self->True(
+                $RequesterResult->{Data}->{TicketID},
+                "Requester result TicketID with True."
+            );
+            $Self->True(
+                $RequesterResult->{Data}->{TicketNumber},
+                "Requester result TicketNumber with True."
+            );
+            $Self->True(
+                $RequesterResult->{Data}->{ArticleID},
+                "Requester result ArticleID with True."
+            );
+            $Self->IsDeeply(
+                $RequesterResult->{Data}->{Error},
+                undef,
+                "Requester result Error is undefined."
+            );
+
+            # get the Ticket entry (from local result)
+            my %LocalTicketData = $TicketObject->TicketGet(
+                TicketID      => $LocalResult->{Data}->{TicketID},
+                DynamicFields => 1,
+                UserID        => 1,
+            );
+
+            $Self->True(
+                scalar %LocalTicketData,
+                "created local ticket structure with True."
+            );
+
+            # get the Ticket entry (from requester result)
+            my %RequesterTicketData = $TicketObject->TicketGet(
+                TicketID      => $RequesterResult->{Data}->{TicketID},
+                DynamicFields => 1,
+                UserID        => 1,
+            );
+
+            $Self->True(
+                scalar %RequesterTicketData,
+                "created requester ticket structure with True."
+            );
+
+            # check ticket attributes as defined in the test
+            $Self->Is(
+                $LocalTicketData{Title},
+                $Test->{RequestData}->{Ticket}->{Title},
+                "local Ticket->Title match test definition."
+
+            );
+
+            # external customers only set it's value in article (if no From is defined)
+            # or CustomerUser is set as valid address.
+            # See bug#14288 for more information.
+            if ( $Test->{ExternalCustomer} ) {
                 $Self->Is(
-                    $LocalTicketData{ $Attribute . 'ID' },
-                    $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' },
-                    "$Test->{Name} - local Ticket->$Attribute" . 'ID' . " match test definition.",
+                    $LocalTicketData{CustomerUserID},
+                    $Test->{RequestData}->{Ticket}->{CustomerUser},
+                    "local Ticket->CustomerUser is empty."
                 );
             }
             else {
+                my $ExpectedCustomerUserID = $Test->{RequestData}->{Ticket}->{CustomerUser};
+
+                if ( $Test->{Type} && $Test->{Type} eq 'EmailCustomerUser' ) {
+                    $ExpectedCustomerUserID = $CustomerRand;
+                }
+
                 $Self->Is(
-                    $LocalTicketData{$Attribute},
-                    $Test->{RequestData}->{Ticket}->{$Attribute},
-                    "$Test->{Name} - local Ticket->$Attribute match test definition."
+                    $LocalTicketData{CustomerUserID},
+                    $ExpectedCustomerUserID,
+                    "local Ticket->CustomerUser match test definition."
                 );
             }
-        }
 
-        my $ArticleObject = $Kernel::OM->Get('Kernel::System::Ticket::Article');
-
-        my $LocalArticleBackendObject = $ArticleObject->BackendForArticle(
-            TicketID  => $LocalResult->{Data}->{TicketID},
-            ArticleID => $LocalResult->{Data}->{ArticleID},
-        );
-
-        # get local article information
-        my %LocalArticleData = $LocalArticleBackendObject->ArticleGet(
-            TicketID      => $LocalResult->{Data}->{TicketID},
-            ArticleID     => $LocalResult->{Data}->{ArticleID},
-            DynamicFields => 1,
-        );
-
-        my $RequesterArticleBackendObject = $ArticleObject->BackendForArticle(
-            TicketID  => $RequesterResult->{Data}->{TicketID},
-            ArticleID => $RequesterResult->{Data}->{ArticleID},
-        );
-
-        # get requester article information
-        my %RequesterArticleData = $RequesterArticleBackendObject->ArticleGet(
-            TicketID      => $RequesterResult->{Data}->{TicketID},
-            ArticleID     => $RequesterResult->{Data}->{ArticleID},
-            DynamicFields => 1,
-        );
-
-        for my $Attribute (qw(Subject Body ContentType MimeType Charset From)) {
-            if ( $Test->{RequestData}->{Article}->{$Attribute} ) {
-                $Self->Is(
-                    $LocalArticleData{$Attribute},
-                    $Test->{RequestData}->{Article}->{$Attribute},
-                    "$Test->{Name} - local Article->$Attribute match test definition."
-                );
+            for my $Attribute (qw(Queue Type Service SLA State Priority Owner Responsible)) {
+                if ( $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' } ) {
+                    $Self->Is(
+                        $LocalTicketData{ $Attribute . 'ID' },
+                        $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' },
+                        "local Ticket->$Attribute" . 'ID' . " match test definition.",
+                    );
+                }
+                else {
+                    $Self->Is(
+                        $LocalTicketData{$Attribute},
+                        $Test->{RequestData}->{Ticket}->{$Attribute},
+                        "local Ticket->$Attribute match test definition."
+                    );
+                }
             }
-        }
 
-        for my $Attribute (qw(SenderType)) {
-            if ( $Test->{RequestData}->{Article}->{ $Attribute . 'ID' } ) {
-                $Self->Is(
-                    $LocalArticleData{ $Attribute . 'ID' },
-                    $Test->{RequestData}->{Article}->{ $Attribute . 'ID' },
-                    "$Test->{Name} - local Article->$Attribute" . 'ID' . " match test definition."
-                );
+            my $ArticleObject = $Kernel::OM->Get('Kernel::System::Ticket::Article');
+
+            my $LocalArticleBackendObject = $ArticleObject->BackendForArticle(
+                TicketID  => $LocalResult->{Data}->{TicketID},
+                ArticleID => $LocalResult->{Data}->{ArticleID},
+            );
+
+            # get local article information
+            my %LocalArticleData = $LocalArticleBackendObject->ArticleGet(
+                TicketID      => $LocalResult->{Data}->{TicketID},
+                ArticleID     => $LocalResult->{Data}->{ArticleID},
+                DynamicFields => 1,
+            );
+
+            my $RequesterArticleBackendObject = $ArticleObject->BackendForArticle(
+                TicketID  => $RequesterResult->{Data}->{TicketID},
+                ArticleID => $RequesterResult->{Data}->{ArticleID},
+            );
+
+            # get requester article information
+            my %RequesterArticleData = $RequesterArticleBackendObject->ArticleGet(
+                TicketID      => $RequesterResult->{Data}->{TicketID},
+                ArticleID     => $RequesterResult->{Data}->{ArticleID},
+                DynamicFields => 1,
+            );
+
+            for my $Attribute (qw(Subject Body ContentType MimeType Charset From)) {
+                if ( $Test->{RequestData}->{Article}->{$Attribute} ) {
+                    $Self->Is(
+                        $LocalArticleData{$Attribute},
+                        $Test->{RequestData}->{Article}->{$Attribute},
+                        "local Article->$Attribute match test definition."
+                    );
+                }
+            }
+
+            for my $Attribute (qw(SenderType)) {
+                if ( $Test->{RequestData}->{Article}->{ $Attribute . 'ID' } ) {
+                    $Self->Is(
+                        $LocalArticleData{ $Attribute . 'ID' },
+                        $Test->{RequestData}->{Article}->{ $Attribute . 'ID' },
+                        "local Article->$Attribute" . 'ID' . " match test definition."
+                    );
+                }
+                else {
+                    $Self->Is(
+                        $LocalArticleData{$Attribute},
+                        $Test->{RequestData}->{Article}->{$Attribute},
+                        "local Article->$Attribute match test definition."
+                    );
+                }
+            }
+
+            # check dynamic fields
+            my @RequestedDynamicFields;
+            if ( ref $Test->{RequestData}->{DynamicField} eq 'HASH' ) {
+                push @RequestedDynamicFields, $Test->{RequestData}->{DynamicField};
             }
             else {
-                $Self->Is(
-                    $LocalArticleData{$Attribute},
-                    $Test->{RequestData}->{Article}->{$Attribute},
-                    "$Test->{Name} - local Article->$Attribute match test definition."
+                @RequestedDynamicFields = @{ $Test->{RequestData}->{DynamicField} };
+            }
+            for my $DynamicField (@RequestedDynamicFields) {
+
+                if (
+                    $DynamicField->{FieldType} && $DynamicField->{FieldType} eq 'Date'
+                    && $DynamicField->{Value}  && $DynamicField->{Value} =~ m{ \A \d{4}-\d{2}-\d{2} \z }xms
+                    )
+                {
+                    $DynamicField->{Value} .= ' 00:00:00';
+                }
+
+                $Self->IsDeeply(
+                    $LocalTicketData{ 'DynamicField_' . $DynamicField->{Name} } // '',
+                    $DynamicField->{Value},
+                    "local Ticket->DynamicField_"
+                        . $DynamicField->{Name}
+                        . " match test definition."
                 );
             }
-        }
 
-        # check dynamic fields
-        my @RequestedDynamicFields;
-        if ( ref $Test->{RequestData}->{DynamicField} eq 'HASH' ) {
-            push @RequestedDynamicFields, $Test->{RequestData}->{DynamicField};
-        }
-        else {
-            @RequestedDynamicFields = @{ $Test->{RequestData}->{DynamicField} };
-        }
-        for my $DynamicField (@RequestedDynamicFields) {
+            # check attachments
+            my %AttachmentIndex = $LocalArticleBackendObject->ArticleAttachmentIndex(
+                ArticleID        => $LocalResult->{Data}->{ArticleID},
+                ExcludePlainText => 1,
+                ExcludeHTMLBody  => 1,
+            );
 
-            if ( $DynamicField->{FieldType} eq 'Date' && $DynamicField->{Value} =~ m{ \A \d{4}-\d{2}-\d{2} \z }xms ) {
-                $DynamicField->{Value} .= ' 00:00:00';
+            my @Attachments;
+            ATTACHMENT:
+            for my $FileID ( sort keys %AttachmentIndex ) {
+                next ATTACHMENT if !$FileID;
+                my %Attachment = $LocalArticleBackendObject->ArticleAttachment(
+                    ArticleID => $LocalResult->{Data}->{ArticleID},
+                    FileID    => $FileID,
+                );
+
+                next ATTACHMENT if !IsHashRefWithData( \%Attachment );
+
+                # convert content to base64
+                $Attachment{Content} = encode_base64( $Attachment{Content}, '' );
+
+                # delete not needed attributes
+                delete @Attachment{qw(ContentAlternative ContentID Filesize FilesizeRaw)};
+
+                push @Attachments, \%Attachment;
+            }
+
+            my @RequestedAttachments;
+            if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
+                push @RequestedAttachments, $Test->{RequestData}->{Attachment};
+            }
+            else {
+                push @RequestedAttachments, $Test->{RequestData}->{Attachment}->@*;
+            }
+
+            is( \@Attachments, \@RequestedAttachments, "local Ticket->Attachment match test definition." );
+
+            # remove attributes that might be different from local and requester responses
+            for my $Attribute (
+                qw(TicketID TicketNumber Created Changed Age UnlockTimeout)
+                )
+            {
+                delete $LocalTicketData{$Attribute};
+                delete $RequesterTicketData{$Attribute};
             }
 
             $Self->IsDeeply(
-                $LocalTicketData{ 'DynamicField_' . $DynamicField->{Name} } // '',
-                $DynamicField->{Value},
-                "$Test->{Name} - local Ticket->DynamicField_"
-                    . $DynamicField->{Name}
-                    . " match test definition."
-            );
-        }
-
-        # check attachments
-        my %AttachmentIndex = $LocalArticleBackendObject->ArticleAttachmentIndex(
-            ArticleID        => $LocalResult->{Data}->{ArticleID},
-            ExcludePlainText => 1,
-            ExcludeHTMLBody  => 1,
-        );
-
-        my @Attachments;
-        ATTACHMENT:
-        for my $FileID ( sort keys %AttachmentIndex ) {
-            next ATTACHMENT if !$FileID;
-            my %Attachment = $LocalArticleBackendObject->ArticleAttachment(
-                ArticleID => $LocalResult->{Data}->{ArticleID},
-                FileID    => $FileID,
+                \%LocalTicketData,
+                \%RequesterTicketData,
+                "Local ticket result matched with remote result."
             );
 
-            next ATTACHMENT if !IsHashRefWithData( \%Attachment );
-
-            # convert content to base64
-            $Attachment{Content} = encode_base64( $Attachment{Content}, '' );
-
-            # delete not needed attributes
-            for my $Attribute (qw(ContentAlternative ContentID Filesize FilesizeRaw)) {
-                delete $Attachment{$Attribute};
+            # remove attributes that might be different from local and requester responses
+            for my $Attribute (
+                qw( Age AgeTimeUnix ArticleID TicketID CreateTime ChangeTime IncomingTime TicketNumber
+                )
+                )
+            {
+                delete $LocalArticleData{$Attribute};
+                delete $RequesterArticleData{$Attribute};
             }
-            push @Attachments, {%Attachment};
+
+            $Self->IsDeeply(
+                \%LocalArticleData,
+                \%RequesterArticleData,
+                "Local article result matched with remote result."
+            );
+
+            my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
+            $TestTicketDelete->(
+                TicketIDs => \@TicketIDs,
+            );
         }
 
-        my @RequestedAttachments;
-        if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
-            push @RequestedAttachments, $Test->{RequestData}->{Attachment};
-        }
+        # tests supposed to fail
         else {
-            @RequestedAttachments = @{ $Test->{RequestData}->{Attachment} };
+            $Self->False(
+                $LocalResult->{TicketID},
+                "Local result TicketID with false."
+            );
+            $Self->False(
+                $LocalResult->{TicketNumber},
+                "Local result TicketNumber with false."
+            );
+            $Self->False(
+                $LocalResult->{ArticleID},
+                "Local result ArticleID with false."
+            );
+            $Self->Is(
+                $LocalResult->{Data}->{Error}->{ErrorCode},
+                $Test->{ExpectedData}->{Data}->{Error}->{ErrorCode},
+                "Local result ErrorCode matched with expected local call result."
+            );
+            $Self->True(
+                $LocalResult->{Data}->{Error}->{ErrorMessage},
+                "Local result ErrorMessage with true."
+            );
+            $Self->IsNot(
+                $LocalResult->{Data}->{Error}->{ErrorMessage},
+                '',
+                "Local result ErrorMessage is not empty."
+            );
+            $Self->Is(
+                $LocalResult->{ErrorMessage},
+                $LocalResult->{Data}->{Error}->{ErrorCode}
+                    . ': '
+                    . $LocalResult->{Data}->{Error}->{ErrorMessage},
+                "Local result ErrorMessage (outside Data hash) matched with concatenation"
+                    . " of ErrorCode and ErrorMessage within Data hash."
+            );
+
+            # remove ErrorMessage parameter from direct call
+            # result to be consistent with SOAP call result
+            if ( $LocalResult->{ErrorMessage} ) {
+                delete $LocalResult->{ErrorMessage};
+            }
+
+            # sanity check
+            $Self->False(
+                $LocalResult->{ErrorMessage},
+                "Local result ErrorMessage (outside Data hash) got removed to compare"
+                    . " local and remote tests."
+            );
+
+            $Self->IsDeeply(
+                $LocalResult,
+                $RequesterResult,
+                "Local result matched with remote result."
+            );
         }
-
-        $Self->IsDeeply(
-            \@Attachments,
-            \@RequestedAttachments,
-            "$Test->{Name} - local Ticket->Attachment match test definition."
-        );
-
-        # remove attributes that might be different from local and requester responses
-        for my $Attribute (
-            qw(TicketID TicketNumber Created Changed Age UnlockTimeout)
-            )
-        {
-            delete $LocalTicketData{$Attribute};
-            delete $RequesterTicketData{$Attribute};
-        }
-
-        $Self->IsDeeply(
-            \%LocalTicketData,
-            \%RequesterTicketData,
-            "$Test->{Name} - Local ticket result matched with remote result."
-        );
-
-        # remove attributes that might be different from local and requester responses
-        for my $Attribute (
-            qw( Age AgeTimeUnix ArticleID TicketID CreateTime ChangeTime IncomingTime TicketNumber
-            )
-            )
-        {
-            delete $LocalArticleData{$Attribute};
-            delete $RequesterArticleData{$Attribute};
-        }
-
-        $Self->IsDeeply(
-            \%LocalArticleData,
-            \%RequesterArticleData,
-            "$Test->{Name} - Local article result matched with remote result."
-        );
-
-        my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
-        $TestTicketDelete->(
-            TicketIDs => \@TicketIDs,
-        );
-    }
-
-    # tests supposed to fail
-    else {
-        $Self->False(
-            $LocalResult->{TicketID},
-            "$Test->{Name} - Local result TicketID with false."
-        );
-        $Self->False(
-            $LocalResult->{TicketNumber},
-            "$Test->{Name} - Local result TicketNumber with false."
-        );
-        $Self->False(
-            $LocalResult->{ArticleID},
-            "$Test->{Name} - Local result ArticleID with false."
-        );
-        $Self->Is(
-            $LocalResult->{Data}->{Error}->{ErrorCode},
-            $Test->{ExpectedData}->{Data}->{Error}->{ErrorCode},
-            "$Test->{Name} - Local result ErrorCode matched with expected local call result."
-        );
-        $Self->True(
-            $LocalResult->{Data}->{Error}->{ErrorMessage},
-            "$Test->{Name} - Local result ErrorMessage with true."
-        );
-        $Self->IsNot(
-            $LocalResult->{Data}->{Error}->{ErrorMessage},
-            '',
-            "$Test->{Name} - Local result ErrorMessage is not empty."
-        );
-        $Self->Is(
-            $LocalResult->{ErrorMessage},
-            $LocalResult->{Data}->{Error}->{ErrorCode}
-                . ': '
-                . $LocalResult->{Data}->{Error}->{ErrorMessage},
-            "$Test->{Name} - Local result ErrorMessage (outside Data hash) matched with concatenation"
-                . " of ErrorCode and ErrorMessage within Data hash."
-        );
-
-        # remove ErrorMessage parameter from direct call
-        # result to be consistent with SOAP call result
-        if ( $LocalResult->{ErrorMessage} ) {
-            delete $LocalResult->{ErrorMessage};
-        }
-
-        # sanity check
-        $Self->False(
-            $LocalResult->{ErrorMessage},
-            "$Test->{Name} - Local result ErrorMessage (outside Data hash) got removed to compare"
-                . " local and remote tests."
-        );
-
-        $Self->IsDeeply(
-            $LocalResult,
-            $RequesterResult,
-            "$Test->{Name} - Local result matched with remote result."
-        );
-    }
+    };
 }
 
 # delete web service

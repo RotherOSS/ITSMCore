@@ -30,7 +30,7 @@ use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {
@@ -196,7 +196,10 @@ $Selenium->RunTest(
 
         # Create test service.
         my $ServiceID = $Kernel::OM->Get('Kernel::System::Service')->ServiceAdd(
-            Name => $TicketData{Service},
+            Name    => $TicketData{Service},
+            ValidID => 1,
+            Comment => 'Selenium Service',
+            UserID  => 1,
 
             # ---
             # ITSMCore
@@ -205,9 +208,6 @@ $Selenium->RunTest(
             Criticality => '3 normal',
 
             # ---
-            ValidID => 1,
-            Comment => 'Selenium Service',
-            UserID  => 1,
         );
         $Self->True(
             $ServiceID,
@@ -221,8 +221,6 @@ $Selenium->RunTest(
             SolutionTime      => 50,
         );
         my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-            ServiceIDs => [$ServiceID],
-            Name       => $TicketData{SLA},
 
             # ---
             # ITSMCore
@@ -230,6 +228,8 @@ $Selenium->RunTest(
             TypeID => $SLATypeName2ID{Other},
 
             # ---
+            ServiceIDs        => [$ServiceID],
+            Name              => $TicketData{SLA},
             FirstResponseTime => $EscalationTimes{FirstResponseTime},
             UpdateTime        => $EscalationTimes{UpdateTime},
             SolutionTime      => $EscalationTimes{SolutionTime},

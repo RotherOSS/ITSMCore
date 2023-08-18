@@ -83,7 +83,9 @@ my %SLATypeName2ID = reverse %{$SLATypeList};
 #
 my @Services = (
     {
-        Name => 'Service0' . $RandomID,
+        Name    => 'Service0' . $RandomID,
+        ValidID => 1,
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -92,8 +94,6 @@ my @Services = (
         Criticality => '3 normal',
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
 );
 
@@ -118,6 +118,8 @@ my @SLAs = (
     {
         Name       => 'SLA0' . $RandomID,
         ServiceIDs => [ $Services[0]->{ServiceID} ],
+        ValidID    => 1,
+        UserID     => 1,
 
         # ---
         # ITSMCore
@@ -125,12 +127,12 @@ my @SLAs = (
         TypeID => $SLATypeName2ID{Other},
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
     {
         Name       => 'SLA1' . $RandomID,
         ServiceIDs => [ $Services[0]->{ServiceID} ],
+        ValidID    => 1,
+        UserID     => 1,
 
         # ---
         # ITSMCore
@@ -138,12 +140,12 @@ my @SLAs = (
         TypeID => $SLATypeName2ID{Other},
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
     {
         Name       => 'SLA2' . $RandomID,
         ServiceIDs => [],
+        ValidID    => 1,
+        UserID     => 1,
 
         # ---
         # ITSMCore
@@ -151,8 +153,6 @@ my @SLAs = (
         TypeID => $SLATypeName2ID{Other},
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
 );
 

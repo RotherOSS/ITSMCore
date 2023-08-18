@@ -1342,6 +1342,8 @@ my $ServiceSonID = $ServiceObject->ServiceAdd(
     Name     => 'UnitTestService_S_' . $RandomID,
     ParentID => $ServiceFatherID,
     ValidID  => 1,
+    Comment  => 'Testing service',
+    UserID   => 1,
 
     # ---
     # ITSMCore
@@ -1350,8 +1352,6 @@ my $ServiceSonID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    Comment => 'Testing service',
-    UserID  => 1,
 );
 
 # sanity check

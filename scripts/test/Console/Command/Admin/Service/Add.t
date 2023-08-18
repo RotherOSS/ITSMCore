@@ -30,8 +30,6 @@ our $Self;
 
 my $CommandObject = $Kernel::OM->Get('Kernel::System::Console::Command::Admin::Service::Add');
 
-my $ExitCode;
-
 # get helper object
 $Kernel::OM->ObjectParamAdd(
     'Kernel::System::UnitTest::Helper' => {
@@ -44,7 +42,7 @@ my $ParentServiceName = "ParentService" . $Helper->GetRandomID();
 my $ChildServiceName  = "ChildService" . $Helper->GetRandomID();
 
 # try to execute command without any options
-$ExitCode = $CommandObject->Execute();
+my $ExitCode = $CommandObject->Execute();
 $Self->Is(
     $ExitCode,
     1,

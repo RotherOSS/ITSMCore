@@ -14,6 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
+use v5.24;
 use strict;
 use warnings;
 use utf8;
@@ -24,16 +25,15 @@ use utf8;
 use Test2::V0;
 
 # OTOBO modules
-use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Self and $Kernel::OM
 use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {
-
         my $Helper        = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
         my $ServiceObject = $Kernel::OM->Get('Kernel::System::Service');
         my $SLAObject     = $Kernel::OM->Get('Kernel::System::SLA');
@@ -49,10 +49,10 @@ $Selenium->RunTest(
             # SLA data
             SLAs => [
                 {
-                    Name => "TestSLA - " . $Helper->GetRandomID(),
+                    Name => 'TestSLA - ' . $Helper->GetRandomID(),
                 },
                 {
-                    Name => "TestSLA - " . $Helper->GetRandomID(),
+                    Name => 'TestSLA - ' . $Helper->GetRandomID(),
                 },
             ],
         };
@@ -66,10 +66,10 @@ $Selenium->RunTest(
         # Add Services.
         my @ServiceIDs;
         SERVICE:
-        for my $Service ( @{ $Config->{Services} } ) {
+        for my $Service ( $Config->{Services}->@* ) {
 
-            next SERVICE if !$Service;
-            next SERVICE if !%{$Service};
+            next SERVICE unless $Service;
+            next SERVICE unless $Service->%*;
 
             my $ServiceID = $ServiceObject->ServiceAdd(
                 %{$Service},
@@ -106,8 +106,8 @@ $Selenium->RunTest(
         SLA:
         for my $SLA ( @{ $Config->{SLAs} } ) {
 
-            next SLA if !$SLA;
-            next SLA if !%{$SLA};
+            next SLA unless $SLA;
+            next SLA unless $SLA->%*;
 
             my $SLAID = $SLAObject->SLAAdd(
                 %{$SLA},
@@ -186,11 +186,11 @@ $Selenium->RunTest(
             Format      => 'D3::BarChart',
         );
 
-        # Check for imported values on test stat.
+        # Check for the imported values on test stat.
         for my $StatsValue ( sort keys %StatsValues ) {
-            $Self->True(
-                index( $Selenium->get_page_source(), $StatsValues{$StatsValue} ) > -1,
-                "Expexted param $StatsValue for imported stat is founded - $StatsValues{$StatsValue}"
+            $Selenium->content_contains(
+                $StatsValues{$StatsValue},
+                "found expected param $StatsValue for imported stat - $StatsValues{$StatsValue}"
             );
         }
 
@@ -217,7 +217,8 @@ $Selenium->RunTest(
         );
 
         # Go to imported stat to run it.
-        $Selenium->find_element("//a[contains(\@href, \'AgentStatistics;Subaction=Edit;StatID=$StatsIDLast\' )]")->VerifiedClick();
+        $Selenium->find_element("//a[contains(\@href, \'AgentStatistics;Subaction=Edit;StatID=$StatsIDLast\' )]")
+            ->VerifiedClick();
 
         # Change preview format to Print.
         $Selenium->find_element("//button[contains(\@data-format, \'Print')]")->click();
@@ -271,8 +272,6 @@ $Selenium->RunTest(
         $Selenium->find_element( "#DialogButton1", 'css' )->click();
         $Selenium->WaitFor( JavaScript => "return !\$('.Dialog.Modal').length;" );
 
-        sleep 1;
-
         # Check Y-axis configuration dialog.
         $Selenium->find_element( ".EditYAxis", 'css' )->click();
         $Selenium->WaitFor( JavaScript => "return \$('.Dialog.Modal #EditDialog a.RemoveButton i').length;" );
@@ -288,8 +287,9 @@ $Selenium->RunTest(
         $Selenium->WaitFor( JavaScript => "return !\$('.Dialog.Modal').length;" );
 
         # Check Restrictions configuration dialog.
-        $Selenium->find_element( ".EditRestrictions", 'css' )->click();
+        $Selenium->find_element("//span[contains(.,\'Filter\')]")->click();
         $Selenium->WaitFor( JavaScript => "return \$('.Dialog.Modal').length;" );
+        $Selenium->WaitFor( JavaScript => "return \$('#EditDialog select').length;" );
 
         $Selenium->InputFieldValueSet(
             Element => '#EditDialog select',

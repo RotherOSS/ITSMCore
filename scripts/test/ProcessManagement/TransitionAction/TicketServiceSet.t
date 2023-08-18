@@ -74,7 +74,9 @@ my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 #
 my @Services = (
     {
-        Name => 'Service0' . $RandomID,
+        Name    => 'Service0' . $RandomID,
+        ValidID => 1,
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -83,11 +85,11 @@ my @Services = (
         Criticality => '3 normal',
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
     {
-        Name => 'Service1' . $RandomID,
+        Name    => 'Service1' . $RandomID,
+        ValidID => 1,
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -96,11 +98,11 @@ my @Services = (
         Criticality => '3 normal',
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
     {
-        Name => 'Service2' . $RandomID,
+        Name    => 'Service2' . $RandomID,
+        ValidID => 1,
+        UserID  => 1,
 
         # ---
         # ITSMCore
@@ -109,8 +111,6 @@ my @Services = (
         Criticality => '3 normal',
 
         # ---
-        ValidID => 1,
-        UserID  => 1,
     },
 );
 

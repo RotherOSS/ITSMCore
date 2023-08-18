@@ -29,7 +29,7 @@ use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {

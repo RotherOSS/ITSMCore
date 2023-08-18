@@ -29,8 +29,7 @@ use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-# get selenium object
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {
@@ -104,6 +103,7 @@ $Selenium->RunTest(
             Name      => $ServiceNames[1],
             ParentID  => $ServiceIDs[0],
             ValidID   => 1,
+            UserID    => 1,
 
             # ---
             # ITSMCore
@@ -112,7 +112,6 @@ $Selenium->RunTest(
             Criticality => '3 normal',
 
             # ---
-            UserID => 1,
         );
         $Self->True(
             $Success,

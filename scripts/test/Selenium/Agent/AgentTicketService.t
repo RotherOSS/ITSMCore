@@ -14,6 +14,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 # --
 
+use v5.24;
 use strict;
 use warnings;
 use utf8;
@@ -24,13 +25,11 @@ use utf8;
 use Test2::V0;
 
 # OTOBO modules
-use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
+use Kernel::System::UnitTest::RegisterOM;    # Set up $Kernel::OM
 use Kernel::System::UnitTest::Selenium;
 
-our $Self;
-
 # get selenium object
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {
@@ -67,14 +66,14 @@ $Selenium->RunTest(
         my $ServiceObject = $Kernel::OM->Get('Kernel::System::Service');
 
         # create two test services
-        my @ServiceIDs;
-        my @ServiceNames;
+        my ( @ServiceIDs, @ServiceNames );
         for my $Service (qw(Parent Child)) {
             my $ServiceName = $Service . 'Service' . $Helper->GetRandomID();
             my $ServiceID   = $ServiceObject->ServiceAdd(
                 Name    => $ServiceName,
                 ValidID => 1,
                 Comment => 'Selenium Test',
+                UserID  => 1,
 
                 # ---
                 # ITSMCore
@@ -83,12 +82,8 @@ $Selenium->RunTest(
                 Criticality => '3 normal',
 
                 # ---
-                UserID => 1,
             );
-            $Self->True(
-                $ServiceID,
-                "Service ID $ServiceID is created",
-            );
+            ok( $ServiceID, "Service ID $ServiceID is created" );
             push @ServiceIDs,   $ServiceID;
             push @ServiceNames, $ServiceName;
         }
@@ -99,6 +94,7 @@ $Selenium->RunTest(
             Name      => $ServiceNames[1],
             ParentID  => $ServiceIDs[0],
             ValidID   => 1,
+            UserID    => 1,
 
             # ---
             # ITSMCore
@@ -107,12 +103,8 @@ $Selenium->RunTest(
             Criticality => '3 normal',
 
             # ---
-            UserID => 1,
         );
-        $Self->True(
-            $Success,
-            "Service ID $ServiceIDs[1] is now child service"
-        );
+        ok( $Success, "Service ID $ServiceIDs[1] is now child service" );
 
         # update parent service to invalid status, bug #11816
         # test if child service are visible when parent is invalid
@@ -120,6 +112,7 @@ $Selenium->RunTest(
             ServiceID => $ServiceIDs[0],
             Name      => $ServiceNames[0],
             ValidID   => 2,
+            UserID    => 1,
 
             # ---
             # ITSMCore
@@ -128,12 +121,8 @@ $Selenium->RunTest(
             Criticality => '3 normal',
 
             # ---
-            UserID => 1,
         );
-        $Self->True(
-            $Success,
-            "Parent Service ID $ServiceIDs[0] is invalid"
-        );
+        ok( $Success, "Parent Service ID $ServiceIDs[0] is invalid" );
 
         # get ticket object
         my $TicketObject = $Kernel::OM->Get('Kernel::System::Ticket');
@@ -154,10 +143,7 @@ $Selenium->RunTest(
                 UserID        => 1,
                 ResponsibleID => 1,
             );
-            $Self->True(
-                $TicketID,
-                "Ticket ID $TicketID is created",
-            );
+            ok( $TicketID, "Ticket ID $TicketID is created" );
             push @TicketIDs, $TicketID;
         }
 
@@ -167,12 +153,12 @@ $Selenium->RunTest(
         # navigate to AgentTicketService screen
         $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentTicketService");
 
-        # verify that there are no tickets with My Service filter
+        # verify that there are no tickets with "My Services" filter
         $Selenium->find_element("//a[contains(\@href, \'Action=AgentTicketService;ServiceID=0;\' )]")->VerifiedClick();
 
-        $Self->True(
-            index( $Selenium->get_page_source(), 'No ticket data found.' ) > -1,
-            "No tickets found with My Service filter",
+        $Selenium->content_contains(
+            'No ticket data found.',
+            "No tickets found with 'My Services' filter",
         );
 
         # check for parent test service filter button and click on it
@@ -216,8 +202,8 @@ $Selenium->RunTest(
                     )->VerifiedClick();
 
                     # check for unlocked tickets with 'Available tickets' filter on
-                    $Self->True(
-                        index( $Selenium->get_page_source(), $TicketData{TicketNumber} ) > -1,
+                    $Selenium->content_contains(
+                        $TicketData{TicketNumber},
                         "Ticket found on page with 'Available tickets' filter - $TicketData{TicketNumber} ",
                     );
 
@@ -227,8 +213,8 @@ $Selenium->RunTest(
                     )->VerifiedClick();
 
                     # check for unlocked tickets with 'All tickets' filter on
-                    $Self->True(
-                        index( $Selenium->get_page_source(), $TicketData{TicketNumber} ) > -1,
+                    $Selenium->content_contains(
+                        $TicketData{TicketNumber},
                         "Ticket found on page with 'All tickets' filter on - $TicketData{TicketNumber} ",
                     );
                 }
@@ -240,8 +226,8 @@ $Selenium->RunTest(
                     )->VerifiedClick();
 
                     # check for locked tickets with  'All ticket' filter
-                    $Self->True(
-                        index( $Selenium->get_page_source(), $TicketData{TicketNumber} ) > -1,
+                    $Selenium->content_contains(
+                        $TicketData{TicketNumber},
                         "Locked Ticket found on page with 'All tickets' filter on - $TicketData{TicketNumber} ",
                     );
 
@@ -251,8 +237,8 @@ $Selenium->RunTest(
                     )->VerifiedClick();
 
                     # check for locked tickets with 'Available tickets' filter on
-                    $Self->True(
-                        index( $Selenium->get_page_source(), $TicketData{TicketNumber} ) == -1,
+                    $Selenium->content_lacks(
+                        $TicketData{TicketNumber},
                         "Did not find locked ticket - $TicketData{TicketNumber} - with 'Available tickets' filter",
                     );
                 }
@@ -274,10 +260,7 @@ $Selenium->RunTest(
                     UserID   => 1,
                 );
             }
-            $Self->True(
-                $Success,
-                "Ticket ID $TicketID is deleted"
-            );
+            ok( $Success, "Ticket ID $TicketID is deleted" );
         }
 
         # delete created test service
@@ -285,22 +268,15 @@ $Selenium->RunTest(
             $Success = $Kernel::OM->Get('Kernel::System::DB')->Do(
                 SQL => "DELETE FROM service WHERE id = $ServiceDelete",
             );
-            $Self->True(
-                $Success,
-                "Service ID $ServiceDelete is deleted",
-            );
+            ok( $Success, "Service ID $ServiceDelete is deleted", );
         }
 
         # make sure the cache is correct
-        for my $Cache (
-            qw (Ticket Service)
-            )
-        {
+        for my $Cache (qw (Ticket Service)) {
             $Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
                 Type => $Cache,
             );
         }
-
     }
 );
 

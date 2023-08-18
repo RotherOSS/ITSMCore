@@ -78,7 +78,9 @@ my %ServiceTypeName2ID = reverse %{$ServiceTypeList};
 # ---
 
 my $ServiceID1 = $ServiceObject->ServiceAdd(
-    Name => 'TestService1' . $Random,
+    Name    => 'TestService1' . $Random,
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -87,15 +89,15 @@ my $ServiceID1 = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 $Self->True(
     $ServiceID1,
     'Service 1 created.',
 );
 my $ServiceID2 = $ServiceObject->ServiceAdd(
-    Name => 'TestService2' . $Random,
+    Name    => 'TestService2' . $Random,
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -104,8 +106,6 @@ my $ServiceID2 = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 $Self->True(
     $ServiceID2,

@@ -240,7 +240,9 @@ my %SLATypeName2ID = reverse %{$SLATypeList};
 
 # create new service
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name => 'TestService' . $RandomID,
+    Name    => 'TestService' . $RandomID,
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -249,8 +251,6 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 
 # sanity check
@@ -285,6 +285,8 @@ my $SLAObject = $Kernel::OM->Get('Kernel::System::SLA');
 my $SLAID = $SLAObject->SLAAdd(
     Name       => 'TestSLA' . $RandomID,
     ServiceIDs => [$ServiceID],
+    ValidID    => 1,
+    UserID     => 1,
 
     # ---
     # ITSMCore
@@ -292,8 +294,6 @@ my $SLAID = $SLAObject->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 
 # sanity check
@@ -466,7 +466,7 @@ my $RemoteSystem =
     . $Host
     . '/'
     . $ConfigObject->Get('ScriptAlias')
-    . '/nph-genericinterface.pl/WebserviceID/'
+    . 'nph-genericinterface.pl/WebserviceID/'
     . $WebserviceID;
 
 my $WebserviceConfig = {
@@ -601,7 +601,7 @@ my @Tests        = (
                 SenderTypeID                    => 1,
                 IsVisibleForCustomer            => 1,
                 CommunicationChannel            => 'Email',
-                From                            => 'enjoy@otobo.com',
+                From                            => 'hello@otobo.org',
                 ContentType                     => 'text/plain; charset=UTF8',
                 HistoryType                     => 'NewTicket',
                 HistoryComment                  => '% % ',

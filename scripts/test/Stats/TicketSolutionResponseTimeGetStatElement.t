@@ -24,8 +24,8 @@ use utf8;
 use Test2::V0;
 
 # OTOBO modules
-use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
 use Kernel::System::UnitTest::MockTime qw(:all);
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
 
 our $Self;
 
@@ -121,7 +121,9 @@ $Self->True(
 
 # Add test Service.
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name => "TestService - " . $Helper->GetRandomID(),
+    Name    => "TestService - " . $Helper->GetRandomID(),
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -130,8 +132,6 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 $Self->True(
     $ServiceID,
@@ -148,8 +148,6 @@ $ServiceObject->CustomerUserServiceMemberAdd(
 
 # Add test SLA.
 my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
-    Name       => "TestSLA - " . $Helper->GetRandomID(),
-    ServiceIDs => [$ServiceID],
 
     # ---
     # ITSMCore
@@ -157,6 +155,8 @@ my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
+    Name                => "TestSLA - " . $Helper->GetRandomID(),
+    ServiceIDs          => [$ServiceID],
     FirstResponseTime   => 5,
     FirstResponseNotify => 60,
     UpdateTime          => 10,

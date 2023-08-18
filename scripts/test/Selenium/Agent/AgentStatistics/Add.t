@@ -29,7 +29,7 @@ use Kernel::System::UnitTest::Selenium;
 
 our $Self;
 
-my $Selenium = Kernel::System::UnitTest::Selenium->new;
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
 
 $Selenium->RunTest(
     sub {
@@ -52,7 +52,9 @@ $Selenium->RunTest(
         # Add test services and SLAs.
         for ( 1 .. 5 ) {
             my $ServiceID = $ServiceObject->ServiceAdd(
-                Name => "TestService - " . $Helper->GetRandomID(),
+                Name    => "TestService - " . $Helper->GetRandomID(),
+                ValidID => 1,
+                UserID  => 1,
 
                 # ---
                 # ITSMCore
@@ -61,8 +63,6 @@ $Selenium->RunTest(
                 Criticality => '3 normal',
 
                 # ---
-                ValidID => 1,
-                UserID  => 1,
             );
             $Self->True(
                 $ServiceID,
@@ -78,7 +78,9 @@ $Selenium->RunTest(
             push @ServiceIDs, $ServiceID;
 
             my $SLAID = $SLAObject->SLAAdd(
-                Name => "TestSLA - " . $Helper->GetRandomID(),
+                Name    => "TestSLA - " . $Helper->GetRandomID(),
+                ValidID => 1,
+                UserID  => 1,
 
                 # ---
                 # ITSMCore
@@ -86,8 +88,6 @@ $Selenium->RunTest(
                 TypeID => 1,
 
                 # ---
-                ValidID => 1,
-                UserID  => 1,
             );
             $Self->True(
                 $SLAID,
@@ -242,7 +242,7 @@ $Selenium->RunTest(
                 );
 
                 # Set invalid date for CreateTime (31.06.).
-                # See bug #13938 (https://bugs.otobo.org/show_bug.cgi?id=13938).
+                # See bug #13938 (https://bugs.otrs.org/show_bug.cgi?id=13938).
                 if ( $StatsData->{XAxis} eq 'XAxisCreateTime' ) {
                     $Selenium->InputFieldValueSet(
                         Element => '#XAxisCreateTimeStopMonth',
@@ -258,7 +258,7 @@ $Selenium->RunTest(
             $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$(".Dialog.Modal").length;' );
 
             # Check error message if there is set wrong invalid date for x-axis
-            if ( $StatsData->{XAxis} eq 'XAxisCreateTime' ) {
+            if ( $StatsData->{XAxis} && $StatsData->{XAxis} eq 'XAxisCreateTime' ) {
                 $Self->Is(
                     $Selenium->execute_script("return \$('.Preview p.Error').text().trim();"),
                     "CreateTime: The selected date is not valid.",
@@ -339,8 +339,6 @@ $Selenium->RunTest(
             $Selenium->find_element( "#DialogButton1", 'css' )->click();
             $Selenium->WaitFor( JavaScript => 'return typeof($) === "function" && !$(".Dialog.Modal").length;' );
 
-            sleep 2;
-
             # Change preview format to Print.
             $Selenium->execute_script("\$('button[data-format=Print]').click();");
             $Selenium->WaitFor(
@@ -395,8 +393,6 @@ $Selenium->RunTest(
 
             # Save and finish test statistics.
             $Selenium->find_element( "#SaveAndFinish", 'css' )->VerifiedClick();
-
-            sleep 2;
 
             # Sort decreasing by StatsID.
             $Selenium->VerifiedGet(
@@ -477,7 +473,6 @@ $Selenium->RunTest(
             )->click();
 
             $Selenium->WaitFor( AlertPresent => 1 );
-            sleep 1;
             $Selenium->accept_alert();
             $Selenium->WaitFor(
                 JavaScript =>

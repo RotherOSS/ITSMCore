@@ -25,9 +25,9 @@ use Test2::V0;
 use Capture::Tiny qw(capture);
 
 # OTOBO modules
+use Kernel::System::UnitTest::MockTime qw(:all);
 use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
 use Kernel::System::VariableCheck qw(IsHashRefWithData);
-use Kernel::System::UnitTest::MockTime qw(:all);
 
 our $Self;
 
@@ -1033,7 +1033,7 @@ $Self->True(
 $Self->Is(
     $ChangeTime,
     $TicketData{Changed},
-    'Change_time updated in TicketEscalationIndexBuild()',
+    'Change_time is not updated in TicketEscalationIndexBuild()',
 );
 
 # save current change_time

@@ -144,7 +144,9 @@ my %SLATypeName2ID = reverse %{$SLATypeList};
 # ---
 
 my $ServiceID = $ServiceObject->ServiceAdd(
-    Name => $RandomID,
+    Name    => $RandomID,
+    ValidID => 1,
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -153,8 +155,6 @@ my $ServiceID = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => 1,
-    UserID  => 1,
 );
 
 $ServiceObject->CustomerUserServiceMemberAdd(
@@ -166,6 +166,9 @@ $ServiceObject->CustomerUserServiceMemberAdd(
 
 my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
     ServiceIDs => [$ServiceID],
+    Name       => $RandomID,
+    ValidID    => 1,
+    UserID     => 1,
 
     # ---
     # ITSMCore
@@ -173,9 +176,6 @@ my $SLAID = $Kernel::OM->Get('Kernel::System::SLA')->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    Name    => $RandomID,
-    ValidID => 1,
-    UserID  => 1,
 );
 
 my $TicketID = $CommonObject{TicketObject}->TicketCreate(

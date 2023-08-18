@@ -147,7 +147,9 @@ my %SLATypeName2ID = reverse %{$SLATypeList};
 # set service options
 my $ServiceName = 'Service_' . $RandomID;
 my $ServiceID   = $ServiceObject->ServiceAdd(
-    Name => $ServiceName,
+    Name    => $ServiceName,
+    ValidID => $ValidList{'valid'},
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -156,8 +158,6 @@ my $ServiceID   = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => $ValidList{'valid'},
-    UserID  => 1,
 );
 
 # sanity check
@@ -168,7 +168,9 @@ $Self->True(
 
 my $NewServiceName = 'NewService_' . $RandomID;
 my $NewServiceID   = $ServiceObject->ServiceAdd(
-    Name => $NewServiceName,
+    Name    => $NewServiceName,
+    ValidID => $ValidList{'valid'},
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -177,8 +179,6 @@ my $NewServiceID   = $ServiceObject->ServiceAdd(
     Criticality => '3 normal',
 
     # ---
-    ValidID => $ValidList{'valid'},
-    UserID  => 1,
 );
 
 # sanity check
@@ -244,7 +244,9 @@ $Self->True(
 # set SLA options
 my $SLAName = 'SLA_' . $RandomID;
 my $SLAID   = $SLAObject->SLAAdd(
-    Name => $SLAName,
+    Name    => $SLAName,
+    ValidID => $ValidList{'valid'},
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -252,8 +254,6 @@ my $SLAID   = $SLAObject->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    ValidID => $ValidList{'valid'},
-    UserID  => 1,
 );
 
 # sanity check
@@ -264,7 +264,9 @@ $Self->True(
 
 my $NewSLAName = 'NewSLA_' . $RandomID;
 my $NewSLAID   = $SLAObject->SLAAdd(
-    Name => $NewSLAName,
+    Name    => $NewSLAName,
+    ValidID => $ValidList{'valid'},
+    UserID  => 1,
 
     # ---
     # ITSMCore
@@ -272,8 +274,6 @@ my $NewSLAID   = $SLAObject->SLAAdd(
     TypeID => $SLATypeName2ID{Other},
 
     # ---
-    ValidID => $ValidList{'valid'},
-    UserID  => 1,
 );
 
 # sanity check
