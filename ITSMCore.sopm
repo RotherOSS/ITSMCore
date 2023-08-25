@@ -397,7 +397,7 @@
         $Kernel::OM->Get($CodeModule)->CodeReinstall();
 
     ]]></CodeReinstall>
-    <!-- It is IMPORTANT that this CodeUpgrade (Version="3.2.91") comes BEFORE the regular CodeUpgrade block without any version number! -->
+    <!-- It is IMPORTANT that version specific CodeUpgrade blocks are placed BEFORE the generic CodeUpgrade block without any version number! -->
     <CodeUpgrade Type="post"><![CDATA[
 
         # create the package name
