@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: 2023-08-25 00:07+0000\n"
+"PO-Revision-Date: 2023-08-25 11:42+0000\n"
 "Last-Translator: Kozo Sakurai <sakurai@io-architect.com>\n"
 "Language-Team: Japanese <https://translate.otobo.org/projects/otobo10/"
 "itsmcore/ja/>\n"
@@ -39,7 +39,7 @@ msgstr "SLA情報"
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed"
-msgstr "最終変更時刻"
+msgstr "最終更新日時"
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed by"
@@ -63,7 +63,7 @@ msgstr "関連するSLA"
 
 #. Perl Module: Kernel/Modules/AdminITSMCIPAllocate.pm
 msgid "Impact"
-msgstr "影響"
+msgstr "影響度"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "No SLAID is given!"
@@ -151,7 +151,7 @@ msgstr "支持する契約"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Other"
-msgstr "その他"
+msgstr "他"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Availability"
@@ -295,11 +295,11 @@ msgstr "SLAの概観"
 
 #. SysConfig
 msgid "SLA Print."
-msgstr "SLA の印刷"
+msgstr "SLA の印刷です。"
 
 #. SysConfig
 msgid "SLA Zoom."
-msgstr "SLA ズーム"
+msgstr "SLA ズームです。"
 
 #. SysConfig
 msgid "Service Overview"
@@ -307,11 +307,11 @@ msgstr "サービスの概観"
 
 #. SysConfig
 msgid "Service Print."
-msgstr "サービスの印刷"
+msgstr "サービスの印刷です。"
 
 #. SysConfig
 msgid "Service Zoom."
-msgstr "サービス・ズーム"
+msgstr "サービス・ズームです。"
 
 #. SysConfig
 msgid "Service-Area"
@@ -439,4 +439,4 @@ msgstr "リンク・タイプ'RelevantTo'の定義です。もしソース名お
 
 #. SysConfig
 msgid "Width of ITSM textareas."
-msgstr "ITSM テキストエリア幅"
+msgstr "ITSM テキストエリア幅です。"
