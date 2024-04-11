@@ -389,7 +389,7 @@ sub _SetPreferences {
         $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesSet(
             ItemID => $Item->{ItemID},
             Key    => 'Functionality',
-            Value  => $Map{$Name},
+            Value  => [$Map{$Name}],
         );
     }
     return 1;

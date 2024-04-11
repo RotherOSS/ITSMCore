@@ -1750,7 +1750,7 @@ sub _ServiceGetCurrentIncidentState {
     );
 
     $ServiceData{CurInciState}     = $InciState->{Name};
-    $ServiceData{CurInciStateType} = $InciState->{Functionality};
+    $ServiceData{CurInciStateType} = $InciState->{Functionality}[0] // '';
 
     %ServiceData = (%ServiceData, %Preferences);
 
