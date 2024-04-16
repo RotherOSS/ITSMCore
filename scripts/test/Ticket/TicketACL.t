@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - e45f8b48199a0254676f6bd9758a5c00f670d31e - scripts/test/Ticket/TicketACL.t
+# $origin: otobo - 35a9cef33aa1059a4a803d1bb0e9fe6ed4a77d34 - scripts/test/Ticket/TicketACL.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -21,6 +21,7 @@ use warnings;
 use utf8;
 
 # core modules
+use Storable qw(dclone);
 
 # CPAN modules
 use Test2::V0;
@@ -4236,7 +4237,7 @@ $NumberOfTests = $#TestsNot;
 for my $TestCase ( sort keys %TestModifiers ) {
     for my $Index ( 0 .. $NumberOfTests ) {
 
-        my $Test = Storable::dclone( $TestsNot[$Index] );
+        my $Test = dclone( $TestsNot[$Index] );
 
         $Test->{Name} = $TestModifiers{$TestCase}->[$Index]->{Name};
         $Test->{ACLs}->{'Role-Test'}->{Properties}->{User}->{Role} = $TestModifiers{$TestCase}->[$Index]->{Role};

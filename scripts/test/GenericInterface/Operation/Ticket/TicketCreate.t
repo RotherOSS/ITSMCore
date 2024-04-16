@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 4ae07bf37dd16bf4a67b3959c57294f1d65b6b48 - scripts/test/GenericInterface/Operation/Ticket/TicketCreate.t
+# $origin: otobo - 725b7f01f21e481775711779e1246fcb5bdbe336 - scripts/test/GenericInterface/Operation/Ticket/TicketCreate.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -21,21 +21,17 @@ use warnings;
 use utf8;
 
 # core modules
-use Socket;
-use MIME::Base64;
+use MIME::Base64 qw(encode_base64);
 
 # CPAN modules
 use Test2::V0;
 
 # OTOBO modules
 use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and $main::Self
-use Kernel::GenericInterface::Debugger;
-use Kernel::GenericInterface::Operation::Ticket::TicketCreate;
-use Kernel::GenericInterface::Operation::Session::SessionCreate;
-
-use Kernel::System::VariableCheck qw(IsArrayRefWithData IsHashRefWithData IsStringWithData);
-
-our $Self;
+use Kernel::GenericInterface::Debugger                          ();
+use Kernel::GenericInterface::Operation::Ticket::TicketCreate   ();                                                         ## no perlimports, new() from string
+use Kernel::GenericInterface::Operation::Session::SessionCreate ();                                                         ## no perlimports, new() from string
+use Kernel::System::VariableCheck                               qw(IsArrayRefWithData IsHashRefWithData IsStringWithData);
 
 # set up object attributes
 $Kernel::OM->ObjectParamAdd(
@@ -101,7 +97,7 @@ $Kernel::OM->ObjectsDiscard(
 my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
 # check if SSL Certificate verification is disabled
-$Self->Is(
+is(
     $ENV{PERL_LWP_SSL_VERIFY_HOSTNAME},
     0,
     'Disabled SSL certificates verification in environment'
@@ -129,9 +125,8 @@ my $UserID = $UserObject->UserLookup(
 my $InvalidID = $Kernel::OM->Get('Kernel::System::Valid')->ValidLookup( Valid => 'invalid' );
 
 # sanity test
-$Self->IsNot(
-    $InvalidID,
-    undef,
+ok(
+    defined $InvalidID,
     "ValidLookup() for 'invalid' should not be undef"
 );
 
@@ -149,7 +144,7 @@ my $GroupID = $GroupObject->GroupAdd(
 my %GroupData = $GroupObject->GroupGet( ID => $GroupID );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%GroupData ),
     "GroupGet() - for testing group"
 );
@@ -184,12 +179,9 @@ for my $QueueProperty (@QueueProperties) {
     );
 
     # sanity check
-    $Self->True(
-        $QueueID,
-        "QueueAdd() - create testing queue"
-    );
-    my %QueueData = $QueueObject->QueueGet( ID => $QueueID );
+    ok( $QueueID, "QueueAdd() - create testing queue" );
 
+    my %QueueData = $QueueObject->QueueGet( ID => $QueueID );
     push @Queues,   \%QueueData;
     push @QueueIDs, $QueueData{QueueID};
 }
@@ -205,17 +197,14 @@ my $TypeID = $TypeObject->TypeAdd(
 );
 
 # sanity check
-$Self->True(
-    $TypeID,
-    "TypeAdd() - create testing type"
-);
+ok( $TypeID, "TypeAdd() - create testing type" );
 
 my %TypeData = $TypeObject->TypeGet(
     ID => $TypeID,
 );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%TypeData ),
     "TypeGet() - for testing type"
 );
@@ -261,10 +250,7 @@ my $ServiceID = $ServiceObject->ServiceAdd(
 );
 
 # sanity check
-$Self->True(
-    $ServiceID,
-    "ServiceAdd() - create testing service"
-);
+ok( $ServiceID, "ServiceAdd() - create testing service" );
 
 my %ServiceData = $ServiceObject->ServiceGet(
     ServiceID => $ServiceID,
@@ -272,7 +258,7 @@ my %ServiceData = $ServiceObject->ServiceGet(
 );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%ServiceData ),
     "ServiceGet() - for testing service"
 );
@@ -304,10 +290,7 @@ my $SLAID = $SLAObject->SLAAdd(
 );
 
 # sanity check
-$Self->True(
-    $SLAID,
-    "SLAAdd() - create testing SLA"
-);
+ok( $SLAID, "SLAAdd() - create testing SLA" );
 
 my %SLAData = $SLAObject->SLAGet(
     SLAID  => $SLAID,
@@ -315,7 +298,7 @@ my %SLAData = $SLAObject->SLAGet(
 );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%SLAData ),
     "SLAGet() - for testing SLA"
 );
@@ -332,17 +315,14 @@ my $StateID = $StateObject->StateAdd(
 );
 
 # sanity check
-$Self->True(
-    $StateID,
-    "StateAdd() - create testing state"
-);
+ok( $StateID, "StateAdd() - create testing state" );
 
 my %StateData = $StateObject->StateGet(
     ID => $StateID,
 );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%StateData ),
     "StateGet() - for testing state"
 );
@@ -358,10 +338,7 @@ my $PriorityID = $PriorityObject->PriorityAdd(
 );
 
 # sanity check
-$Self->True(
-    $PriorityID,
-    "PriorityAdd() - create testing priority",
-);
+ok( $PriorityID, "PriorityAdd() - create testing priority", );
 
 my %PriorityData = $PriorityObject->PriorityGet(
     PriorityID => $PriorityID,
@@ -369,7 +346,7 @@ my %PriorityData = $PriorityObject->PriorityGet(
 );
 
 # sanity check
-$Self->True(
+ok(
     IsHashRefWithData( \%PriorityData ),
     "PriorityGet() - for testing priority"
 );
@@ -394,10 +371,7 @@ my $FieldTextID = $DynamicFieldObject->DynamicFieldAdd(
     UserID  => 1,
     Reorder => 0,
 );
-$Self->True(
-    $FieldTextID,
-    "Dynamic Field $FieldTextID"
-);
+ok( $FieldTextID, "Dynamic Field $FieldTextID" );
 
 # add ID
 $DynamicFieldTextConfig{ID} = $FieldTextID;
@@ -424,10 +398,7 @@ my $FieldDropdownID = $DynamicFieldObject->DynamicFieldAdd(
     UserID  => 1,
     Reorder => 0,
 );
-$Self->True(
-    $FieldDropdownID,
-    "Dynamic Field $FieldDropdownID"
-);
+ok( $FieldDropdownID, "Dynamic Field $FieldDropdownID" );
 
 # add ID
 $DynamicFieldDropdownConfig{ID} = $FieldDropdownID;
@@ -453,10 +424,7 @@ my $FieldMultiselectID = $DynamicFieldObject->DynamicFieldAdd(
     UserID  => 1,
     Reorder => 0,
 );
-$Self->True(
-    $FieldMultiselectID,
-    "Dynamic Field $FieldMultiselectID"
-);
+ok( $FieldMultiselectID, "Dynamic Field $FieldMultiselectID" );
 
 # add ID
 $DynamicFieldMultiselectConfig{ID} = $FieldMultiselectID;
@@ -481,10 +449,7 @@ my $FieldDateTimeID = $DynamicFieldObject->DynamicFieldAdd(
     UserID  => 1,
     Reorder => 0,
 );
-$Self->True(
-    $FieldDateTimeID,
-    "Dynamic Field $FieldDateTimeID"
-);
+ok( $FieldDateTimeID, "Dynamic Field $FieldDateTimeID" );
 
 # add ID
 $DynamicFieldDateTimeConfig{ID} = $FieldDateTimeID;
@@ -509,19 +474,16 @@ my $FieldDateID = $DynamicFieldObject->DynamicFieldAdd(
     UserID  => 1,
     Reorder => 0,
 );
-$Self->True(
-    $FieldDateID,
-    "Dynamic Field $FieldDateID",
-);
+ok( $FieldDateID, "Dynamic Field $FieldDateID", );
 
 # add ID
 $DynamicFieldDateConfig{ID} = $FieldDateID;
 
 # create web service object
 my $WebserviceObject = $Kernel::OM->Get('Kernel::System::GenericInterface::Webservice');
-$Self->Is(
-    'Kernel::System::GenericInterface::Webservice',
-    ref $WebserviceObject,
+isa_ok(
+    $WebserviceObject,
+    ['Kernel::System::GenericInterface::Webservice'],
     'Create web service object'
 );
 
@@ -543,10 +505,7 @@ my $WebserviceID = $WebserviceObject->WebserviceAdd(
     ValidID => 1,
     UserID  => 1,
 );
-$Self->True(
-    $WebserviceID,
-    "Added web service",
-);
+ok( $WebserviceID, "Added web service" );
 
 # get remote host with some precautions for certain unit test systems
 my $Host = $Helper->GetTestHTTPHostname();
@@ -617,17 +576,14 @@ my $WebserviceUpdate = $WebserviceObject->WebserviceUpdate(
     ValidID => 1,
     UserID  => 1,
 );
-$Self->True(
-    $WebserviceUpdate,
-    "Updated web service $WebserviceID - $WebserviceName"
-);
+ok( $WebserviceUpdate, "Updated web service $WebserviceID - $WebserviceName" );
 
 # Get SessionID
 # create requester object
 my $RequesterSessionObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
-$Self->Is(
-    'Kernel::GenericInterface::Requester',
-    ref $RequesterSessionObject,
+isa_ok(
+    $RequesterSessionObject,
+    ['Kernel::GenericInterface::Requester'],
     'SessionID - Create requester object'
 );
 
@@ -678,7 +634,7 @@ my $RequesterSessionResult = $RequesterSessionObject->Run(
 
 my $TicketObject = $Kernel::OM->Get('Kernel::System::Ticket');
 
-my $TestTicketDelete = sub {
+sub TestTicketDelete {
     my %Param = @_;
 
     my @TicketIDs = @{ $Param{TicketIDs} };
@@ -696,7 +652,7 @@ my $TestTicketDelete = sub {
             UserID   => 1,
         );
 
-        # Ticket deletion could fail if apache still writes to ticket history. Try again in this case.
+        # Ticket deletion could fail if the web server still writes to ticket history. Try again in this case.
         if ( !$TicketDelete ) {
             sleep 3;
             $TicketDelete = $TicketObject->TicketDelete(
@@ -704,19 +660,11 @@ my $TestTicketDelete = sub {
                 UserID   => 1,
             );
         }
-        $Self->True(
-            $TicketDelete,
-            "Delete ticket - $TicketID"
-        );
-
-        # sanity check
-        $Self->True(
-            $TicketDelete,
-            "TicketDelete() successful for Ticket ID $TicketID"
-        );
+        ok( $TicketDelete, "TicketDelete() successful for Ticket ID $TicketID" );
     }
+
     return 1;
-};
+}
 
 my $NewSessionID = $RequesterSessionResult->{Data}->{SessionID};
 my @Tests        = (
@@ -4537,6 +4485,192 @@ my @Tests        = (
         },
         Operation => 'TicketCreate',
     },
+    {
+        # the attachment should be rejected because the ContentType looks dubious
+        Name           => 'reject attachment: unknown charset',
+        SuccessRequest => 1,
+        SuccessCreate  => 0,
+        RequestData    => {
+            Ticket => {
+                Title         => 'Ticket Title',
+                CustomerUser  => $TestCustomerUserLogin,
+                QueueID       => $Queues[0]->{QueueID},
+                TypeID        => $TypeID,
+                ServiceID     => $ServiceID,
+                SLAID         => $SLAID,
+                StateID       => $StateID,
+                PriorityID    => $PriorityID,
+                OwnerID       => $OwnerID,
+                ResponsibleID => $ResponsibleID,
+                PendingTime   => {
+                    Year   => 2012,
+                    Month  => 12,
+                    Day    => 16,
+                    Hour   => 20,
+                    Minute => 48,
+                },
+            },
+            Article => {
+                Subject                         => 'Article subject',
+                Body                            => 'Article body',
+                AutoResponseType                => 'auto reply',
+                ArticleTypeID                   => 1,
+                SenderTypeID                    => 1,
+                CommunicationChannel            => 'Email',
+                ContentType                     => 'text/plain; charset=utf8',
+                HistoryType                     => 'NewTicket',
+                HistoryComment                  => '% % ',
+                TimeUnit                        => 25,
+                ForceNotificationToUserID       => [$UserID],
+                ExcludeNotificationToUserID     => [$UserID],
+                ExcludeMuteNotificationToUserID => [$UserID],
+                To                              =>
+                    "$TestCustomerUserLogin $TestCustomerUserLogin <${TestCustomerUserLogin}\@localunittest.com>, "
+                    . '"another \" recipient" <to_recipient_a@localunittest.com>, '
+                    . '<to_recipient_b@localunittest.com>',
+                Cc =>
+                    '"another \" recipient" <cc_recipient_a@localunittest.com>, '
+                    . '<cc_recipient_b@localunittest.com>',
+            },
+            Attachment => {
+                Content     => 'VGhpcyBpcyBhIHRlc3QgdGV4dC4=',
+                ContentType => "text/plain; charset=notinventedhere",
+                Filename    => 'reject_charset',
+                Disposition => 'attachment',
+            },
+        },
+        ExpectedData => {
+            Data => {
+                Error => {
+                    ErrorCode    => 'TicketCreate.InvalidParameter',
+                    ErrorMessage => 'TicketCreate: Attachment->ContentType is invalid!',
+                },
+            },
+            Success => 1
+        },
+        Operation => 'TicketCreate',
+    },
+    {
+        # the attachment should be rejected because the ContentType contains a newline
+        Name           => 'reject attachment: Web-Cache-Poisoning',
+        SuccessRequest => 1,
+        SuccessCreate  => 0,
+        RequestData    => {
+            Ticket => {
+                Title         => 'Ticket Title',
+                CustomerUser  => $TestCustomerUserLogin,
+                QueueID       => $Queues[0]->{QueueID},
+                TypeID        => $TypeID,
+                ServiceID     => $ServiceID,
+                SLAID         => $SLAID,
+                StateID       => $StateID,
+                PriorityID    => $PriorityID,
+                OwnerID       => $OwnerID,
+                ResponsibleID => $ResponsibleID,
+                PendingTime   => {
+                    Year   => 2012,
+                    Month  => 12,
+                    Day    => 16,
+                    Hour   => 20,
+                    Minute => 48,
+                },
+            },
+            Article => {
+                Subject                         => 'Article subject',
+                Body                            => 'Article body',
+                AutoResponseType                => 'auto reply',
+                ArticleTypeID                   => 1,
+                SenderTypeID                    => 1,
+                CommunicationChannel            => 'Email',
+                ContentType                     => 'text/plain; charset=utf8',
+                HistoryType                     => 'NewTicket',
+                HistoryComment                  => '% % ',
+                TimeUnit                        => 25,
+                ForceNotificationToUserID       => [$UserID],
+                ExcludeNotificationToUserID     => [$UserID],
+                ExcludeMuteNotificationToUserID => [$UserID],
+                To                              =>
+                    "$TestCustomerUserLogin $TestCustomerUserLogin <${TestCustomerUserLogin}\@localunittest.com>, "
+                    . '"another \" recipient" <to_recipient_a@localunittest.com>, '
+                    . '<to_recipient_b@localunittest.com>',
+                Cc =>
+                    '"another \" recipient" <cc_recipient_a@localunittest.com>, '
+                    . '<cc_recipient_b@localunittest.com>',
+            },
+            Attachment => {
+                Content     => 'VGhpcyBpcyBhIHRlc3QgdGV4dC4=',
+                ContentType => "text/plain\nHost-Header-Injection: Web-Cache-Poisoning",
+                Filename    => 'reject_injection',
+                Disposition => 'attachment',
+            },
+        },
+        ExpectedData => {
+            Data => {
+                Error => {
+                    ErrorCode    => 'TicketCreate.InvalidParameter',
+                    ErrorMessage => 'TicketCreate: Attachment->ContentType is invalid!',
+                },
+            },
+            Success => 1
+        },
+        Operation => 'TicketCreate',
+    },
+    {
+        # the attachment should not be rejected because extra parameters are allowed
+        Name           => 'extra parameter in ContentType',
+        SuccessRequest => 1,
+        SuccessCreate  => 1,
+        RequestData    => {
+            Ticket => {
+                Title         => 'Ticket Title',
+                CustomerUser  => $TestCustomerUserLogin,
+                QueueID       => $Queues[0]->{QueueID},
+                TypeID        => $TypeID,
+                ServiceID     => $ServiceID,
+                SLAID         => $SLAID,
+                StateID       => $StateID,
+                PriorityID    => $PriorityID,
+                OwnerID       => $OwnerID,
+                ResponsibleID => $ResponsibleID,
+                PendingTime   => {
+                    Year   => 2012,
+                    Month  => 12,
+                    Day    => 16,
+                    Hour   => 20,
+                    Minute => 48,
+                },
+            },
+            Article => {
+                Subject                         => 'Article subject',
+                Body                            => 'Article body',
+                AutoResponseType                => 'auto reply',
+                ArticleTypeID                   => 1,
+                SenderTypeID                    => 1,
+                CommunicationChannel            => 'Email',
+                ContentType                     => "text/plain; charset=utf8",
+                HistoryType                     => 'NewTicket',
+                HistoryComment                  => '% % ',
+                TimeUnit                        => 25,
+                ForceNotificationToUserID       => [$UserID],
+                ExcludeNotificationToUserID     => [$UserID],
+                ExcludeMuteNotificationToUserID => [$UserID],
+                To                              =>
+                    "$TestCustomerUserLogin $TestCustomerUserLogin <${TestCustomerUserLogin}\@localunittest.com>, "
+                    . '"another \" recipient" <to_recipient_a@localunittest.com>, '
+                    . '<to_recipient_b@localunittest.com>',
+                Cc =>
+                    '"another \" recipient" <cc_recipient_a@localunittest.com>, '
+                    . '<cc_recipient_b@localunittest.com>',
+            },
+            Attachment => {
+                Content     => 'VGhpcyBpcyBhIHRlc3QgdGV4dC4=',
+                ContentType => "text/plain;extra_test_parameter=dummy_parameter",
+                Filename    => 'extra_test_parameter',
+                Disposition => 'attachment',
+            },
+        },
+        Operation => 'TicketCreate',
+    },
 );
 
 # debugger object
@@ -4548,9 +4682,9 @@ my $DebuggerObject = Kernel::GenericInterface::Debugger->new(
     WebserviceID      => $WebserviceID,
     CommunicationType => 'Provider',
 );
-$Self->Is(
-    ref $DebuggerObject,
-    'Kernel::GenericInterface::Debugger',
+isa_ok(
+    $DebuggerObject,
+    ['Kernel::GenericInterface::Debugger'],
     'DebuggerObject instantiate correctly'
 );
 
@@ -4578,10 +4712,9 @@ for my $Test (@Tests) {
             DebuggerObject => $DebuggerObject,
             WebserviceID   => $WebserviceID,
         );
-
-        $Self->Is(
-            "Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}",
-            ref $LocalObject,
+        isa_ok(
+            $LocalObject,
+            ["Kernel::GenericInterface::Operation::Ticket::$Test->{Operation}"],
             "Create local object"
         );
 
@@ -4590,7 +4723,7 @@ for my $Test (@Tests) {
             Password  => $Password,
         );
         if ( IsHashRefWithData( $Test->{Auth} ) ) {
-            %Auth = %{ $Test->{Auth} };
+            %Auth = $Test->{Auth}->%*;
         }
 
         # start requester with our web service
@@ -4599,60 +4732,59 @@ for my $Test (@Tests) {
             Invoker      => $Test->{Operation},
             Data         => {
                 %Auth,
-                %{ $Test->{RequestData} },
+                $Test->{RequestData}->%*,
             },
         );
 
         # check result
-        $Self->Is(
+        ref_ok(
+            $LocalResult,
             'HASH',
-            ref $LocalResult,
             "Local result structure is valid"
         );
 
         # create requester object
         my $RequesterObject = $Kernel::OM->Get('Kernel::GenericInterface::Requester');
-        $Self->Is(
-            'Kernel::GenericInterface::Requester',
-            ref $RequesterObject,
+        isa_ok(
+            $RequesterObject,
+            ['Kernel::GenericInterface::Requester'],
             "Create requester object"
         );
 
-        # start requester with our web service
+        # start requester with our web-service
         my $RequesterResult = $RequesterObject->Run(
             WebserviceID => $WebserviceID,
             Invoker      => $Test->{Operation},
             Data         => {
                 %Auth,
-                %{ $Test->{RequestData} },
+                $Test->{RequestData}->%*,
             },
         );
 
         # TODO prevent failing test if enviroment on SaaS unit test system doesn't work.
         if (
             $Test->{SuccessCreate}
-            && $RequesterResult->{ErrorMessage}
-            && $RequesterResult->{ErrorMessage} eq
-            'faultcode: Server, faultstring: Attachment could not be created, please contact the system administrator'
+            &&
+            $RequesterResult->{ErrorMessage}
+            &&
+            $RequesterResult->{ErrorMessage} eq 'faultcode: Server, faultstring: Attachment could not be created, please contact the system administrator'
             )
         {
 
             my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
-            $TestTicketDelete->(
-                TicketIDs => \@TicketIDs,
-            );
+            TestTicketDelete( TicketIDs => \@TicketIDs );
 
             return;
         }
 
         # check result
-        $Self->Is(
+        ref_ok(
+            $RequesterResult,
             'HASH',
-            ref $RequesterResult,
             "Requester result structure is valid"
         );
 
-        $Self->Is(
+        is(
             $RequesterResult->{Success},
             $Test->{SuccessRequest},
             "Requester successful result"
@@ -4662,38 +4794,38 @@ for my $Test (@Tests) {
         if ( $Test->{SuccessCreate} ) {
 
             # local results
-            $Self->True(
+            ok(
                 $LocalResult->{Data}->{TicketID},
                 "Local result TicketID with True."
             );
-            $Self->True(
+            ok(
                 $LocalResult->{Data}->{TicketNumber},
                 "Local result TicketNumber with True."
             );
-            $Self->True(
+            ok(
                 $LocalResult->{Data}->{ArticleID},
                 "Local result ArticleID with True."
             );
-            $Self->IsDeeply(
+            is(
                 $LocalResult->{Data}->{Error},
                 undef,
                 "Local result Error is undefined."
             );
 
             # requester results
-            $Self->True(
+            ok(
                 $RequesterResult->{Data}->{TicketID},
                 "Requester result TicketID with True."
             );
-            $Self->True(
+            ok(
                 $RequesterResult->{Data}->{TicketNumber},
                 "Requester result TicketNumber with True."
             );
-            $Self->True(
+            ok(
                 $RequesterResult->{Data}->{ArticleID},
                 "Requester result ArticleID with True."
             );
-            $Self->IsDeeply(
+            is(
                 $RequesterResult->{Data}->{Error},
                 undef,
                 "Requester result Error is undefined."
@@ -4706,7 +4838,7 @@ for my $Test (@Tests) {
                 UserID        => 1,
             );
 
-            $Self->True(
+            ok(
                 scalar %LocalTicketData,
                 "created local ticket structure with True."
             );
@@ -4718,13 +4850,13 @@ for my $Test (@Tests) {
                 UserID        => 1,
             );
 
-            $Self->True(
+            ok(
                 scalar %RequesterTicketData,
                 "created requester ticket structure with True."
             );
 
             # check ticket attributes as defined in the test
-            $Self->Is(
+            is(
                 $LocalTicketData{Title},
                 $Test->{RequestData}->{Ticket}->{Title},
                 "local Ticket->Title match test definition."
@@ -4735,7 +4867,7 @@ for my $Test (@Tests) {
             # or CustomerUser is set as valid address.
             # See bug#14288 for more information.
             if ( $Test->{ExternalCustomer} ) {
-                $Self->Is(
+                is(
                     $LocalTicketData{CustomerUserID},
                     $Test->{RequestData}->{Ticket}->{CustomerUser},
                     "local Ticket->CustomerUser is empty."
@@ -4744,11 +4876,11 @@ for my $Test (@Tests) {
             else {
                 my $ExpectedCustomerUserID = $Test->{RequestData}->{Ticket}->{CustomerUser};
 
-                if ( $Test->{Type} && $Test->{Type} eq 'EmailCustomerUser' ) {
+                if ( ( $Test->{Type} // '' ) eq 'EmailCustomerUser' ) {
                     $ExpectedCustomerUserID = $CustomerRand;
                 }
 
-                $Self->Is(
+                is(
                     $LocalTicketData{CustomerUserID},
                     $ExpectedCustomerUserID,
                     "local Ticket->CustomerUser match test definition."
@@ -4757,14 +4889,14 @@ for my $Test (@Tests) {
 
             for my $Attribute (qw(Queue Type Service SLA State Priority Owner Responsible)) {
                 if ( $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' } ) {
-                    $Self->Is(
+                    is(
                         $LocalTicketData{ $Attribute . 'ID' },
                         $Test->{RequestData}->{Ticket}->{ $Attribute . 'ID' },
                         "local Ticket->$Attribute" . 'ID' . " match test definition.",
                     );
                 }
                 else {
-                    $Self->Is(
+                    is(
                         $LocalTicketData{$Attribute},
                         $Test->{RequestData}->{Ticket}->{$Attribute},
                         "local Ticket->$Attribute match test definition."
@@ -4800,7 +4932,7 @@ for my $Test (@Tests) {
 
             for my $Attribute (qw(Subject Body ContentType MimeType Charset From)) {
                 if ( $Test->{RequestData}->{Article}->{$Attribute} ) {
-                    $Self->Is(
+                    is(
                         $LocalArticleData{$Attribute},
                         $Test->{RequestData}->{Article}->{$Attribute},
                         "local Article->$Attribute match test definition."
@@ -4810,14 +4942,14 @@ for my $Test (@Tests) {
 
             for my $Attribute (qw(SenderType)) {
                 if ( $Test->{RequestData}->{Article}->{ $Attribute . 'ID' } ) {
-                    $Self->Is(
+                    is(
                         $LocalArticleData{ $Attribute . 'ID' },
                         $Test->{RequestData}->{Article}->{ $Attribute . 'ID' },
                         "local Article->$Attribute" . 'ID' . " match test definition."
                     );
                 }
                 else {
-                    $Self->Is(
+                    is(
                         $LocalArticleData{$Attribute},
                         $Test->{RequestData}->{Article}->{$Attribute},
                         "local Article->$Attribute match test definition."
@@ -4826,70 +4958,112 @@ for my $Test (@Tests) {
             }
 
             # check dynamic fields
-            my @RequestedDynamicFields;
-            if ( ref $Test->{RequestData}->{DynamicField} eq 'HASH' ) {
-                push @RequestedDynamicFields, $Test->{RequestData}->{DynamicField};
+            my @OriginalDynamicFields;
+            if ( !$Test->{RequestData}->{DynamicField} ) {
+
+                # nothing to do, dynamic fields are not required for all test cases
+            }
+            elsif ( ref $Test->{RequestData}->{DynamicField} eq 'HASH' ) {
+                push @OriginalDynamicFields, $Test->{RequestData}->{DynamicField};
             }
             else {
-                @RequestedDynamicFields = @{ $Test->{RequestData}->{DynamicField} };
+                @OriginalDynamicFields = @{ $Test->{RequestData}->{DynamicField} };
             }
-            for my $DynamicField (@RequestedDynamicFields) {
+            for my $DynamicField (@OriginalDynamicFields) {
 
                 if (
-                    $DynamicField->{FieldType} && $DynamicField->{FieldType} eq 'Date'
-                    && $DynamicField->{Value}  && $DynamicField->{Value} =~ m{ \A \d{4}-\d{2}-\d{2} \z }xms
+                    ( $DynamicField->{FieldType} // '' ) eq 'Date'
+                    &&
+                    ( $DynamicField->{Value} // '' ) =~ m{ \A \d{4}-\d{2}-\d{2} \z }xms
                     )
                 {
                     $DynamicField->{Value} .= ' 00:00:00';
                 }
 
-                $Self->IsDeeply(
+                is(
                     $LocalTicketData{ 'DynamicField_' . $DynamicField->{Name} } // '',
                     $DynamicField->{Value},
-                    "local Ticket->DynamicField_"
-                        . $DynamicField->{Name}
-                        . " match test definition."
+                    "local Ticket->DynamicField_$DynamicField->{Name} match test definition."
                 );
             }
 
-            # check attachments
-            my %AttachmentIndex = $LocalArticleBackendObject->ArticleAttachmentIndex(
-                ArticleID        => $LocalResult->{Data}->{ArticleID},
-                ExcludePlainText => 1,
-                ExcludeHTMLBody  => 1,
-            );
+            # check local and requester attachments against the originally submitted attachments
+            {
+                my @LocalAttachments;
+                {
+                    my %AttachmentIndex = $LocalArticleBackendObject->ArticleAttachmentIndex(
+                        ArticleID        => $LocalResult->{Data}->{ArticleID},
+                        ExcludePlainText => 1,
+                        ExcludeHTMLBody  => 1,
+                    );
 
-            my @Attachments;
-            ATTACHMENT:
-            for my $FileID ( sort keys %AttachmentIndex ) {
-                next ATTACHMENT if !$FileID;
-                my %Attachment = $LocalArticleBackendObject->ArticleAttachment(
-                    ArticleID => $LocalResult->{Data}->{ArticleID},
-                    FileID    => $FileID,
-                );
+                    ATTACHMENT:
+                    for my $FileID ( sort keys %AttachmentIndex ) {
+                        next ATTACHMENT unless $FileID;
 
-                next ATTACHMENT if !IsHashRefWithData( \%Attachment );
+                        my %Attachment = $LocalArticleBackendObject->ArticleAttachment(
+                            ArticleID => $LocalResult->{Data}->{ArticleID},
+                            FileID    => $FileID,
+                        );
 
-                # convert content to base64
-                $Attachment{Content} = encode_base64( $Attachment{Content}, '' );
+                        next ATTACHMENT unless IsHashRefWithData( \%Attachment );
 
-                # delete not needed attributes
-                delete @Attachment{qw(ContentAlternative ContentID Filesize FilesizeRaw)};
+                        # convert content to base64
+                        $Attachment{Content} = encode_base64( $Attachment{Content}, '' );
 
-                push @Attachments, \%Attachment;
+                        # delete not needed attributes
+                        delete @Attachment{qw(ContentAlternative ContentID Filesize FilesizeRaw)};
+
+                        push @LocalAttachments, \%Attachment;
+                    }
+                }
+
+                my @RequesterAttachments;
+                {
+                    my %AttachmentIndex = $RequesterArticleBackendObject->ArticleAttachmentIndex(
+                        ArticleID        => $LocalResult->{Data}->{ArticleID},
+                        ExcludePlainText => 1,
+                        ExcludeHTMLBody  => 1,
+                    );
+
+                    ATTACHMENT:
+                    for my $FileID ( sort keys %AttachmentIndex ) {
+                        next ATTACHMENT unless $FileID;
+
+                        my %Attachment = $RequesterArticleBackendObject->ArticleAttachment(
+                            ArticleID => $RequesterResult->{Data}->{ArticleID},
+                            FileID    => $FileID,
+                        );
+
+                        next ATTACHMENT unless IsHashRefWithData( \%Attachment );
+
+                        # convert content to base64
+                        $Attachment{Content} = encode_base64( $Attachment{Content}, '' );
+
+                        # delete not needed attributes
+                        delete @Attachment{qw(ContentAlternative ContentID Filesize FilesizeRaw)};
+
+                        push @RequesterAttachments, \%Attachment;
+                    }
+                }
+
+                my @OriginalAttachments;
+                {
+                    if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
+                        push @OriginalAttachments, $Test->{RequestData}->{Attachment};
+                    }
+                    else {
+                        push @OriginalAttachments, $Test->{RequestData}->{Attachment}->@*;
+                    }
+                }
+
+                # the actual checks
+                is( \@LocalAttachments,     \@OriginalAttachments, "local Ticket->Attachment match test definition" );
+                is( \@RequesterAttachments, \@OriginalAttachments, "requester Ticket->Attachment match test definition" );
+                is( \@RequesterAttachments, \@LocalAttachments,    "requester and local attachments must match" );
             }
 
-            my @RequestedAttachments;
-            if ( ref $Test->{RequestData}->{Attachment} eq 'HASH' ) {
-                push @RequestedAttachments, $Test->{RequestData}->{Attachment};
-            }
-            else {
-                push @RequestedAttachments, $Test->{RequestData}->{Attachment}->@*;
-            }
-
-            is( \@Attachments, \@RequestedAttachments, "local Ticket->Attachment match test definition." );
-
-            # remove attributes that might be different from local and requester responses
+            # remove ticket attributes that might be different from local and requester responses
             for my $Attribute (
                 qw(TicketID TicketNumber Created Changed Age UnlockTimeout)
                 )
@@ -4898,7 +5072,7 @@ for my $Test (@Tests) {
                 delete $RequesterTicketData{$Attribute};
             }
 
-            $Self->IsDeeply(
+            is(
                 \%LocalTicketData,
                 \%RequesterTicketData,
                 "Local ticket result matched with remote result."
@@ -4914,47 +5088,55 @@ for my $Test (@Tests) {
                 delete $RequesterArticleData{$Attribute};
             }
 
-            $Self->IsDeeply(
+            is(
                 \%LocalArticleData,
                 \%RequesterArticleData,
-                "Local article result matched with remote result."
+                'Local article result matched with remote result.'
             );
 
             my @TicketIDs = ( $LocalResult->{Data}->{TicketID}, $RequesterResult->{Data}->{TicketID} );
-            $TestTicketDelete->(
-                TicketIDs => \@TicketIDs,
-            );
+            TestTicketDelete( TicketIDs => \@TicketIDs );
         }
 
         # tests supposed to fail
         else {
-            $Self->False(
-                $LocalResult->{TicketID},
-                "Local result TicketID with false."
+
+            # check that there is an error, but no payload
+            ref_ok(
+                $LocalResult->{Data},
+                'HASH',
+                "Local result structure got Data"
             );
-            $Self->False(
-                $LocalResult->{TicketNumber},
-                "Local result TicketNumber with false."
+            ref_ok(
+                $LocalResult->{Data}->{Error},
+                'HASH',
+                "Local result structure got Data->Error"
             );
-            $Self->False(
-                $LocalResult->{ArticleID},
-                "Local result ArticleID with false."
-            );
-            $Self->Is(
+            for my $Attr (qw(TicketID TicketNumber ArticleID)) {
+                ok(
+                    !exists $LocalResult->{Data}->{$Attr},
+                    "Local result $Attr not present"
+                );
+            }
+
+            # Check the expected error code
+            is(
                 $LocalResult->{Data}->{Error}->{ErrorCode},
                 $Test->{ExpectedData}->{Data}->{Error}->{ErrorCode},
                 "Local result ErrorCode matched with expected local call result."
             );
-            $Self->True(
-                $LocalResult->{Data}->{Error}->{ErrorMessage},
-                "Local result ErrorMessage with true."
-            );
-            $Self->IsNot(
-                $LocalResult->{Data}->{Error}->{ErrorMessage},
-                '',
-                "Local result ErrorMessage is not empty."
-            );
-            $Self->Is(
+            ok( $LocalResult->{Data}->{Error}->{ErrorMessage}, "got a local result ErrorMessage" );
+
+            # The expected error message is not always given
+            if ( $Test->{ExpectedData}->{Data}->{Error}->{ErrorMessage} ) {
+                is(
+                    $LocalResult->{Data}->{Error}->{ErrorMessage},
+                    $Test->{ExpectedData}->{Data}->{Error}->{ErrorMessage},
+                    "Local result ErrorMessage matched with expected local call result."
+                );
+            }
+
+            is(
                 $LocalResult->{ErrorMessage},
                 $LocalResult->{Data}->{Error}->{ErrorCode}
                     . ': '
@@ -4970,13 +5152,13 @@ for my $Test (@Tests) {
             }
 
             # sanity check
-            $Self->False(
-                $LocalResult->{ErrorMessage},
+            ok(
+                !$LocalResult->{ErrorMessage},
                 "Local result ErrorMessage (outside Data hash) got removed to compare"
                     . " local and remote tests."
             );
 
-            $Self->IsDeeply(
+            is(
                 $LocalResult,
                 $RequesterResult,
                 "Local result matched with remote result."
@@ -4990,20 +5172,15 @@ my $WebserviceDelete = $WebserviceObject->WebserviceDelete(
     ID     => $WebserviceID,
     UserID => 1,
 );
-$Self->True(
-    $WebserviceDelete,
-    "Deleted web service $WebserviceID",
-);
+ok( $WebserviceDelete, "Deleted web service $WebserviceID" );
 
 # get DB object
 my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
-$Self->Is(
-    ref $DBObject,
-    'Kernel::System::DB',
+isa_ok(
+    $DBObject,
+    ['Kernel::System::DB'],
     "DBObject created correctly",
 );
-
-my $Success;
 
 # Some ticket has bean created on SaaS system but RequesterResult return error without ticket data.
 # So get all created tickets by ticket search by Queue.
@@ -5011,92 +5188,62 @@ my @TicketIDs = $TicketObject->TicketSearch(
     QueueIDs => \@QueueIDs,
     UserID   => 1,
 );
-
-$TestTicketDelete->(
-    TicketIDs => \@TicketIDs,
-);
+TestTicketDelete( TicketIDs => \@TicketIDs );
 
 # delete queues
 for my $QueueData (@Queues) {
-    $Success = $DBObject->Do(
+    my $Success = $DBObject->Do(
         SQL => "DELETE FROM queue WHERE id = $QueueData->{QueueID}",
     );
-    $Self->True(
-        $Success,
-        "Queue with ID $QueueData->{QueueID} is deleted!"
-    );
+    ok( $Success, "Queue with ID $QueueData->{QueueID} is deleted!" );
 }
 
 # delete group
-$Success = $DBObject->Do(
+my $Success = $DBObject->Do(
     SQL  => 'DELETE FROM groups_table WHERE id = ?',
     Bind => [ \$GroupID ],
 );
-$Self->True(
-    $Success,
-    "Group with ID $GroupID is deleted!"
-);
+ok( $Success, "Group with ID $GroupID is deleted!" );
 
 # delete type
 $Success = $DBObject->Do(
     SQL => "DELETE FROM ticket_type WHERE id = $TypeID",
 );
-$Self->True(
-    $Success,
-    "Type with ID $TypeID is deleted!"
-);
+ok( $Success, "Type with ID $TypeID is deleted!" );
 
 # delete service_customer_user and service
 $Success = $DBObject->Do(
     SQL => "DELETE FROM service_customer_user WHERE service_id = $ServiceID",
 );
-$Self->True(
-    $Success,
-    "Service user referenced to service ID $ServiceID is deleted!"
-);
+ok( $Success, "Service user referenced to service ID $ServiceID is deleted!" );
 
 $Success = $DBObject->Do(
     SQL => "DELETE FROM service_sla WHERE service_id = $ServiceID OR sla_id = $SLAID",
 );
-$Self->True(
-    $Success,
-    "Service SLA referenced to service ID $ServiceID is deleted!"
-);
+ok( $Success, "Service SLA referenced to service ID $ServiceID is deleted!" );
 
 $Success = $DBObject->Do(
     SQL => "DELETE FROM service WHERE id = $ServiceID",
 );
-$Self->True(
-    $Success,
-    "Service with ID $ServiceID is deleted!"
-);
+ok( $Success, "Service with ID $ServiceID is deleted!" );
 
 # delete SLA
 $Success = $DBObject->Do(
     SQL => "DELETE FROM sla WHERE id = $SLAID",
 );
-$Self->True(
-    $Success,
-    "SLA with ID $SLAID is deleted!",
-);
+ok( $Success, "SLA with ID $SLAID is deleted!", );
 
 # delete state
 $Success = $DBObject->Do(
     SQL => "DELETE FROM ticket_state WHERE id = $StateID",
 );
-$Self->True(
-    $Success,
-    "State with ID $StateID is deleted!"
-);
+ok( $Success, "State with ID $StateID is deleted!" );
 
 # delete priority
 $Success = $DBObject->Do(
     SQL => "DELETE FROM ticket_priority WHERE id = $PriorityID",
 );
-$Self->True(
-    $Success,
-    "Priority with ID $PriorityID is deleted!"
-);
+ok( $Success, "Priority with ID $PriorityID is deleted!" );
 
 # delete dynamic fields
 my $DeleteFieldList = $DynamicFieldObject->DynamicFieldList(
@@ -5107,7 +5254,7 @@ my $DeleteFieldList = $DynamicFieldObject->DynamicFieldList(
 my $BackendObject = $Kernel::OM->Get('Kernel::System::DynamicField::Backend');
 
 DYNAMICFIELD:
-for my $DynamicFieldID ( sort keys %{$DeleteFieldList} ) {
+for my $DynamicFieldID ( sort keys $DeleteFieldList->%* ) {
 
     next DYNAMICFIELD if !$DynamicFieldID;
     next DYNAMICFIELD if !$DeleteFieldList->{$DynamicFieldID};
@@ -5127,10 +5274,7 @@ for my $DynamicFieldID ( sort keys %{$DeleteFieldList} ) {
         UserID => 1,
     );
 
-    $Self->True(
-        $Success,
-        "DynamicFieldDelete() for $DeleteFieldList->{$DynamicFieldID} with true"
-    );
+    ok( $Success, "DynamicFieldDelete() for $DeleteFieldList->{$DynamicFieldID} with true" );
 }
 
 # cleanup cache

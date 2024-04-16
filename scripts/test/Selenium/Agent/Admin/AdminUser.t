@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - e45f8b48199a0254676f6bd9758a5c00f670d31e - scripts/test/Selenium/Agent/Admin/AdminUser.t
+# $origin: otobo - 54a6370070354a71b2f2de37c63e0d038d95e1d3 - scripts/test/Selenium/Agent/Admin/AdminUser.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -64,7 +64,7 @@ $Selenium->RunTest(
         my $ScriptAlias = $Kernel::OM->Get('Kernel::Config')->Get('ScriptAlias');
 
         # Navigate to AdminUser screen.
-        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AdminUser");
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AdminUser;IncludeInvalid=1");
 
         # check overview AdminUser
         $Selenium->find_element( "table",             'css' );
