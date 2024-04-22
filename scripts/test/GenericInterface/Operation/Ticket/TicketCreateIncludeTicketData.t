@@ -36,7 +36,6 @@ our $Self;
 
 # get needed objects
 my $ConfigObject    = $Kernel::OM->Get('Kernel::Config');
-my $SysConfigObject = $Kernel::OM->Get('Kernel::System::SysConfig');
 
 # Skip SSL certificate verification.
 $Kernel::OM->ObjectParamAdd(

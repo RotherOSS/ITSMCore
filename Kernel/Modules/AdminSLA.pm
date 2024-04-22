@@ -49,12 +49,7 @@ sub Run {
     my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
     my $SLAObject    = $Kernel::OM->Get('Kernel::System::SLA');
-# ---
-# ITSMCore
-# ---
-    my $GeneralCatalogObject = $Kernel::OM->Get('Kernel::System::GeneralCatalog');
-# ---
-    my %Error        = ();
+    my %Error;
 
     $Param{IncludeInvalid} = $ParamObject->GetParam( Param => 'IncludeInvalid' );
 

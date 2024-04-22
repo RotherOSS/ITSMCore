@@ -84,7 +84,7 @@ $Selenium->RunTest(
 
         # wait until print screen is loaded
         ACTIVESLEEP:
-        for my $Second ( 1 .. 20 ) {
+        for ( 1 .. 20 ) {
             if ( index( $Selenium->get_page_source(), "printed by" ) > -1, ) {
                 last ACTIVESLEEP;
             }
