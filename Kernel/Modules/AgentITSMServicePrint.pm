@@ -166,18 +166,19 @@ sub Run {
         Service => \%Service,
     );
 
-    # create file name
-    my $Filename = $Kernel::OM->Get('Kernel::System::Main')->FilenameCleanUp(
-        Filename => $Service{NameShort},
-        Type     => 'Attachment',
-    );
-
     # get datetime object
     my $DateTimeObject = $Kernel::OM->Create('Kernel::System::DateTime');
 
+    # create file name
+    my $Filename        = "service_$Service{NameShort}_" . $DateTimeObject->Format( Format => '%Y-%m-%d_%H:%M' ) . '.pdf';
+    my $CleanedFilename = $Kernel::OM->Get('Kernel::System::Main')->FilenameCleanUp(
+        Filename => $Filename,
+        Type     => 'Attachment',
+    );
+
     # return the pdf document
     return $LayoutObject->Attachment(
-        Filename    => "service_${Filename}_" . $DateTimeObject->Format( Format => '%Y-%m-%d_%H:%M' ) . '.pdf',
+        Filename    => $CleanedFilename,
         ContentType => 'application/pdf',
         Content     => $PDFObject->DocumentOutput(),
         Type        => 'inline',

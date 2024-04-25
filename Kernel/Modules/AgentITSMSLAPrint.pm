@@ -160,18 +160,19 @@ sub Run {
         SLA  => \%SLA,
     );
 
-    # create file name
-    my $Filename = $Kernel::OM->Get('Kernel::System::Main')->FilenameCleanUp(
-        Filename => $SLA{Name},
-        Type     => 'Attachment',
-    );
-
     # get datetime object
     my $DateTimeObject = $Kernel::OM->Create('Kernel::System::DateTime');
 
+    # create file name
+    my $Filename        = "sla_$SLA{Name}_" . $DateTimeObject->Format( Format => "%Y-%m-%d_%H:%M" ) . '.pdf';
+    my $CleanedFilename = $Kernel::OM->Get('Kernel::System::Main')->FilenameCleanUp(
+        Filename => $Filename,
+        Type     => 'Attachment',
+    );
+
     # return the PDF document
     return $LayoutObject->Attachment(
-        Filename    => "sla_${Filename}_" . $DateTimeObject->Format( Format => "%Y-%m-%d_%H:%M" ) . '.pdf',
+        Filename    => $CleanedFilename,
         ContentType => 'application/pdf',
         Content     => $PDFObject->DocumentOutput(),
         Type        => 'inline',
