@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 4cdd2f2766468573cc2970dfbd38a6c9781f0bd0 - scripts/test/SLA.t
+# $origin: otobo - 902ffbb33e650dc4d00620f51a33ad60e4f98b62 - scripts/test/SLA.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -84,7 +84,7 @@ my @UserIDs;
 }
 
 # create needed random service names
-my @SLAName = map {'UnitTest' . $Helper->GetRandomID } (1 .. 10);
+my @SLAName = map { 'UnitTest' . $Helper->GetRandomID } ( 1 .. 10 );
 
 # create some test services
 my @ServiceIDs;

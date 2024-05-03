@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 35a9cef33aa1059a4a803d1bb0e9fe6ed4a77d34 - scripts/test/Ticket/TicketACL.t
+# $origin: otobo - 902ffbb33e650dc4d00620f51a33ad60e4f98b62 - scripts/test/Ticket/TicketACL.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -64,7 +64,7 @@ my ( $UserLogin, $UserID ) = $Helper->TestUserCreate(
 my %UserData = $UserObject->GetUserData(
     UserID => $UserID,
 );
-ok(scalar %UserData, 'first user created');
+ok( scalar %UserData, 'first user created' );
 
 my ( $NewUserLogin, $NewUserID ) = $Helper->TestUserCreate(
     Groups => ['admin'],
@@ -72,7 +72,7 @@ my ( $NewUserLogin, $NewUserID ) = $Helper->TestUserCreate(
 my %NewUserData = $UserObject->GetUserData(
     UserID => $NewUserID,
 );
-ok(scalar %NewUserData, 'second user created');
+ok( scalar %NewUserData, 'second user created' );
 
 # set customer user options
 my $CustomerUserLogin = $Helper->TestCustomerUserCreate()
