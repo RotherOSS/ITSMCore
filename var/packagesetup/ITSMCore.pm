@@ -204,9 +204,8 @@ sub _GetITSMDynamicFieldsDefinition {
     my ( $Self, %Param ) = @_;
 
     # define all dynamic fields for ITSMCore
-    my @DynamicFields = (
+    return (
         {
-            OldName    => 'TicketFreeText13',
             Name       => 'ITSMCriticality',
             Label      => 'Criticality',
             FieldType  => 'Dropdown',
@@ -226,7 +225,6 @@ sub _GetITSMDynamicFieldsDefinition {
             },
         },
         {
-            OldName    => 'TicketFreeText14',
             Name       => 'ITSMImpact',
             Label      => 'Impact',
             FieldType  => 'Dropdown',
@@ -246,8 +244,6 @@ sub _GetITSMDynamicFieldsDefinition {
             },
         },
     );
-
-    return @DynamicFields;
 }
 
 =head2 _CreateITSMDynamicFields()
@@ -283,7 +279,7 @@ sub _CreateITSMDynamicFields {
     }
 
     # get the definition for all dynamic fields for ITSM
-    my @DynamicFields = $Self->_GetITSMDynamicFieldsDefinition();
+    my @DynamicFields = $Self->_GetITSMDynamicFieldsDefinition;
 
     # create a dynamic fields lookup table
     my %DynamicFieldLookup;
@@ -311,6 +307,7 @@ sub _CreateITSMDynamicFields {
             )
         {
 
+            ## no critic qw(Variables::ProhibitUnusedVarsStricter)
             # rename the field and create a new one
             my $Success = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldUpdate(
                 %{ $DynamicFieldLookup{ $DynamicField->{Name} } },
@@ -323,6 +320,8 @@ sub _CreateITSMDynamicFields {
 
         # otherwise if the field exists and the type match, update it to the ITSM definition
         else {
+
+            ## no critic qw(Variables::ProhibitUnusedVarsStricter)
             my $Success = $Kernel::OM->Get('Kernel::System::DynamicField')->DynamicFieldUpdate(
                 %{$DynamicField},
                 ID         => $DynamicFieldLookup{ $DynamicField->{Name} }->{ID},
@@ -348,7 +347,8 @@ sub _CreateITSMDynamicFields {
                 ValidID       => $ValidID,
                 UserID        => 1,
             );
-            next DYNAMICFIELD if !$FieldID;
+
+            next DYNAMICFIELD unless $FieldID;
 
             # increase the order number
             $NextOrderNumber++;
@@ -356,7 +356,7 @@ sub _CreateITSMDynamicFields {
     }
 
     # make dynamic fields internal
-    $Self->_MakeDynamicFieldsInternal();
+    $Self->_MakeDynamicFieldsInternal;
 
     return 1;
 }
@@ -389,7 +389,7 @@ sub _SetPreferences {
         $Kernel::OM->Get('Kernel::System::GeneralCatalog')->GeneralCatalogPreferencesSet(
             ItemID => $Item->{ItemID},
             Key    => 'Functionality',
-            Value  => [$Map{$Name}],
+            Value  => [ $Map{$Name} ],
         );
     }
     return 1;
@@ -795,7 +795,7 @@ sub _MakeDynamicFieldsInternal {
     my ( $Self, %Param ) = @_;
 
     # get the definition for all dynamic fields for ITSM
-    my @DynamicFields = $Self->_GetITSMDynamicFieldsDefinition();
+    my @DynamicFields = $Self->_GetITSMDynamicFieldsDefinition;
 
     for my $DynamicField (@DynamicFields) {
 
@@ -809,6 +809,7 @@ sub _MakeDynamicFieldsInternal {
             ],
         );
     }
+
     return 1;
 }
 
