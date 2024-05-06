@@ -1,1 +1,10 @@
 .project
+# files that might be generated during development
+*.out
+*.err
+
+# Editor swap files
+*.swn
+*.swp
+*.swo
+*~
