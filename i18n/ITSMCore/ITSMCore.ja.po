@@ -2,13 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-08-25 11:42+0000\n"
+"Last-Translator: Kozo Sakurai <sakurai@io-architect.com>\n"
+"Language-Team: Japanese <https://translate.otobo.org/projects/otobo10/"
+"itsmcore/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Criticality ↔ Impact ↔ Priority"
@@ -20,7 +23,7 @@ msgstr "重要度↔影響を組み合わせた優先度の結果を管理しま
 
 #. Template: AdminITSMCIPAllocate
 msgid "Priority allocation"
-msgstr "優先順位の割り当て"
+msgstr "優先度を割り当て"
 
 #. Template: AdminSLA
 msgid "Minimum Time Between Incidents"
@@ -36,7 +39,7 @@ msgstr "SLA情報"
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed"
-msgstr "最終変更時刻"
+msgstr "最終更新日時"
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed by"
@@ -60,7 +63,7 @@ msgstr "関連するSLA"
 
 #. Perl Module: Kernel/Modules/AdminITSMCIPAllocate.pm
 msgid "Impact"
-msgstr "影響"
+msgstr "影響度"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "No SLAID is given!"
@@ -96,11 +99,11 @@ msgstr "ServiceID %s はデータベースにありません！"
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "Current Incident State"
-msgstr "インシデントの状態"
+msgstr "現在のインシデントのステータス"
 
 #. Perl Module: Kernel/Output/HTML/LinkObject/Service.pm
 msgid "Incident State"
-msgstr "インシデントの状態"
+msgstr "インシデントのステータス"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Operational"
@@ -148,7 +151,7 @@ msgstr "支持する契約"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Other"
-msgstr "その他"
+msgstr "他"
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Availability"
@@ -200,7 +203,7 @@ msgstr "依存："
 
 #. SysConfig
 msgid "Frontend module registration for the AdminITSMCIPAllocate configuration in the admin area."
-msgstr "管理エリアでのAdminITSMCIPAllocateのフロントエンドモジュールの登録"
+msgstr "管理エリアでのAdminITSMCIPAllocateのフロントエンドモジュールの登録します。"
 
 #. SysConfig
 msgid "Frontend module registration for the AgentITSMSLA object in the agent interface."
@@ -228,11 +231,11 @@ msgstr "担当者インタフェースのAgentITSMServiceZoomオブジェクト�
 
 #. SysConfig
 msgid "ITSM SLA Overview."
-msgstr "ITSM SLA の概要"
+msgstr "ITSM SLA の一覧です。"
 
 #. SysConfig
 msgid "ITSM Service Overview."
-msgstr "ITSM サービスの概要"
+msgstr "ITSM サービスの一覧です。"
 
 #. SysConfig
 msgid "Incident State Type"
@@ -244,35 +247,35 @@ msgstr "含む："
 
 #. SysConfig
 msgid "Manage priority matrix."
-msgstr "優先度の関連性を管理"
+msgstr "優先度の関連性を管理します。"
 
 #. SysConfig
 msgid "Manage the criticality - impact - priority matrix."
-msgstr "重要度↔影響度↔優先度の関連性を管理"
+msgstr "重要度↔影響度↔優先度の関連性を管理します。"
 
 #. SysConfig
 msgid "Module to show the Back menu item in SLA menu."
-msgstr "SLAメニューに戻るメニュー項目を表示するモジュール"
+msgstr "SLAメニューに戻るメニュー項目を表示するモジュールです。"
 
 #. SysConfig
 msgid "Module to show the Back menu item in service menu."
-msgstr "サービスメニューに戻るメニュー項目を表示するモジュール"
+msgstr "サービスメニューに戻るメニュー項目を表示するモジュールです。"
 
 #. SysConfig
 msgid "Module to show the Link menu item in service menu."
-msgstr "サービスメニューにリンクメニュー項目を表示するモジュール"
+msgstr "サービスメニューにリンクメニュー項目を表示するモジュールです。"
 
 #. SysConfig
 msgid "Module to show the Print menu item in SLA menu."
-msgstr "SLAメニューに印刷メニュー項目を表示するモジュール"
+msgstr "SLAメニューに印刷メニュー項目を表示するモジュールです。"
 
 #. SysConfig
 msgid "Module to show the Print menu item in service menu."
-msgstr "サービスメニューに印刷メニュー項目を表示するモジュール"
+msgstr "サービスメニューに印刷メニュー項目を表示するモジュールです。"
 
 #. SysConfig
 msgid "Parameters for the incident states in the preference view."
-msgstr "設定ビューでのインシデントステータスのパラメーター"
+msgstr "設定ビューでのインシデントステータスのパラメーターです。"
 
 #. SysConfig
 msgid "Part of"
@@ -292,11 +295,11 @@ msgstr "SLAの概観"
 
 #. SysConfig
 msgid "SLA Print."
-msgstr "SLA の印刷"
+msgstr "SLA の印刷です。"
 
 #. SysConfig
 msgid "SLA Zoom."
-msgstr "SLA ズーム"
+msgstr "SLA ズームです。"
 
 #. SysConfig
 msgid "Service Overview"
@@ -304,11 +307,11 @@ msgstr "サービスの概観"
 
 #. SysConfig
 msgid "Service Print."
-msgstr "サービスの印刷"
+msgstr "サービスの印刷です。"
 
 #. SysConfig
 msgid "Service Zoom."
-msgstr "サービス・ズーム"
+msgstr "サービス・ズームです。"
 
 #. SysConfig
 msgid "Service-Area"
@@ -436,5 +439,4 @@ msgstr "リンク・タイプ'RelevantTo'の定義です。もしソース名お
 
 #. SysConfig
 msgid "Width of ITSM textareas."
-msgstr "ITSM テキストエリア幅"
-
+msgstr "ITSM テキストエリア幅です。"

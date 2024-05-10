@@ -2,68 +2,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: 2023-11-09 23:21+0000\n"
-"Last-Translator: Aychel Mora Alpízar <aychel@gridshield.net>\n"
-"Language-Team: Spanish <https://translate.otobo.org/projects/otobo10/"
-"itsmcore/es_CO/>\n"
-"Language: es_CO\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Criticality ↔ Impact ↔ Priority"
-msgstr "Criticidad ↔ Impacto ↔ Prioridad"
+msgstr ""
 
 #. Template: AdminITSMCIPAllocate
 msgid "Manage the priority result of combinating Criticality ↔ Impact."
-msgstr "Gestionar la prioridad es la combinación entre Criticidad ↔ Impacto."
+msgstr ""
 
 #. Template: AdminITSMCIPAllocate
 msgid "Priority allocation"
-msgstr "Asignar Prioridad"
+msgstr ""
 
 #. Template: AdminSLA
 msgid "Minimum Time Between Incidents"
-msgstr "Tiempo mínimo entre incidentes"
+msgstr ""
 
 #. Template: AdminService
 msgid "Criticality"
-msgstr "Criticidad"
+msgstr ""
 
 #. Template: AgentITSMSLAZoom
 msgid "SLA Information"
-msgstr "Información de SLA"
+msgstr ""
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed"
-msgstr "Último cambio"
+msgstr ""
 
 #. Template: AgentITSMSLAZoom
 msgid "Last changed by"
-msgstr "Último cambio por"
+msgstr ""
 
 #. Template: AgentITSMSLAZoom
 msgid "Associated Services"
-msgstr "Servicios asociados"
+msgstr ""
 
 #. Template: AgentITSMServiceZoom
 msgid "Service Information"
-msgstr "Información del Servicio"
+msgstr ""
 
 #. Template: AgentITSMServiceZoom
 msgid "Current incident state"
-msgstr "Estado actual del incidente"
+msgstr ""
 
 #. Template: AgentITSMServiceZoom
 msgid "Associated SLAs"
-msgstr "SLAs asociados"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AdminITSMCIPAllocate.pm
 msgid "Impact"
-msgstr "Impacto"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "No SLAID is given!"
@@ -71,23 +68,23 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "SLAID %s not found in database!"
-msgstr "SLAID %s no encontrado en la base de datos!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "Calendar Default"
-msgstr "Calendario por defecto"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "operational"
-msgstr "operacional"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "warning"
-msgstr "advertencia"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "incident"
-msgstr "incidente"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "No ServiceID is given!"
@@ -95,120 +92,111 @@ msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "ServiceID %s not found in database!"
-msgstr "ServiceID %s no encontrado en la base de datos!"
+msgstr ""
 
 #. Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
 msgid "Current Incident State"
-msgstr "Estado actual del incidente"
+msgstr ""
 
 #. Perl Module: Kernel/Output/HTML/LinkObject/Service.pm
 msgid "Incident State"
-msgstr "Estado del Incidente"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Operational"
-msgstr "Operacional"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Incident"
-msgstr "Incidente"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "End User Service"
-msgstr "Servicio de Usuario Final"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Front End"
-msgstr "Front End"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Back End"
-msgstr "Back End"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "IT Management"
-msgstr "Gestión de TI"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Reporting"
-msgstr "Informes"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "IT Operational"
-msgstr "TI Operacional"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Demonstration"
-msgstr "Demostración"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Project"
-msgstr "Proyecto"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Underpinning Contract"
-msgstr "Contrato de Respaldo"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Other"
-msgstr "Otro"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Availability"
-msgstr "Disponibilidad"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Response Time"
-msgstr "Tiempo de respuesta"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Recovery Time"
-msgstr "Tiempo de recuperación"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Resolution Rate"
-msgstr "Tasa de resolución"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Transactions"
-msgstr "Transacciones"
+msgstr ""
 
 #. Database XML Definition: ITSMCore.sopm
 msgid "Errors"
-msgstr "Errores"
+msgstr ""
 
 #. SysConfig
 msgid "Alternative to"
-msgstr "Alternativa a"
+msgstr ""
 
 #. SysConfig
 msgid "Both"
-msgstr "Ambos"
+msgstr ""
 
 #. SysConfig
 msgid "Connected to"
-msgstr "Conectado a"
+msgstr ""
 
 #. SysConfig
 msgid "Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
 msgstr ""
-"Defina acciones donde un botón de configuración esté disponible en el widget "
-"de objetos vinculados (LinkObject::ViewMode = \"complejo\"). Tenga en cuenta "
-"que estas acciones deben haber registrado los siguientes archivos JS y CSS: "
-"Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, "
-"Core.Agent.TableFilters.js y Core.Agent .LinkObject.js."
 
 #. SysConfig
 msgid "Define which columns are shown in the linked Services widget (LinkObject::ViewMode = \"complex\"). Note: Only Service attributes are allowed for DefaultColumns. Possible settings: 0 = Disabled, 1 = Available, 2 = Enabled by default."
 msgstr ""
-"Defina qué columnas se muestran en el widget de Servicios vinculados "
-"(LinkObject::ViewMode = \"complex\"). Nota: Solo se permiten atributos de "
-"servicio para DefaultColumns. Configuraciones posibles: 0 = Deshabilitado, 1 "
-"= Disponible, 2 = Habilitado por defecto."
 
 #. SysConfig
 msgid "Depends on"
-msgstr "Depende de"
+msgstr ""
 
 #. SysConfig
 msgid "Frontend module registration for the AdminITSMCIPAllocate configuration in the admin area."
