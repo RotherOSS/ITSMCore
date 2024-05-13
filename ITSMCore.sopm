@@ -3,7 +3,7 @@
     <Name>ITSMCore</Name>
     <Version>0.0.0</Version>
     <Framework>11.0.x</Framework>
-    <PackageMerge TargetVersion="11.0.0">ITSM</PackageMerge>
+    <PackageMerge TargetVersion="11.0.0" Name="ITSM"></PackageMerge>
     <PackageRequired Version="11.0.0">GeneralCatalog</PackageRequired>
     <Vendor>Rother OSS GmbH</Vendor>
     <URL>https://otobo.de/</URL>
