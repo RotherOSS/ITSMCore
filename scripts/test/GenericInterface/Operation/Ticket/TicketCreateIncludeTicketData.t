@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
 # --
-# $origin: otobo - 902ffbb33e650dc4d00620f51a33ad60e4f98b62 - scripts/test/GenericInterface/Operation/Ticket/TicketCreateIncludeTicketData.t
+# $origin: otobo - 03d1795130e0a11fe16a80373980048081850f40 - scripts/test/GenericInterface/Operation/Ticket/TicketCreateIncludeTicketData.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -35,7 +35,7 @@ use Kernel::System::VariableCheck                               qw(IsArrayRefWit
 our $Self;
 
 # get needed objects
-my $ConfigObject    = $Kernel::OM->Get('Kernel::Config');
+my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
 # Skip SSL certificate verification.
 $Kernel::OM->ObjectParamAdd(
