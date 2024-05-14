@@ -820,3 +820,7 @@ msgstr ""
 msgid "Users who have rw permissions in one of these groups are permitted to manage projects. Additionally the members have administration permissions to the git management."
 msgstr ""
 
+#. SysConfig
+msgid "Defines the list of online repositories. Another installation can be used as repository, for example: Key=\"http://example.com/otobo/public.pl?Action=PublicRepository;File=\" and Content=\"Some Name\"."
+msgstr ""
+
