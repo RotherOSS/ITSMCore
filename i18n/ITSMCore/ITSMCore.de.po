@@ -2,15 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: 2021-07-01 02:17+0000\n"
-"Last-Translator: Grit Rother <mr@otobo.de>\n"
-"Language-Team: German <https://translate.otobo.org/projects/otobo10/itsmcore/de/>\n"
+"PO-Revision-Date: 2024-05-15 08:15+0000\n"
+"Last-Translator: Stefan Rother <sr@rother-oss.com>\n"
+"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/"
+"itsm-core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Criticality ↔ Impact ↔ Priority"
@@ -442,7 +443,7 @@ msgstr "Anzahl der Zeichen pro Zeile in ITSM-Textfeldern."
 
 #. Template: AdminSLA
 msgid "Filter by valid state"
-msgstr ""
+msgstr "Filtern nach Status valid"
 
 #. Template: AdminSLA
 msgid "Include invalid SLAs"
@@ -823,4 +824,3 @@ msgstr "Benutzer die über rw-Berechtigungen in einer dieser Gruppen verfügen, 
 #. SysConfig
 msgid "Defines the list of online repositories. Another installation can be used as repository, for example: Key=\"http://example.com/otobo/public.pl?Action=PublicRepository;File=\" and Content=\"Some Name\"."
 msgstr ""
-
