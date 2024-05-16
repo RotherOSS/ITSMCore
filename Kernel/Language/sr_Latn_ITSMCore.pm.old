@@ -24,68 +24,68 @@ sub Data {
     my $Self = shift;
 
     # Template: AdminITSMCIPAllocate
-    $Self->{Translation}->{'Criticality ↔ Impact ↔ Priority'} = 'Značaj ↔ uticaj ↔ prioritet';
+    $Self->{Translation}->{'Criticality ↔ Impact ↔ Priority'} = '';
     $Self->{Translation}->{'Manage the priority result of combinating Criticality ↔ Impact.'} =
-        'Upravljanje rezultatom prioriteta kombinovanjem značaj ↔ uticaj.';
-    $Self->{Translation}->{'Priority allocation'} = 'Raspodela prioriteta';
+        '';
+    $Self->{Translation}->{'Priority allocation'} = '';
 
     # Template: AdminSLA
-    $Self->{Translation}->{'Minimum Time Between Incidents'} = 'Minimalno vreme između incidenata';
+    $Self->{Translation}->{'Minimum Time Between Incidents'} = '';
 
     # Template: AdminService
-    $Self->{Translation}->{'Criticality'} = 'Značaj';
+    $Self->{Translation}->{'Criticality'} = '';
 
     # Template: AgentITSMSLAZoom
-    $Self->{Translation}->{'SLA Information'} = 'Informacije o SLA';
-    $Self->{Translation}->{'Last changed'} = 'Zadnji put promenjeno';
-    $Self->{Translation}->{'Last changed by'} = 'Poslednji je menjao';
-    $Self->{Translation}->{'Associated Services'} = 'Povezani servisi';
+    $Self->{Translation}->{'SLA Information'} = '';
+    $Self->{Translation}->{'Last changed'} = '';
+    $Self->{Translation}->{'Last changed by'} = '';
+    $Self->{Translation}->{'Associated Services'} = '';
 
     # Template: AgentITSMServiceZoom
-    $Self->{Translation}->{'Service Information'} = 'Servisna informacija';
-    $Self->{Translation}->{'Current incident state'} = 'Trenutno stanje incidenta';
-    $Self->{Translation}->{'Associated SLAs'} = 'Povezani SLA';
+    $Self->{Translation}->{'Service Information'} = '';
+    $Self->{Translation}->{'Current incident state'} = '';
+    $Self->{Translation}->{'Associated SLAs'} = '';
 
     # Perl Module: Kernel/Modules/AdminITSMCIPAllocate.pm
-    $Self->{Translation}->{'Impact'} = 'Uticaj';
+    $Self->{Translation}->{'Impact'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
-    $Self->{Translation}->{'No SLAID is given!'} = 'Nije dat SLAID!';
-    $Self->{Translation}->{'SLAID %s not found in database!'} = 'SLAID %s nije nađen u bazi podataka!';
-    $Self->{Translation}->{'Calendar Default'} = 'Podrazumevani kalendar';
+    $Self->{Translation}->{'No SLAID is given!'} = '';
+    $Self->{Translation}->{'SLAID %s not found in database!'} = '';
+    $Self->{Translation}->{'Calendar Default'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
-    $Self->{Translation}->{'operational'} = 'operativni';
-    $Self->{Translation}->{'warning'} = 'upozorenje';
-    $Self->{Translation}->{'incident'} = 'incident';
+    $Self->{Translation}->{'operational'} = '';
+    $Self->{Translation}->{'warning'} = '';
+    $Self->{Translation}->{'incident'} = '';
 
     # Perl Module: Kernel/Modules/AgentITSMServicePrint.pm
-    $Self->{Translation}->{'No ServiceID is given!'} = 'Nije dat ServiceID!';
-    $Self->{Translation}->{'ServiceID %s not found in database!'} = 'ServiceID "%s" nije nađen u bazi podataka!';
-    $Self->{Translation}->{'Current Incident State'} = 'Trenutno stanje incidenta';
+    $Self->{Translation}->{'No ServiceID is given!'} = '';
+    $Self->{Translation}->{'ServiceID %s not found in database!'} = '';
+    $Self->{Translation}->{'Current Incident State'} = '';
 
     # Perl Module: Kernel/Output/HTML/LinkObject/Service.pm
-    $Self->{Translation}->{'Incident State'} = 'Stanje incidenta';
+    $Self->{Translation}->{'Incident State'} = '';
 
     # Database XML / SOPM Definition: ITSMCore.sopm
-    $Self->{Translation}->{'Operational'} = 'Operativni';
-    $Self->{Translation}->{'Incident'} = 'Incident';
-    $Self->{Translation}->{'End User Service'} = 'Servis za krajnjeg korisnika';
-    $Self->{Translation}->{'Front End'} = 'Pristupni kraj';
-    $Self->{Translation}->{'Back End'} = 'Pozadina';
-    $Self->{Translation}->{'IT Management'} = 'IT upravljanje';
-    $Self->{Translation}->{'Reporting'} = 'Izveštavanje';
-    $Self->{Translation}->{'IT Operational'} = 'IT operativno';
-    $Self->{Translation}->{'Demonstration'} = 'Demonstracija';
-    $Self->{Translation}->{'Project'} = 'Projekat';
-    $Self->{Translation}->{'Underpinning Contract'} = 'U osnovi ugovora';
-    $Self->{Translation}->{'Other'} = 'Drugo';
-    $Self->{Translation}->{'Availability'} = 'Dostupnost';
-    $Self->{Translation}->{'Response Time'} = 'Vreme odgovora';
-    $Self->{Translation}->{'Recovery Time'} = 'Vreme oporavka';
-    $Self->{Translation}->{'Resolution Rate'} = 'Stopa rešavanja';
-    $Self->{Translation}->{'Transactions'} = 'Transakcije';
-    $Self->{Translation}->{'Errors'} = 'Greške';
+    $Self->{Translation}->{'Operational'} = '';
+    $Self->{Translation}->{'Incident'} = '';
+    $Self->{Translation}->{'End User Service'} = '';
+    $Self->{Translation}->{'Front End'} = '';
+    $Self->{Translation}->{'Back End'} = '';
+    $Self->{Translation}->{'IT Management'} = '';
+    $Self->{Translation}->{'Reporting'} = '';
+    $Self->{Translation}->{'IT Operational'} = '';
+    $Self->{Translation}->{'Demonstration'} = '';
+    $Self->{Translation}->{'Project'} = '';
+    $Self->{Translation}->{'Underpinning Contract'} = '';
+    $Self->{Translation}->{'Other'} = '';
+    $Self->{Translation}->{'Availability'} = '';
+    $Self->{Translation}->{'Response Time'} = '';
+    $Self->{Translation}->{'Recovery Time'} = '';
+    $Self->{Translation}->{'Resolution Rate'} = '';
+    $Self->{Translation}->{'Transactions'} = '';
+    $Self->{Translation}->{'Errors'} = '';
 
     # SysConfig
     $Self->{Translation}->{'Alternative to'} = 'Alternativa za';
