@@ -30,7 +30,7 @@ sub Data {
     $Self->{Translation}->{'Priority allocation'} = 'Prioritäts-Zuordnung';
 
     # Template: AdminSLA
-    $Self->{Translation}->{'Filter by valid state'} = '';
+    $Self->{Translation}->{'Filter by valid state'} = 'Filtern nach Status valid';
     $Self->{Translation}->{'Include invalid SLAs'} = '';
     $Self->{Translation}->{'Minimum Time Between Incidents'} = 'Minimale Zeit zwischen den Vorfällen';
 

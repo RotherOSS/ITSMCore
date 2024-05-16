@@ -4,8 +4,7 @@ msgstr ""
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
 "PO-Revision-Date: 2024-05-15 08:15+0000\n"
 "Last-Translator: Stefan Rother <sr@rother-oss.com>\n"
-"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/"
-"itsm-core/de/>\n"
+"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/itsm-core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -824,3 +823,4 @@ msgstr "Benutzer die über rw-Berechtigungen in einer dieser Gruppen verfügen, 
 #. SysConfig
 msgid "Defines the list of online repositories. Another installation can be used as repository, for example: Key=\"http://example.com/otobo/public.pl?Action=PublicRepository;File=\" and Content=\"Some Name\"."
 msgstr ""
+
