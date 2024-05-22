@@ -90,6 +90,17 @@
                     <Item ValueType="Option" Value="Target" Translatable="1">Target</Item>
                 </DefaultItem>
                 <Item Key="DependsOn" SelectedID="Both"></Item>
+                <Item Key="LocationOf" SelectedID="Source"></Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="LinkObject::Type###LocationOf" Required="1" Valid="1">
+        <Description Translatable="1">This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.</Description>
+        <Navigation>Core::LinkObject</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="SourceName" Translatable="1">Location of</Item>
+                <Item Key="TargetName" Translatable="1">Located in</Item>
             </Hash>
         </Value>
     </Setting>
@@ -195,6 +206,17 @@
                 <Item Key="Object1">ITSMConfigItem</Item>
                 <Item Key="Object2">ITSMConfigItem</Item>
                 <Item Key="Type">RelevantTo</Item>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="LinkObject::PossibleLink###3205" Required="0" Valid="1">
+        <Description Translatable="1">This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'LocationOf' link type.</Description>
+        <Navigation>Core::LinkObject</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Object1">ITSMConfigItem</Item>
+                <Item Key="Object2">ITSMConfigItem</Item>
+                <Item Key="Type">LocationOf</Item>
             </Hash>
         </Value>
     </Setting>
