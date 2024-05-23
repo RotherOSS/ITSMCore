@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = 'ITSM pregled servisa.';
     $Self->{Translation}->{'Incident State Type'} = 'Tip stanja incidenta';
     $Self->{Translation}->{'Includes'} = 'Uključuje';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'Urediti matricu prioriteta';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = 'Uređivanje matrica značaj - uticaj - prioritet.';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Modul za prikaz veze za vraćanje u SLA meniju.';
@@ -165,6 +167,8 @@ sub Data {
         'Ovo podešavanje određuje da li vezom tipa "DependsOn" objekat ITSM konfiguraciona stavka može da se poveže sa drugim objektom ITSM konfiguraciona stavka.';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'Ovo podešavanje određuje da li vezom tipa "Includes" objekat ITSM konfiguraciona stavka može da se poveže sa drugim objektom ITSM konfiguraciona stavka.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'Ovo podešavanje određuje da li vezom tipa "RelevantTo" objekat ITSM konfiguraciona stavka može da se poveže sa drugim objektom ITSM konfiguraciona stavka.';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'Ovo podešavanje definiše vezu tipa "DependsOn". Ako izvorni i ciljni naziv sadrže istu vrednost, rezultujuća veza je neusmerena. Ako su vrednosti različite, rezultujuća veza je usmerena.';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Ovo podešavanje definiše vezu tipa "Includes". Ako izvorni i ciljni naziv sadrže istu vrednost, rezultujuća veza je neusmerena. Ako su vrednosti različite, rezultujuća veza je usmerena.';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Ovo podešavanje definiše vezu tipa "RelevantTo". Ako izvorni i ciljni naziv sadrže istu vrednost, rezultujuća veza je neusmerena. Ako su vrednosti različite, rezultujuća veza je usmerena.';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'Širina ITSM prostora teksta.';

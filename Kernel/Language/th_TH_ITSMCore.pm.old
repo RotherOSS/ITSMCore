@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = '';
     $Self->{Translation}->{'Incident State Type'} = '';
     $Self->{Translation}->{'Includes'} = 'รวมถึง';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'การจัดการลำดับความสำคัญของเมทริกซ์';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = '';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'โมดูลที่จะแสดงลิงค์การกลับในเมนู SLA';
@@ -165,6 +167,8 @@ sub Data {
         'การตั้งค่านี้กำหนดว่าออบเจกค์ \'ITSMConfigItem\' สามารถลิงค์กับออบเจกค์ \'ITSMConfigItem\' อื่นๆโดยการใช้ลิงค์ \'DependsOn\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'การตั้งค่านี้กำหนดว่าออบเจกค์ \'ITSMConfigItem\' สามารถลิงค์กับออบเจกค์ \'ITSMConfigItem\' อื่นๆโดยการใช้ลิงค์ \'Includes\'';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'การตั้งค่านี้กำหนดว่าออบเจกค์ \'ITSMConfigItem\' สามารถลิงค์กับออบเจกค์ \'ITSMConfigItem\' อื่นๆโดยการใช้ลิงค์ \'RelevantTo\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -192,6 +196,8 @@ sub Data {
         'การตั้งค่านี้กำหนดประเภทลิงค์ \'DependsOn\' ถ้าชื่อแหล่งที่มาและชื่อเป้าหมายมีค่าเดียวกัน ลิงค์ที่ส่งผลให้คือไม่มีทิศทาง แต่ถ้าหากมีค่าต่างกัน ลิงค์ที่เกิดคือการเชื่อมโยงทิศทาง';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'การตั้งค่านี้กำหนดประเภทลิงค์  \'Includes\' ถ้าชื่อแหล่งที่มาและชื่อเป้าหมายมีค่าเดียวกัน ลิงค์ที่ส่งผลให้คือไม่มีทิศทาง แต่ถ้าหากมีค่าต่างกัน ลิงค์ที่เกิดคือการเชื่อมโยงทิศทาง';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'การตั้งค่านี้กำหนดประเภทลิงค์ \'RelevantTo\' ถ้าชื่อแหล่งที่มาและชื่อเป้าหมายมีค่าเดียวกัน ลิงค์ที่ส่งผลให้คือไม่มีทิศทาง แต่ถ้าหากมีค่าต่างกัน ลิงค์ที่เกิดคือการเชื่อมโยงทิศทาง';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'ความกว้างของพื้นที่ข้อความของ ITSM';

@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = 'Panoramica del servizio ITSM.';
     $Self->{Translation}->{'Incident State Type'} = 'Tipo di stato dell\'incidente';
     $Self->{Translation}->{'Includes'} = 'Include';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'Gestione della matrice delle priorità.';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = 'Gestire la matrice di criticità - impatto - priorità.';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Modulo per mostrare la voce di menu Indietro nel menu SLA.';
@@ -165,6 +167,8 @@ sub Data {
         'Questa impostazione definisce che un oggetto "ITSMConfigItem" può essere collegato con altri oggetti "ITSMConfigItem" utilizzando il tipo di collegamento "DependsOn".';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con altri oggetti \'ITSMConfigItem\' usando il tipo di collegamento \'Include\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con altri oggetti \'ITSMConfigItem\' utilizzando il tipo di collegamento \'RelevantTo\'.';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'Questa impostazione definisce il tipo di collegamento "DependsOn". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Questa impostazione definisce il tipo di collegamento "Includes\'". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Questa impostazione definisce il tipo di collegamento "RelevantTo". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'Larghezza dei campi di testo di ITSM';

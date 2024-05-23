@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = 'ITSM サービスの一覧です。';
     $Self->{Translation}->{'Incident State Type'} = 'インシデント状態のタイプ';
     $Self->{Translation}->{'Includes'} = '含む：';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = '優先度の関連性を管理します。';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = '重要度↔影響度↔優先度の関連性を管理します。';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'SLAメニューに戻るメニュー項目を表示するモジュールです。';
@@ -165,6 +167,8 @@ sub Data {
         'この設定は、「ITSMConfigItem」オブジェクトが「DependsOn/~に依存する」リンクタイプを使用して、他の「ITSMConfigItem」オブジェクトとリンクできることを定義します。';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'この設定は、「ITSMConfigItem」オブジェクトが「Includes/~を含む」リンクタイプを使用して、他の「ITSMConfigItem」オブジェクトとリンクできることを定義します。';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'この設定は、「ITSMConfigItem」オブジェクトが「RelevantTo/~と関連する」リンクタイプを使用して、他の「ITSMConfigItem」オブジェクトとリンクできることを定義します。';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'リンク・タイプ\'DependsOn\'の定義です。もしソース名およびターゲット名が同じ値を含んでいる場合、結果のリンクは非直接リンクになり、そうでない結果は直接リンクになります。';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'リンク・タイプ\'Includes\'の定義です。もしソース名およびターゲット名が同じ値を含んでいる場合、結果のリンクは非直接リンクになり、そうでない結果は直接リンクになります。';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'リンク・タイプ\'RelevantTo\'の定義です。もしソース名およびターゲット名が同じ値を含んでいる場合、結果のリンクは非直接リンクになり、そうでない結果は直接リンクになります。';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'ITSM テキストエリア幅です。';

@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = '';
     $Self->{Translation}->{'Incident State Type'} = '';
     $Self->{Translation}->{'Includes'} = 'Inahusisha';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'Simamia matriki ya kipaumbele.';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = '';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Moduli ya kuonyesha kiungo cha kurudi nyuma katika menyu ya sla.';
@@ -165,6 +167,8 @@ sub Data {
         'Mpangilio huu unafafanua kwamba kipengee cha \'Kipengele cha usanidi cha ITSM\' kinaweza kuunganishwa na kipengee kingine cha\'Kipengele cha usanidi cha ITSM\'  kwa kutumia aina ya kiungo \'Inategemeana na\'.';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'Mpangilio huu unafafanua kwamba kipengee cha \'Kipengele cha usanidi cha ITSM\' kinaweza kuunganishwa na kipengee kingine cha\'Kipengele cha usanidi cha ITSM\'  kwa kutumia aina ya kiungo \'Husisha\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'Mpangilio huu unafafanua kwamba kipengee cha \'Kipengele cha usanidi cha ITSM\' kinaweza kuunganishwa na kipengee kingine cha\'Kipengele cha usanidi cha ITSM\'  kwa kutumia aina ya kiungo \'Husiana na\'.';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'Mipangilio hii inafafanua aina ya kiungo \'Inategemeana na\'. Kama jina la chanzo na jina lengwa yana thamani moja, kiungo kinachotokana ni hakina uelekeo. Kama thamani ni tofauti, kiungo kilichotokea kina uelekeo.';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Mipangilio hii inafafanua aina ya kiungo \'Inahusisha\'. Kama jina la chanzo na jina lengwa yana thamani moja, kiungo kilichotokea ni hakina uelekeo. Kama thamani ni tofauti, kiungo kilichotokea kina uelekeo.';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Mipangilio hii inafafanua aina ya kiungo \'Husiana na\'. Kama jina la chanzo na jina lengwa yana thamani moja, kiungo kilichotokea ni hakina uelekeo. Kama thamani ni tofauti, kiungo kilichotokea kina uelekeo.';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'Upana wa eneo la matini la ITSM ';

@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = '';
     $Self->{Translation}->{'Incident State Type'} = '';
     $Self->{Translation}->{'Includes'} = 'inclúe';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'Manexar a prioridade da matriz';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = '';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Módulo para mostrar enlace posterior en menú do ANS';
@@ -165,6 +167,8 @@ sub Data {
         'Este axuste define que o obxeto \'ITSMConfigItem\' pode ser vinculado con outros obxetos \'ITSMConfigItem\' empregando o tipo de vinculación \'DependsOn\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'Este axuste define que o obxeto \'ITSMConfigItem\' pode ser vinculado con outros obxetos \'ITSMConfigItem\' empregando o tipo de vinculación \'Includes\'';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'Este axuste define que o obxeto \'ITSMConfigItem\' pode ser vinculado con outros obxetos \'ITSMConfigItem\' empregando o tipo de vinculación \'RelevantTo\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'Este axuste define o tipo de vinculación \'DependsOn\'. Se o nome fonte e o nome do obxetivo conteñen o mesmo valor, a vinculación resultante é unha non direccional. Se os valores son diferentes, a vinculación resultante é unha direccional.';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Este axuste define o tipo de vinculación \'Includes\'. Se o nome fonte e o nome do obxetivo conteñen o mesmo valor, a vinculación resultante é unha non direccional. Se os valores son diferentes, a vinculación resultante é unha direccional.';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Este axuste define o tipo de vinculación \'RelevantTo\'. Se o nome fonte e o nome do obxetivo conteñen o mesmo valor, a vinculación resultante é unha non direccional. Se os valores son diferentes, a vinculación resultante é unha direccional.';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'Anchura das áreas de texto da ITSM.';

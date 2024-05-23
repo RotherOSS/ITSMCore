@@ -822,3 +822,19 @@ msgstr ""
 msgid "Defines the list of online repositories. Another installation can be used as repository, for example: Key=\"http://example.com/otobo/public.pl?Action=PublicRepository;File=\" and Content=\"Some Name\"."
 msgstr ""
 
+#. SysConfig
+msgid "Located in"
+msgstr ""
+
+#. SysConfig
+msgid "Location of"
+msgstr ""
+
+#. SysConfig
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'LocationOf' link type."
+msgstr ""
+
+#. SysConfig
+msgid "This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
+msgstr ""
+

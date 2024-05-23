@@ -116,6 +116,8 @@ sub Data {
     $Self->{Translation}->{'ITSM Service Overview.'} = 'Обзор ITSM сервисов.';
     $Self->{Translation}->{'Incident State Type'} = 'Тип состояния инцидента';
     $Self->{Translation}->{'Includes'} = 'Включает';
+    $Self->{Translation}->{'Located in'} = '';
+    $Self->{Translation}->{'Location of'} = '';
     $Self->{Translation}->{'Manage priority matrix.'} = 'Управление матрицей приоритетов';
     $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = 'Управляйте матрицей критичности - воздействия - приоритета.';
     $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Показать кнопку "назад" в меню SLA';
@@ -165,6 +167,8 @@ sub Data {
         'Определяет, что \'ITSMConfigItem\' объект может быть связан с объектами \'ITSMConfigItem\' используя тип связи \'DependsOn\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
         'Определяет, что \'ITSMConfigItem\' объект может быть связан с объектами \'ITSMConfigItem\' используя тип связи \'Includes\'';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'LocationOf\' link type.'} =
+        '';
     $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
         'Определяет, что \'ITSMConfigItem\' объект может быть связан с объектами \'ITSMConfigItem\' используя тип связи \'RelevantTo\'';
     $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
@@ -191,6 +195,8 @@ sub Data {
         'Определяет тип связи \'DependsOn\'. Если исходное имя и имя цели имеют одинаковое значение, результирующая связь - ненаправленная, иначе это направленная связь';
     $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Определяет тип связи \'Includes\'. Если исходное имя и имя цели имеют одинаковое значение, результирующая связь - ненаправленная, иначе это направленная связь';
+    $Self->{Translation}->{'This setting defines the link type \'LocationOf\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        '';
     $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
         'Определяет тип связи \'RelevantTo\'. Если исходное имя и имя цели имеют одинаковое значение, результирующая связь - ненаправленная, иначе это направленная связь';
     $Self->{Translation}->{'Width of ITSM textareas.'} = 'Ширина ITSM поля типа textarea';
