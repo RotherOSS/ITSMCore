@@ -102,75 +102,75 @@ msgstr "當前故障狀態"
 msgid "Incident State"
 msgstr "故障狀態"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Operational"
 msgstr "正常"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Incident"
 msgstr "故障"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "End User Service"
 msgstr "最終用戶服務"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Front End"
 msgstr "前端"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Back End"
 msgstr "後端"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Management"
 msgstr "IT管理"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Reporting"
 msgstr "報告"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Operational"
 msgstr "IT運營"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Demonstration"
 msgstr "演示"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Project"
 msgstr "項目"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Underpinning Contract"
 msgstr "依據合同"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Other"
 msgstr "其它"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Availability"
 msgstr "可用性"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Response Time"
 msgstr "響應時間"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Recovery Time"
 msgstr "恢復時間"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Resolution Rate"
 msgstr "解決率"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Transactions"
 msgstr "交易"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Errors"
 msgstr "錯誤"
 

@@ -102,75 +102,75 @@ msgstr "Huidige incident status"
 msgid "Incident State"
 msgstr "Incident status"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Operational"
 msgstr "Operationeel"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Incident"
 msgstr "Incident"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "End User Service"
 msgstr "Eindgebruiker service"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Front End"
 msgstr "Frontend"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Back End"
 msgstr "Backend"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Management"
 msgstr "IT Management"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Reporting"
 msgstr "Rapportage"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Operational"
 msgstr "IT Operations"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Demonstration"
 msgstr "Demonstration"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Project"
 msgstr "Project"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Underpinning Contract"
 msgstr "Underpinning Contract"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Other"
 msgstr "Overig"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Availability"
 msgstr "Beschikbaarheid"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Response Time"
 msgstr "Responsietijd"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Recovery Time"
 msgstr "Hersteltijd"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Resolution Rate"
 msgstr "Oplostijd"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Transactions"
 msgstr "Transacties"
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Errors"
 msgstr "Fouten"
 

@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
-"POT-Creation-Date: 2024-05-25 02:36+0000\n"
+"POT-Creation-Date: 2024-05-25 04:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@otobo.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +23,7 @@ msgid "Priority allocation"
 msgstr ""
 
 #. Template: AdminSLA
-msgid "Filter by valid state"
-msgstr ""
-
-#. Template: AdminSLA
-msgid "Include invalid SLAs"
-msgstr ""
-
-#. Template: AdminSLA
 msgid "Minimum Time Between Incidents"
-msgstr ""
-
-#. Template: AdminService
-msgid "Include invalid services"
 msgstr ""
 
 #. Template: AdminService
@@ -114,443 +102,359 @@ msgstr ""
 msgid "Incident State"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Operational"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Incident"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "End User Service"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Front End"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Back End"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Management"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Reporting"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "IT Operational"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Demonstration"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Project"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Underpinning Contract"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Other"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Availability"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Response Time"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Recovery Time"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Resolution Rate"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Transactions"
 msgstr ""
 
-#. Database XML Definition: ITSMCore.sopm
+#. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Errors"
 msgstr ""
 
 #. SysConfig
-msgid "A precentage value of the minimal translation progress per language, to be usable for documentations."
+msgid "Alternative to"
 msgstr ""
 
 #. SysConfig
-msgid "Access repos via http or https."
+msgid "Both"
 msgstr ""
 
 #. SysConfig
-msgid "Autoloading of Znuny4OTRSRepo extensions."
+msgid "Connected to"
 msgstr ""
 
 #. SysConfig
-msgid "Backend module registration for the config conflict check module."
+msgid "Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = \"complex\"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js."
 msgstr ""
 
 #. SysConfig
-msgid "Backend module registration for the file conflict check module."
+msgid "Define which columns are shown in the linked Services widget (LinkObject::ViewMode = \"complex\"). Note: Only Service attributes are allowed for DefaultColumns. Possible settings: 0 = Disabled, 1 = Available, 2 = Enabled by default."
 msgstr ""
 
 #. SysConfig
-msgid "Backend module registration for the function redefine check module."
+msgid "Defines the list of online repositories. Another installation can be used as repository, for example: Key=\"http://example.com/otobo/public.pl?Action=PublicRepository;File=\" and Content=\"Some Name\"."
 msgstr ""
 
 #. SysConfig
-msgid "Backend module registration for the manual set module."
+msgid "Depends on"
 msgstr ""
 
 #. SysConfig
-msgid "Block hooks to be created for BS ad removal."
+msgid "Frontend module registration for the AdminITSMCIPAllocate configuration in the admin area."
 msgstr ""
 
 #. SysConfig
-msgid "Block hooks to be created for package manager output filter."
+msgid "Frontend module registration for the AgentITSMSLA object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "Branch View commit limit"
+msgid "Frontend module registration for the AgentITSMSLAPrint object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "CodePolicy"
+msgid "Frontend module registration for the AgentITSMSLAZoom object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "Commit limit per page for Branch view screen"
+msgid "Frontend module registration for the AgentITSMService object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "Create analysis file"
+msgid "Frontend module registration for the AgentITSMServicePrint object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "Creates a analysis file from this ticket and sends to Znuny."
+msgid "Frontend module registration for the AgentITSMServiceZoom object in the agent interface."
 msgstr ""
 
 #. SysConfig
-msgid "Creates a analysis file from this ticket."
+msgid "ITSM SLA Overview."
 msgstr ""
 
 #. SysConfig
-msgid "Define private addon repos."
+msgid "ITSM Service Overview."
 msgstr ""
 
 #. SysConfig
-msgid "Defines the filter that processes the HTML templates."
+msgid "Incident State Type"
 msgstr ""
 
 #. SysConfig
-msgid "Defines the test module for checking code policy."
+msgid "Includes"
 msgstr ""
 
 #. SysConfig
-msgid "Definition of GIT clone/push URL Prefix."
+msgid "Located in"
 msgstr ""
 
 #. SysConfig
-msgid "Definition of a Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRelease => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed."
+msgid "Location of"
 msgstr ""
 
 #. SysConfig
-msgid "Definition of a Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed."
+msgid "Manage priority matrix."
 msgstr ""
 
 #. SysConfig
-msgid "Definition of external MD5 sums (key => MD5, Value => Vendor, PackageName, Version, Date)."
+msgid "Manage the criticality - impact - priority matrix."
 msgstr ""
 
 #. SysConfig
-msgid "Definition of mappings between public repository requests and internal OPMS repositories."
+msgid "Module to show the Back menu item in SLA menu."
 msgstr ""
 
 #. SysConfig
-msgid "Definition of package states."
+msgid "Module to show the Back menu item in service menu."
 msgstr ""
 
 #. SysConfig
-msgid "Definition of renamed OPMS packages."
+msgid "Module to show the Link menu item in service menu."
 msgstr ""
 
 #. SysConfig
-msgid "Directory, which is used by Git to cache repositories."
+msgid "Module to show the Print menu item in SLA menu."
 msgstr ""
 
 #. SysConfig
-msgid "Directory, which is used by Git to store temporary data."
+msgid "Module to show the Print menu item in service menu."
 msgstr ""
 
 #. SysConfig
-msgid "Directory, which is used by Git to store working copies."
+msgid "Parameters for the incident states in the preference view."
 msgstr ""
 
 #. SysConfig
-msgid "Disable online repositories."
+msgid "Part of"
 msgstr ""
 
 #. SysConfig
-msgid "Do not log git ssh connection authorization results for these users. Useful for automated stuff."
+msgid "Relevant to"
 msgstr ""
 
 #. SysConfig
-msgid "Dynamic Fields Screens"
+msgid "Required for"
 msgstr ""
 
 #. SysConfig
-msgid "DynamicFieldScreen"
+msgid "SLA Overview"
 msgstr ""
 
 #. SysConfig
-msgid "Export all available public keys to authorized_keys file."
+msgid "SLA Print."
 msgstr ""
 
 #. SysConfig
-msgid "Export all relevant releases to ftp server."
+msgid "SLA Zoom."
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the OPMS object in the agent interface."
+msgid "Service Overview"
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the PublicOPMSRepository object in the public interface."
+msgid "Service Print."
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the PublicOPMSRepositoryLookup object in the public interface."
+msgid "Service Zoom."
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the PublicOPMSTestBuild object in the public interface."
+msgid "Service-Area"
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the PublicPackageVerification object in the public interface."
+msgid "Set the type and direction of links to be used to calculate the incident state. The key is the name of the link type (as defined in LinkObject::Type), and the value is the direction of the IncidentLinkType that should be followed to calculate the incident state. For example if the IncidentLinkType is set to 'DependsOn', and the Direction is 'Source', only 'Depends on' links will be followed (and not the opposite link 'Required for') to calculate the incident state. You can add more link types ad directions as you like, e.g. 'Includes' with the direction 'Target'. All link types defined in the sysconfig options LinkObject::Type are possible and the direction can be 'Source', 'Target', or 'Both'. IMPORTANT: AFTER YOU MAKE CHANGES TO THIS SYSCONFIG OPTION YOU NEED TO RUN THE CONSOLE COMMAND bin/otobo.Console.pl Admin::ITSM::IncidentState::Recalculate SO THAT ALL INCIDENT STATES WILL BE RECALCULATED BASED ON THE NEW SETTINGS!"
 msgstr ""
 
 #. SysConfig
-msgid "Frontend module registration for the admin interface."
+msgid "Source"
 msgstr ""
 
 #. SysConfig
-msgid "GIT Author registration."
+msgid "This setting defines that a 'ITSMChange' object can be linked with 'Ticket' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Generate HTML comment hooks for the specified blocks so that filters can use them."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'FAQ' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Generate documentations once per night."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'FAQ' objects using the 'ParentChild' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Git"
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'FAQ' objects using the 'RelevantTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Git Management"
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Service' objects using the 'AlternativeTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Git Repository"
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Service' objects using the 'DependsOn' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Group, whose members have delete admin permissions in OPMS."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Service' objects using the 'RelevantTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Group, whose members have repository admin permissions in OPMS."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Ticket' objects using the 'AlternativeTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Group, whose members will see CI test result information in OPMS screens."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Ticket' objects using the 'DependsOn' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Groups an authenticated user (by user login and password) must be member of to build test packages via the public interface."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with 'Ticket' objects using the 'RelevantTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Groups which will be set during git project creation processes while adding OPMS repositories."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'AlternativeTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Manage dynamic field in screens."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'ConnectedTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Manage your public SSH key(s) for Git access here. Make sure to save this preference when you add a new key."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'DependsOn' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Module to generate statistics about the added code lines."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'Includes' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Module to generate statistics about the growth of code."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'LocationOf' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Module to generate statistics about the number of git commits."
+msgid "This setting defines that a 'ITSMConfigItem' object can be linked with other 'ITSMConfigItem' objects using the 'RelevantTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Module to generate statistics about the removed code lines."
+msgid "This setting defines that a 'ITSMWorkOrder' object can be linked with 'ITSMConfigItem' objects using the 'DependsOn' link type."
 msgstr ""
 
 #. SysConfig
-msgid "OPMS"
+msgid "This setting defines that a 'ITSMWorkOrder' object can be linked with 'ITSMConfigItem' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Only users who have rw permissions in one of these groups may access git."
+msgid "This setting defines that a 'ITSMWorkOrder' object can be linked with 'Service' objects using the 'DependsOn' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Option to set a package compatibility manually."
+msgid "This setting defines that a 'ITSMWorkOrder' object can be linked with 'Service' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Parameters for the pages in the BranchView screen."
+msgid "This setting defines that a 'ITSMWorkOrder' object can be linked with 'Ticket' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Pre-Definition of the 'GITProjectName' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed."
+msgid "This setting defines that a 'Service' object can be linked with 'FAQ' objects using the 'Normal' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Pre-Definition of the 'GITRepositoryName' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed."
+msgid "This setting defines that a 'Service' object can be linked with 'FAQ' objects using the 'ParentChild' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Pre-Definition of the 'PackageDeprecated' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed."
+msgid "This setting defines that a 'Service' object can be linked with 'FAQ' objects using the 'RelevantTo' link type."
 msgstr ""
 
 #. SysConfig
-msgid "Recipients that will be informed by email in case of errors."
+msgid "This setting defines the link type 'AlternativeTo'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "SSH Keys for Git Access"
+msgid "This setting defines the link type 'ConnectedTo'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "Send analysis file"
+msgid "This setting defines the link type 'DependsOn'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "Sets the git clone address to be used in repository listings."
+msgid "This setting defines the link type 'Includes'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "Sets the home directory for git repositories."
+msgid "This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "Sets the path for the BugzillaAddComment post receive script location."
+msgid "This setting defines the link type 'RelevantTo'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
 #. SysConfig
-msgid "Sets the path for the OTRSCodePolicy  script location. It is recommended to have a separate clone of the OTRSCodePolicy module that is updated via cron."
-msgstr ""
-
-#. SysConfig
-msgid "Sets the path for the OTRSCodePolicy pre receive script location. It is recommended to have a separate clone of the OTRSCodePolicy module that is updated via cron."
-msgstr ""
-
-#. SysConfig
-msgid "Show latest commits in git repositories."
-msgstr ""
-
-#. SysConfig
-msgid "Shows a link in the menu to go create a unit test from the current ticket."
-msgstr ""
-
-#. SysConfig
-msgid "Synchronize OPMS tables with a remote database."
-msgstr ""
-
-#. SysConfig
-msgid "The minimum version of the sphinx library."
-msgstr ""
-
-#. SysConfig
-msgid "The name of the sphinx theme to be used."
-msgstr ""
-
-#. SysConfig
-msgid "The path to the OTRS CSS file (relative below the static path)."
-msgstr ""
-
-#. SysConfig
-msgid "The path to the OTRS logo (relative below the static path)."
-msgstr ""
-
-#. SysConfig
-msgid "The path to the static folder, containing images and css files."
-msgstr ""
-
-#. SysConfig
-msgid "The path to the theme folder, containing the sphinx themes."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration defines all possible screens to enable or disable default columns."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration defines all possible screens to enable or disable dynamic fields."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration defines if only valids or all (invalids) dynamic fields should be shown."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration defines if the OTRS package verification should be active or disabled. If disabled all packages are shown as verified. It's still recommended to use only verified packages."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration defines the URL to the OTRS CloudService Proxy service. The http or https prefix will be added, depending on selection SysConfig 'Znuny4OTRSRepoType'."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration registers a Output post-filter to extend package verification."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration registers an OutputFilter module that removes OTRS Business Solution TM advertisements."
-msgstr ""
-
-#. SysConfig
-msgid "This configuration registers an output filter to hide online repository selection in package manager."
-msgstr ""
-
-#. SysConfig
-msgid "Tidy unprocessed release that not passed test pomules checks for a long time."
-msgstr ""
-
-#. SysConfig
-msgid "Users who have rw permissions in one of these groups are permitted to execute force pushes 'git push --force'."
-msgstr ""
-
-#. SysConfig
-msgid "Users who have rw permissions in one of these groups are permitted to manage projects. Additionally the members have administration permissions to the git management."
+msgid "Width of ITSM textareas."
 msgstr ""
 
