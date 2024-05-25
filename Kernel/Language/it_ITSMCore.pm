@@ -67,7 +67,7 @@ sub Data {
     # Perl Module: Kernel/Output/HTML/LinkObject/Service.pm
     $Self->{Translation}->{'Incident State'} = 'Stato dell\'incidente';
 
-    # Database XML Definition: ITSMCore.sopm
+    # Database XML / SOPM Definition: ITSMCore.sopm
     $Self->{Translation}->{'Operational'} = 'Operativo';
     $Self->{Translation}->{'Incident'} = 'Incidente';
     $Self->{Translation}->{'End User Service'} = 'Servizio utente finale';
@@ -88,144 +88,121 @@ sub Data {
     $Self->{Translation}->{'Errors'} = 'Errori';
 
     # SysConfig
-    $Self->{Translation}->{'A precentage value of the minimal translation progress per language, to be usable for documentations.'} =
+    $Self->{Translation}->{'Alternative to'} = 'Alternativo a';
+    $Self->{Translation}->{'Both'} = 'Entrambi';
+    $Self->{Translation}->{'Connected to'} = 'Connesso a';
+    $Self->{Translation}->{'Define Actions where a settings button is available in the linked objects widget (LinkObject::ViewMode = "complex"). Please note that these Actions must have registered the following JS and CSS files: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js and Core.Agent.LinkObject.js.'} =
         '';
-    $Self->{Translation}->{'Access repos via http or https.'} = '';
-    $Self->{Translation}->{'Autoloading of Znuny4OTRSRepo extensions.'} = '';
-    $Self->{Translation}->{'Backend module registration for the config conflict check module.'} =
+    $Self->{Translation}->{'Define which columns are shown in the linked Services widget (LinkObject::ViewMode = "complex"). Note: Only Service attributes are allowed for DefaultColumns. Possible settings: 0 = Disabled, 1 = Available, 2 = Enabled by default.'} =
+        'Definire quali colonne vengono visualizzate nel widget Servizi collegati (LinkObject :: ViewMode = "complex"). Nota: solo gli attributi di servizio sono consentiti per DefaultColumns. Impostazioni possibili: 0 = Disabilitato, 1 = Disponibile, 2 = Abilitato per impostazione predefinita.';
+    $Self->{Translation}->{'Defines the default frontend (HTML) theme to be used by the agents and customers. If you like, you can add your own theme. Please refer the administrator manual located at https://doc.otobo.org/.'} =
         '';
-    $Self->{Translation}->{'Backend module registration for the file conflict check module.'} =
+    $Self->{Translation}->{'Defines the default frontend language. All the possible values are determined by the available language files on the system. These values are listed as the keys in the setting \'DefaultUsedLanguages\'.'} =
         '';
-    $Self->{Translation}->{'Backend module registration for the function redefine check module.'} =
+    $Self->{Translation}->{'Defines the list of online repositories. Another installation can be used as repository, for example: Key="http://example.com/otobo/public.pl?Action=PublicRepository;File=" and Content="Some Name".'} =
         '';
-    $Self->{Translation}->{'Backend module registration for the manual set module.'} = '';
-    $Self->{Translation}->{'Block hooks to be created for BS ad removal.'} = '';
-    $Self->{Translation}->{'Block hooks to be created for package manager output filter.'} =
+    $Self->{Translation}->{'Defines the parameters for the dashboard backend. "Cmd" is used to specify command with parameters. "Group" is used to restrict access to the plugin (e. g. Group: admin;group1;group2;). "Default" indicates if the plugin is enabled by default or if the user needs to enable it manually. "CacheTTL" indicates the cache expiration period in minutes for the plugin. "Mandatory" determines if the plugin is always shown and can not be removed by agents. Only works if DashboardBackend::AllowCmdOutput is enabled in Config.pm.'} =
         '';
-    $Self->{Translation}->{'Branch View commit limit'} = '';
-    $Self->{Translation}->{'CodePolicy'} = '';
-    $Self->{Translation}->{'Commit limit per page for Branch view screen'} = '';
-    $Self->{Translation}->{'Create analysis file'} = '';
-    $Self->{Translation}->{'Creates a analysis file from this ticket and sends to Znuny.'} =
+    $Self->{Translation}->{'Depends on'} = 'Depende da';
+    $Self->{Translation}->{'Frontend module registration for the AdminITSMCIPAllocate configuration in the admin area.'} =
+        'Registrazione del modulo frontend per la configurazione AdminITSMCIPAllocate nell\'area di amministrazione.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMSLA object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMSLA nell\'interfaccia agenti.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMSLAPrint object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMSLAPrint nell\'interfaccia agenti.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMSLAZoom object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMSLAZoom nell\'interfaccia agenti.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMService object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMService nell\'interfaccia agenti.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMServicePrint object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMServicePrint nell\'interfaccia agenti.';
+    $Self->{Translation}->{'Frontend module registration for the AgentITSMServiceZoom object in the agent interface.'} =
+        'Registrazione del modulo frontend per l\'oggetto AgentITSMServiceZoom nell\'interfaccia agenti.';
+    $Self->{Translation}->{'ITSM SLA Overview.'} = 'Panoramica ITSM SLA';
+    $Self->{Translation}->{'ITSM Service Overview.'} = 'Panoramica del servizio ITSM.';
+    $Self->{Translation}->{'If "LDAP" was selected for Customer::AuthModule and you wish to use TLS security to communicate with the LDAP server, the "verify" parameter can be specified here. See Net::LDAP::start_tls for more information about the parameter.'} =
         '';
-    $Self->{Translation}->{'Creates a analysis file from this ticket.'} = '';
-    $Self->{Translation}->{'Define private addon repos.'} = '';
-    $Self->{Translation}->{'Defines the filter that processes the HTML templates.'} = '';
-    $Self->{Translation}->{'Defines the test module for checking code policy.'} = '';
-    $Self->{Translation}->{'Definition of GIT clone/push URL Prefix.'} = '';
-    $Self->{Translation}->{'Definition of a Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRelease => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed.'} =
-        '';
-    $Self->{Translation}->{'Definition of a Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed.'} =
-        '';
-    $Self->{Translation}->{'Definition of external MD5 sums (key => MD5, Value => Vendor, PackageName, Version, Date).'} =
-        '';
-    $Self->{Translation}->{'Definition of mappings between public repository requests and internal OPMS repositories.'} =
-        '';
-    $Self->{Translation}->{'Definition of package states.'} = '';
-    $Self->{Translation}->{'Definition of renamed OPMS packages.'} = '';
-    $Self->{Translation}->{'Directory, which is used by Git to cache repositories.'} = '';
-    $Self->{Translation}->{'Directory, which is used by Git to store temporary data.'} = '';
-    $Self->{Translation}->{'Directory, which is used by Git to store working copies.'} = '';
-    $Self->{Translation}->{'Disable online repositories.'} = '';
-    $Self->{Translation}->{'Do not log git ssh connection authorization results for these users. Useful for automated stuff.'} =
-        '';
-    $Self->{Translation}->{'Dynamic Fields Screens'} = '';
-    $Self->{Translation}->{'DynamicFieldScreen'} = '';
-    $Self->{Translation}->{'Export all available public keys to authorized_keys file.'} = '';
-    $Self->{Translation}->{'Export all relevant releases to ftp server.'} = '';
-    $Self->{Translation}->{'Frontend module registration for the OPMS object in the agent interface.'} =
-        '';
-    $Self->{Translation}->{'Frontend module registration for the PublicOPMSRepository object in the public interface.'} =
-        '';
-    $Self->{Translation}->{'Frontend module registration for the PublicOPMSRepositoryLookup object in the public interface.'} =
-        '';
-    $Self->{Translation}->{'Frontend module registration for the PublicOPMSTestBuild object in the public interface.'} =
-        '';
-    $Self->{Translation}->{'Frontend module registration for the PublicPackageVerification object in the public interface.'} =
-        '';
-    $Self->{Translation}->{'Frontend module registration for the admin interface.'} = '';
-    $Self->{Translation}->{'GIT Author registration.'} = '';
-    $Self->{Translation}->{'Generate HTML comment hooks for the specified blocks so that filters can use them.'} =
-        '';
-    $Self->{Translation}->{'Generate documentations once per night.'} = '';
-    $Self->{Translation}->{'Git'} = '';
-    $Self->{Translation}->{'Git Management'} = '';
-    $Self->{Translation}->{'Git Repository'} = '';
-    $Self->{Translation}->{'Group, whose members have delete admin permissions in OPMS.'} = '';
-    $Self->{Translation}->{'Group, whose members have repository admin permissions in OPMS.'} =
-        '';
-    $Self->{Translation}->{'Group, whose members will see CI test result information in OPMS screens.'} =
-        '';
-    $Self->{Translation}->{'Groups an authenticated user (by user login and password) must be member of to build test packages via the public interface.'} =
-        '';
-    $Self->{Translation}->{'Groups which will be set during git project creation processes while adding OPMS repositories.'} =
-        '';
-    $Self->{Translation}->{'Manage dynamic field in screens.'} = '';
-    $Self->{Translation}->{'Manage your public SSH key(s) for Git access here. Make sure to save this preference when you add a new key.'} =
-        '';
-    $Self->{Translation}->{'Module to generate statistics about the added code lines.'} = '';
-    $Self->{Translation}->{'Module to generate statistics about the growth of code.'} = '';
-    $Self->{Translation}->{'Module to generate statistics about the number of git commits.'} =
-        '';
-    $Self->{Translation}->{'Module to generate statistics about the removed code lines.'} = '';
-    $Self->{Translation}->{'OPMS'} = '';
-    $Self->{Translation}->{'Only users who have rw permissions in one of these groups may access git.'} =
-        '';
-    $Self->{Translation}->{'Option to set a package compatibility manually.'} = '';
-    $Self->{Translation}->{'Parameters for the pages in the BranchView screen.'} = '';
-    $Self->{Translation}->{'Pre-Definition of the \'GITProjectName\' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed.'} =
-        '';
-    $Self->{Translation}->{'Pre-Definition of the \'GITRepositoryName\' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed.'} =
-        '';
-    $Self->{Translation}->{'Pre-Definition of the \'PackageDeprecated\' Dynamic Field: Group => Group with access to the Dynamic Fields; AlwaysVisible => Field can be removed (0|1); InformationAreaName => Name of the Widgets; InformationAreaSize => Size and position of the widgets (Large|Small); Name => Name of the Dynamic Field which should be used; Priority => Order of the Dynamic Fields; State => State of the Fields (0 = disabled, 1 = active, 2 = mandatory), FilterRepository => Regex which the repository name has to match to be displayed, FilterPackage => Regex which the package name has to match to be displayed, FilterBranch => Regex which the branch name has to match to be displayed, FilterRelease => Regex which the repelase version string has to match to be displayed.'} =
-        '';
-    $Self->{Translation}->{'Recipients that will be informed by email in case of errors.'} =
-        '';
-    $Self->{Translation}->{'SSH Keys for Git Access'} = '';
-    $Self->{Translation}->{'Send analysis file'} = '';
-    $Self->{Translation}->{'Sets the git clone address to be used in repository listings.'} =
-        '';
-    $Self->{Translation}->{'Sets the home directory for git repositories.'} = '';
-    $Self->{Translation}->{'Sets the path for the BugzillaAddComment post receive script location.'} =
-        '';
-    $Self->{Translation}->{'Sets the path for the OTRSCodePolicy  script location. It is recommended to have a separate clone of the OTRSCodePolicy module that is updated via cron.'} =
-        '';
-    $Self->{Translation}->{'Sets the path for the OTRSCodePolicy pre receive script location. It is recommended to have a separate clone of the OTRSCodePolicy module that is updated via cron.'} =
-        '';
-    $Self->{Translation}->{'Show latest commits in git repositories.'} = '';
-    $Self->{Translation}->{'Shows a link in the menu to go create a unit test from the current ticket.'} =
-        '';
-    $Self->{Translation}->{'Synchronize OPMS tables with a remote database.'} = '';
-    $Self->{Translation}->{'The minimum version of the sphinx library.'} = '';
-    $Self->{Translation}->{'The name of the sphinx theme to be used.'} = '';
-    $Self->{Translation}->{'The path to the OTRS CSS file (relative below the static path).'} =
-        '';
-    $Self->{Translation}->{'The path to the OTRS logo (relative below the static path).'} = '';
-    $Self->{Translation}->{'The path to the static folder, containing images and css files.'} =
-        '';
-    $Self->{Translation}->{'The path to the theme folder, containing the sphinx themes.'} = '';
-    $Self->{Translation}->{'This configuration defines all possible screens to enable or disable default columns.'} =
-        '';
-    $Self->{Translation}->{'This configuration defines all possible screens to enable or disable dynamic fields.'} =
-        '';
-    $Self->{Translation}->{'This configuration defines if only valids or all (invalids) dynamic fields should be shown.'} =
-        '';
-    $Self->{Translation}->{'This configuration defines if the OTRS package verification should be active or disabled. If disabled all packages are shown as verified. It\'s still recommended to use only verified packages.'} =
-        '';
-    $Self->{Translation}->{'This configuration defines the URL to the OTRS CloudService Proxy service. The http or https prefix will be added, depending on selection SysConfig \'Znuny4OTRSRepoType\'.'} =
-        '';
-    $Self->{Translation}->{'This configuration registers a Output post-filter to extend package verification.'} =
-        '';
-    $Self->{Translation}->{'This configuration registers an OutputFilter module that removes OTRS Business Solution TM advertisements.'} =
-        '';
-    $Self->{Translation}->{'This configuration registers an output filter to hide online repository selection in package manager.'} =
-        '';
-    $Self->{Translation}->{'Tidy unprocessed release that not passed test pomules checks for a long time.'} =
-        '';
-    $Self->{Translation}->{'Users who have rw permissions in one of these groups are permitted to execute force pushes \'git push --force\'.'} =
-        '';
-    $Self->{Translation}->{'Users who have rw permissions in one of these groups are permitted to manage projects. Additionally the members have administration permissions to the git management.'} =
-        '';
+    $Self->{Translation}->{'Ignores not ticket related attributes.'} = '';
+    $Self->{Translation}->{'Incident State Type'} = 'Tipo di stato dell\'incidente';
+    $Self->{Translation}->{'Includes'} = 'Include';
+    $Self->{Translation}->{'Manage priority matrix.'} = 'Gestione della matrice delle priorità.';
+    $Self->{Translation}->{'Manage the criticality - impact - priority matrix.'} = 'Gestire la matrice di criticità - impatto - priorità.';
+    $Self->{Translation}->{'Module to show the Back menu item in SLA menu.'} = 'Modulo per mostrare la voce di menu Indietro nel menu SLA.';
+    $Self->{Translation}->{'Module to show the Back menu item in service menu.'} = 'Modulo per mostrare la voce di menu Indietro nel menu di servizio.';
+    $Self->{Translation}->{'Module to show the Link menu item in service menu.'} = 'Modulo per mostrare la voce di menu Link nel menu di servizio.';
+    $Self->{Translation}->{'Module to show the Print menu item in SLA menu.'} = 'Modulo per mostrare la voce di menu Stampa nel menu SLA.';
+    $Self->{Translation}->{'Module to show the Print menu item in service menu.'} = 'Modulo per mostrare la voce di menu Stampa nel menu di servizio.';
+    $Self->{Translation}->{'Parameters for the incident states in the preference view.'} = 'Parametri per gli stati dell\'incidente nella vista delle preferenze.';
+    $Self->{Translation}->{'Part of'} = 'Parte di';
+    $Self->{Translation}->{'Relevant to'} = 'Rilevante per';
+    $Self->{Translation}->{'Required for'} = 'Richiesto per';
+    $Self->{Translation}->{'SLA Overview'} = 'Descrizione SLA';
+    $Self->{Translation}->{'SLA Print.'} = 'Stampa SLA.';
+    $Self->{Translation}->{'SLA Zoom.'} = 'Zoom SLA.';
+    $Self->{Translation}->{'Service Overview'} = 'Descrizione del servizio';
+    $Self->{Translation}->{'Service Print.'} = 'Stampa di servizio.';
+    $Self->{Translation}->{'Service Zoom.'} = 'Zoom di servizio.';
+    $Self->{Translation}->{'Service-Area'} = 'Servizio-Area';
+    $Self->{Translation}->{'Set the type and direction of links to be used to calculate the incident state. The key is the name of the link type (as defined in LinkObject::Type), and the value is the direction of the IncidentLinkType that should be followed to calculate the incident state. For example if the IncidentLinkType is set to \'DependsOn\', and the Direction is \'Source\', only \'Depends on\' links will be followed (and not the opposite link \'Required for\') to calculate the incident state. You can add more link types ad directions as you like, e.g. \'Includes\' with the direction \'Target\'. All link types defined in the sysconfig options LinkObject::Type are possible and the direction can be \'Source\', \'Target\', or \'Both\'. IMPORTANT: AFTER YOU MAKE CHANGES TO THIS SYSCONFIG OPTION YOU NEED TO RUN THE CONSOLE COMMAND bin/otobo.Console.pl Admin::ITSM::IncidentState::Recalculate SO THAT ALL INCIDENT STATES WILL BE RECALCULATED BASED ON THE NEW SETTINGS!'} =
+        'Imposta il tipo e la direzione dei collegamenti da utilizzare per calcolare lo stato dell\'incidente. La chiave è il nome del tipo di collegamento (come definito in LinkObject::Type) e il valore è la direzione di IncidentLinkType che deve essere seguita per calcolare lo stato dell\'incidente. Ad esempio, se IncidentLinkType è impostato su "DependsOn" e la direzione è "Origine", verranno seguiti solo i collegamenti "Dipende da" (e non il collegamento opposto "Richiesto per") per calcolare lo stato dell\'incidente. Puoi aggiungere più tipi di link alle indicazioni degli annunci che desideri, ad es. \'Include\' con la direzione \'Target\'. Tutti i tipi di collegamento definiti nelle opzioni di sysconfig LinkObject :: Type sono possibili e la direzione può essere "Origine", "Destinazione" o "Entrambi". IMPORTANTE: DOPO CHE EFFETTUI MODIFICHE A QUESTA OPZIONE SYSCONFIG CHE DEVI ESEGUIRE PER ESEGUIRE IL COMANDO CONSOLE bin/otobo.Console.pl Admin::ITSM::IncidentState::Ricalcola IN MODO CHE TUTTI GLI STATI DI INCIDENTE SARANNO Ricalcolati in base alle nuove impostazioni!';
+    $Self->{Translation}->{'Source'} = '';
+    $Self->{Translation}->{'This setting defines that a \'ITSMChange\' object can be linked with \'Ticket\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione stabilisce che un oggetto \'ITSMChange\' può essere collegato con oggetti \'Ticket\' usando il tipo di collegamento \'Normale\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'FAQ\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione stabilisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'FAQ\' usando il tipo di collegamento \'Normale\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'FAQ\' objects using the \'ParentChild\' link type.'} =
+        'Questa impostazione stabilisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'FAQ\' usando il tipo di collegamento \'PadreFiglio\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'FAQ\' objects using the \'RelevantTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'FAQ\' usando il tipo di collegamento \'ImportantePer\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Service\' objects using the \'AlternativeTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Servizio\' usando il tipo di collegamento \'AlternativoA\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Service\' objects using the \'DependsOn\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Servizio\' usando il tipo di collegamento \'DipendeDa\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Service\' objects using the \'RelevantTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Servizio\' usando il tipo di collegamento \'ImportantePer\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Ticket\' objects using the \'AlternativeTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Ticket\' usando il tipo di collegamento \'AlternativoA\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Ticket\' objects using the \'DependsOn\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Ticket\' usando il tipo di collegamento \'DipendeDa\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with \'Ticket\' objects using the \'RelevantTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con oggetti \'Ticket\' usando il tipo di collegamento \'ImportantePer\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'AlternativeTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto "ITSMConfigItem" può essere collegato con altri oggetti "ITSMConfigItem" utilizzando il tipo di collegamento "AlternativeTo".';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'ConnectedTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto "ITSMConfigItem" può essere collegato con altri oggetti "ITSMConfigItem" utilizzando il tipo di collegamento "ConnectedTo".';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
+        'Questa impostazione definisce che un oggetto "ITSMConfigItem" può essere collegato con altri oggetti "ITSMConfigItem" utilizzando il tipo di collegamento "DependsOn".';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'Includes\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con altri oggetti \'ITSMConfigItem\' usando il tipo di collegamento \'Include\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMConfigItem\' object can be linked with other \'ITSMConfigItem\' objects using the \'RelevantTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMConfigItem\' può essere collegato con altri oggetti \'ITSMConfigItem\' utilizzando il tipo di collegamento \'RelevantTo\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'DependsOn\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMWorkOrder\' può essere collegato con oggetti \'ITSMConfigItem\' utilizzando il tipo di collegamento \'DependsOn\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'ITSMConfigItem\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMWorkOrder\' può essere collegato con oggetti \'ITSMConfigItem\' usando il tipo di collegamento \'Normale\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'Service\' objects using the \'DependsOn\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMWorkOrder\' può essere collegato con oggetti \'Service\' usando il tipo di collegamento \'DependsOn\'.';
+    $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'Service\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione definisce che un oggetto "ITSMWorkOrder" può essere collegato con oggetti "Servizio" utilizzando il tipo di collegamento "Normale".';
+    $Self->{Translation}->{'This setting defines that a \'ITSMWorkOrder\' object can be linked with \'Ticket\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'ITSMWorkOrder\' può essere collegato con oggetti \'Ticket\' usando il tipo di collegamento \'Normale\'.';
+    $Self->{Translation}->{'This setting defines that a \'Service\' object can be linked with \'FAQ\' objects using the \'Normal\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'Servizio\' può essere collegato con oggetti \'FAQ\' usando il tipo di collegamento \'Normale\'.';
+    $Self->{Translation}->{'This setting defines that a \'Service\' object can be linked with \'FAQ\' objects using the \'ParentChild\' link type.'} =
+        'Questa impostazione definisce che un oggetto "Servizio" può essere collegato con oggetti "FAQ" utilizzando il tipo di collegamento "ParentChild".';
+    $Self->{Translation}->{'This setting defines that a \'Service\' object can be linked with \'FAQ\' objects using the \'RelevantTo\' link type.'} =
+        'Questa impostazione definisce che un oggetto \'Servizio\' può essere collegato con oggetti \'FAQ\' usando il tipo di collegamento \'ImportantePer\'.';
+    $Self->{Translation}->{'This setting defines the link type \'AlternativeTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        'Questa impostazione definisce il tipo di collegamento "AlternativeTo". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'This setting defines the link type \'ConnectedTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        'Questa impostazione definisce il tipo di collegamento "ConnectedTo". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'This setting defines the link type \'DependsOn\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        'Questa impostazione definisce il tipo di collegamento "DependsOn". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'This setting defines the link type \'Includes\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        'Questa impostazione definisce il tipo di collegamento "Includes\'". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'This setting defines the link type \'RelevantTo\'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link.'} =
+        'Questa impostazione definisce il tipo di collegamento "RelevantTo". Se il nome di origine e il nome di destinazione contengono lo stesso valore, il collegamento risultante è non direzionale. Se i valori sono diversi, il collegamento risultante è un collegamento direzionale.';
+    $Self->{Translation}->{'Width of ITSM textareas.'} = 'Larghezza dei campi di testo di ITSM';
 
 
     push @{ $Self->{JavaScriptStrings} // [] }, (
