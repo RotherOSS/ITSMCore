@@ -2,9 +2,9 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin: otobo - 03d1795130e0a11fe16a80373980048081850f40 - scripts/test/Selenium/Agent/AgentTicketActionCommon/AgentTicketFreeText.t
+# $origin: otobo - e6abd29edd3937c164d32ed2c4a9dd058bd9b3f7 - scripts/test/Selenium/Agent/AgentTicketActionCommon/AgentTicketFreeText.t
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -415,8 +415,6 @@ $Selenium->RunTest(
         }
 
         # Test cases - all fields are set except exactly one, and in the last case all fields are set.
-        # Some of these tests currently run into a time out and are marked as todo.
-        # See issue #748.
         my @ClearTests = (
             {
                 Name      => 'Clear Service field',
@@ -438,7 +436,6 @@ $Selenium->RunTest(
                 Time       => 40,
                 NewQueueID => $QueueID,
                 NewOwnerID => '',
-                ToDo       => 1
             },
             {
                 Name             => 'Clear Responsible field and set back Owner field',
@@ -454,11 +451,6 @@ $Selenium->RunTest(
             {
                 Name       => 'Set back State field - all fields are set',
                 NewStateID => $StateID,
-                ToDo       => 1
-            },
-            {
-                Name       => 'Set back Queue field - all fields are set',
-                NewQueueID => $QueueID,
             }
         );
 
@@ -466,8 +458,6 @@ $Selenium->RunTest(
         for my $Test (@ClearTests) {
 
             subtest "Test case for 'clear': $Test->{Name}" => sub {
-
-                my $ToDo = $Test->{ToDo} ? todo('Timeouts occur. See https://github.com/RotherOSS/otobo/issues/748') : '';
 
                 try_ok {
                     my $ExpectedErrorFieldID;
@@ -477,7 +467,6 @@ $Selenium->RunTest(
 
                         next TESTFIELD if $FieldID eq 'Name';
                         next TESTFIELD if $FieldID eq 'Time';
-                        next TESTFIELD if $FieldID eq 'ToDo';
 
                         if ( $Test->{$FieldID} eq '' ) {
                             $ExpectedErrorFieldID = $FieldID;
@@ -505,6 +494,9 @@ $Selenium->RunTest(
                             $Selenium->execute_script("return \$('#$ExpectedErrorFieldID.Error').length;"),
                             "FieldID $ExpectedErrorFieldID is empty",
                         );
+
+                        # reset focus to clear selections
+                        $Selenium->execute_script("\$('#Title').focus();");
                     }
                     else {
                         pass("All mandatory fields are filled - successful free text fields update");
