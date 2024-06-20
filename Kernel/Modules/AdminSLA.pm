@@ -2,9 +2,9 @@
 # OTOBO is a web-based ticketing system for service organisations.
 # --
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
-# Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.de/
+# Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin: otobo - 64d95578480e81261eefac7e2fc1c7686ee79038 - Kernel/Modules/AdminSLA.pm
+# $origin: otobo - 4dade81e7e04433cb2aed36af0c8727d822a1c61 - Kernel/Modules/AdminSLA.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -49,7 +49,7 @@ sub Run {
     my $ParamObject  = $Kernel::OM->Get('Kernel::System::Web::Request');
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
     my $SLAObject    = $Kernel::OM->Get('Kernel::System::SLA');
-    my %Error;
+    my %Error        = ();
 
     $Param{IncludeInvalid} = $ParamObject->GetParam( Param => 'IncludeInvalid' );
 
