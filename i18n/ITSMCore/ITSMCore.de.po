@@ -2,9 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
-"PO-Revision-Date: 2024-05-15 08:15+0000\n"
-"Last-Translator: Stefan Rother <sr@rother-oss.com>\n"
-"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/itsm-core/de/>\n"
+"PO-Revision-Date: 2024-07-08 08:13+0000\n"
+"Last-Translator: Grit Rother <mr@otobo.de>\n"
+"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/"
+"itsm-core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,9 @@ msgstr "Kritikalität ↔ Auswirkung ↔ Priorität"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Manage the priority result of combinating Criticality ↔ Impact."
-msgstr "Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ Auswirkungen."
+msgstr ""
+"Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ "
+"Auswirkung."
 
 #. Template: AdminITSMCIPAllocate
 msgid "Priority allocation"
@@ -74,11 +77,11 @@ msgstr "SLAID \"%s\" in der Datenbank nicht gefunden!"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
 msgid "Calendar Default"
-msgstr "Kalender Standard"
+msgstr "Standard-Kalender"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "operational"
-msgstr "Operativ"
+msgstr "operativ"
 
 #. Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
 msgid "warning"
@@ -166,7 +169,7 @@ msgstr "Wiederherstellungszeit"
 
 #. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Resolution Rate"
-msgstr "Lösungszeit"
+msgstr "Lösungsquote"
 
 #. Database XML / SOPM Definition: ITSMCore.sopm
 msgid "Transactions"
@@ -839,4 +842,3 @@ msgstr ""
 #. SysConfig
 msgid "This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
-
