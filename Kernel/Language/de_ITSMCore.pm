@@ -26,7 +26,7 @@ sub Data {
     # Template: AdminITSMCIPAllocate
     $Self->{Translation}->{'Criticality ↔ Impact ↔ Priority'} = 'Kritikalität ↔ Auswirkung ↔ Priorität';
     $Self->{Translation}->{'Manage the priority result of combinating Criticality ↔ Impact.'} =
-        'Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ Auswirkungen.';
+        'Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ Auswirkung.';
     $Self->{Translation}->{'Priority allocation'} = 'Prioritäts-Zuordnung';
 
     # Template: AdminSLA
@@ -52,10 +52,10 @@ sub Data {
     # Perl Module: Kernel/Modules/AgentITSMSLAPrint.pm
     $Self->{Translation}->{'No SLAID is given!'} = 'Keine SLAID vorhanden!';
     $Self->{Translation}->{'SLAID %s not found in database!'} = 'SLAID "%s" in der Datenbank nicht gefunden!';
-    $Self->{Translation}->{'Calendar Default'} = 'Kalender Standard';
+    $Self->{Translation}->{'Calendar Default'} = 'Standard-Kalender';
 
     # Perl Module: Kernel/Modules/AgentITSMSLAZoom.pm
-    $Self->{Translation}->{'operational'} = 'Operativ';
+    $Self->{Translation}->{'operational'} = 'operativ';
     $Self->{Translation}->{'warning'} = 'Warnung';
     $Self->{Translation}->{'incident'} = 'Vorfall';
 
@@ -83,7 +83,7 @@ sub Data {
     $Self->{Translation}->{'Availability'} = 'Verfügbarkeit';
     $Self->{Translation}->{'Response Time'} = 'Reaktionszeit';
     $Self->{Translation}->{'Recovery Time'} = 'Wiederherstellungszeit';
-    $Self->{Translation}->{'Resolution Rate'} = 'Lösungszeit';
+    $Self->{Translation}->{'Resolution Rate'} = 'Lösungsquote';
     $Self->{Translation}->{'Transactions'} = 'Transaktionen';
     $Self->{Translation}->{'Errors'} = 'Fehler';
 

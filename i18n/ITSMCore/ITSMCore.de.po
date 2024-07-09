@@ -4,8 +4,7 @@ msgstr ""
 "POT-Creation-Date: 2020-01-24 12:24+0000\n"
 "PO-Revision-Date: 2024-07-08 08:13+0000\n"
 "Last-Translator: Grit Rother <mr@otobo.de>\n"
-"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/"
-"itsm-core/de/>\n"
+"Language-Team: German <http://weblate.otobo.org/projects/opm-packages/itsm-core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +18,7 @@ msgstr "Kritikalität ↔ Auswirkung ↔ Priorität"
 
 #. Template: AdminITSMCIPAllocate
 msgid "Manage the priority result of combinating Criticality ↔ Impact."
-msgstr ""
-"Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ "
-"Auswirkung."
+msgstr "Verwalten Sie das Prioritätsergebnis der Kombination von Kritikalität ↔ Auswirkung."
 
 #. Template: AdminITSMCIPAllocate
 msgid "Priority allocation"
@@ -842,3 +839,4 @@ msgstr ""
 #. SysConfig
 msgid "This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
+
