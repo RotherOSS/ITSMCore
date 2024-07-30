@@ -458,3 +458,7 @@ msgstr ""
 msgid "This setting defines the link type 'LocationOf'. If the source name and the target name contain the same value, the resulting link is a non-directional one. If the values are different, the resulting link is a directional link."
 msgstr ""
 
+#. SysConfig
+msgid "Defines the initial height for the rich text editor component in pixels."
+msgstr ""
+

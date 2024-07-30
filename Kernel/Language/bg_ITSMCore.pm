@@ -95,6 +95,8 @@ sub Data {
         'Дефинирайте действия, при които е наличен бутон за настройки в приспособлението за свързани обекти (LinkObject::ViewMode = "complex"). Моля, обърнете внимание, че тези действия трябва да са регистрирали следните JS и CSS файлове: Core.AllocationList.css, Core.UI.AllocationList.js, Core.UI.Table.Sort.js, Core.Agent.TableFilters.js и Core.Agent .LinkObject.js.';
     $Self->{Translation}->{'Define which columns are shown in the linked Services widget (LinkObject::ViewMode = "complex"). Note: Only Service attributes are allowed for DefaultColumns. Possible settings: 0 = Disabled, 1 = Available, 2 = Enabled by default.'} =
         'Определете кои колони да се показват в приспособлението за свързани услуги (LinkObject::ViewMode = "complex"). Забележка: Само атрибути на услугата са разрешени за колони по подразбиране. Възможни настройки: 0 = Забранено, 1 = Налично, 2 = Активирано по подразбиране.';
+    $Self->{Translation}->{'Defines the initial height for the rich text editor component in pixels.'} =
+        '';
     $Self->{Translation}->{'Defines the list of online repositories. Another installation can be used as repository, for example: Key="http://example.com/otobo/public.pl?Action=PublicRepository;File=" and Content="Some Name".'} =
         '';
     $Self->{Translation}->{'Depends on'} = 'Зависи от';
