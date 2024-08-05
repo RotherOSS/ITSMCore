@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2024 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin: otobo - a7b071c271fcf525f466840ec9bf39bc6340d5ae - Kernel/System/Service.pm
+# $origin: otobo - 8c46f6f3a06ae394efe716ed5ba9dce2062e15a0 - Kernel/System/Service.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -37,6 +37,7 @@ our @ObjectDependencies = (
 # ---
     'Kernel::System::Log',
     'Kernel::System::Main',
+    'Kernel::System::Translations',
     'Kernel::System::Valid',
 );
 
@@ -828,6 +829,15 @@ sub ServiceAdd {
         Type => $Self->{CacheType},
     );
 
+    my %Services = $Self->ServiceList(
+        UserID => $Param{UserID},
+    );
+
+    # generate chained translations automatically
+    $Kernel::OM->Get('Kernel::System::Translations')->TranslateParentChildElements(
+        Strings => [ values %Services ],
+    );
+
     return $ServiceID;
 }
 
@@ -1005,6 +1015,15 @@ sub ServiceUpdate {
     # reset cache
     $Kernel::OM->Get('Kernel::System::Cache')->CleanUp(
         Type => $Self->{CacheType},
+    );
+
+    my %Services = $Self->ServiceList(
+        UserID => $Param{UserID},
+    );
+
+    # generate chained translations automatically
+    $Kernel::OM->Get('Kernel::System::Translations')->TranslateParentChildElements(
+        Strings => [ values %Services ],
     );
 
     return 1;
