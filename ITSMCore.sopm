@@ -3,10 +3,9 @@
     <Name>ITSMCore</Name>
     <Version>0.0.0</Version>
     <Framework>11.0.x</Framework>
-    <PackageMerge TargetVersion="11.0.0" Name="ITSM"></PackageMerge>
     <PackageRequired Version="11.0.0">GeneralCatalog</PackageRequired>
     <Vendor>Rother OSS GmbH</Vendor>
-    <URL>https://otobo.de/</URL>
+    <URL>https://otobo.io/</URL>
     <License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
     <Description Lang="en">The OTOBO::ITSM Core package.</Description>
     <Description Lang="de">Das OTOBO::ITSM Core Paket.</Description>
@@ -707,4 +706,5 @@
         <br/>
 
     ]]></IntroUninstall>
+    <PackageMerge TargetVersion="11.0.0" Name="ITSM"></PackageMerge>
 </otobo_package>
