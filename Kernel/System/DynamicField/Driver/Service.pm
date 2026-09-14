@@ -124,6 +124,23 @@ sub GetFieldTypeSettings {
             Multiple     => 0,
         };
 
+    # Add the selection of the Services.
+    {
+        my %ServiceList = $Kernel::OM->Get('Kernel::System::Service')->ServiceList(
+            UserID => 1,
+        );
+        push @FieldTypeSettings,
+            {
+                ConfigParamName => 'AllowedServiceIDs',
+                Label           => Translatable('Service restrictions'),
+                Explanation     => Translatable('Select one or more Services to restrict selectable Services by'),
+                InputType       => 'Selection',
+                SelectionData   => \%ServiceList,
+                PossibleNone    => 1,
+                Multiple        => 1,
+            };
+    }
+
     return @FieldTypeSettings;
 }
 
@@ -207,12 +224,12 @@ sub ObjectDescriptionGet {
         # TODO: Why is the UserID not transferred here? I think UserID should be mandatory.
         # TODO: Does it make sense to get the UserID from the LayoutObject if it is not passed in $Param?
         # TODO where to link to for agents?
-        my $FrontendModul = 'AgentITSMServiceZoom';
+        my $FrontendModule = 'AgentITSMServiceZoom';
 
         $Link = $Self->_GetHTTPLink(
-            FrontendModul => $FrontendModul,
-            ObjectID      => $Param{LayoutObject}->LinkEncode( $Param{ObjectID} ),
-            UserID        => $UserID,
+            FrontendModule => $FrontendModule,
+            ObjectID       => $Param{LayoutObject}->LinkEncode( $Param{ObjectID} ),
+            UserID         => $UserID,
         );
     }
 
@@ -429,7 +446,20 @@ sub SearchObjects {
         UserID => $Param{UserID},
     );
 
-    # return a list of user IDs
+    # Support restriction by Service
+    if ( IsArrayRefWithData( $DynamicFieldConfig->{Config}{AllowedServiceIDs} ) ) {
+        my @FilteredServiceSearchResult;
+
+        for my $ServiceID (@ServiceSearchResult) {
+            if ( any { $_ eq $ServiceID } $DynamicFieldConfig->{Config}{AllowedServiceIDs}->@* ) {
+                push @FilteredServiceSearchResult, $ServiceID;
+            }
+        }
+
+        @ServiceSearchResult = @FilteredServiceSearchResult;
+    }
+
+    # return a list of service IDs
     return @ServiceSearchResult;
 }
 
@@ -438,9 +468,9 @@ sub SearchObjects {
 return a HTTP link to the agent edit mask, if permission is given.
 
     my $Link = $BackendObject->_GetHTTPLink(
-        FrontendModul      => $FrontendModul,
-        ObjectID   => $EncodedUserLogin
-        UserID             => $UserID,
+        FrontendModule => $FrontendModule,
+        ObjectID       => $EncodedUserLogin
+        UserID         => $UserID,
     );
 
 Return
@@ -453,7 +483,7 @@ sub _GetHTTPLink {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    for my $Argument (qw(UserID FrontendModul ObjectID)) {
+    for my $Argument (qw(UserID FrontendModule ObjectID)) {
         if ( !$Param{$Argument} ) {
             $Kernel::OM->Get('Kernel::System::Log')->Log(
                 Priority => 'error',
@@ -466,7 +496,7 @@ sub _GetHTTPLink {
 
     my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
 
-    my $ModuleReg = $ConfigObject->Get('Frontend::Module')->{ $Param{FrontendModul} };
+    my $ModuleReg = $ConfigObject->Get('Frontend::Module')->{ $Param{FrontendModule} };
     my $Link;
 
     # module permission check for action
@@ -523,7 +553,7 @@ sub _GetHTTPLink {
         }
         if ( $Param{AccessRo} || $Param{AccessRw} ) {
 
-            $Link = 'index.pl?Action=' . $Param{FrontendModul} . ';';
+            $Link = 'index.pl?Action=' . $Param{FrontendModule} . ';';
             $Link .= 'ServiceID=' . $Param{ObjectID};
             return $Link;
         }
