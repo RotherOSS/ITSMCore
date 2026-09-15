@@ -4,7 +4,7 @@
 # Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
 # Copyright (C) 2019-2026 Rother OSS GmbH, https://otobo.io/
 # --
-# $origin: otobo - bd638ceea3f14f40393fe4cc6aea7091eb59b889 - Kernel/Modules/AgentTicketProcess.pm
+# $origin: otobo - 6f06f17324eaa8eab7969cbe54f47aef36f78522 - Kernel/Modules/AgentTicketProcess.pm
 # --
 # This program is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -2765,7 +2765,7 @@ sub _RenderDynamicField {
         ParamObject          => $Kernel::OM->Get('Kernel::System::Web::Request'),
         AJAXUpdate           => 1,
         Mandatory            => $Param{ActivityDialogField}{Display} == 2,
-        ACLHidden            => ( $Param{ActivityDialogField}{Display} == 2 && !$Param{Visibility} ),
+        ACLHidden            => !$Param{Visibility},
         ServerError          => $ServerError,
         ErrorMessage         => $ErrorMessage,
         Object               => $Param{Object},
