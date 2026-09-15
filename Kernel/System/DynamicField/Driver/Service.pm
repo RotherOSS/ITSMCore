@@ -138,6 +138,7 @@ sub GetFieldTypeSettings {
                 SelectionData   => \%ServiceList,
                 PossibleNone    => 1,
                 Multiple        => 1,
+                TreeView        => 1,
             };
     }
 
