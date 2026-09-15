@@ -37,7 +37,7 @@ sub Data {
 
     # Template: AgentITSMSLAZoom
     $Self->{Translation}->{'SLA Information'} = 'SLA információk';
-    $Self->{Translation}->{'Last changed'} = 'Utoljára módosítva';
+    $Self->{Translation}->{'Last changed'} = 'Utolsó módosítás';
     $Self->{Translation}->{'Last changed by'} = 'Utoljára módosította';
     $Self->{Translation}->{'Associated Services'} = 'Hozzárendelt szolgáltatások';
 
