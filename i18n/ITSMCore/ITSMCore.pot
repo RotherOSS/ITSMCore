@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ITSMCore\n"
-"POT-Creation-Date: 2026-07-21 14:40+0000\n"
+"POT-Creation-Date: 2026-09-15 14:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,6 +116,14 @@ msgstr ""
 
 #. Perl Module: Kernel/System/DynamicField/Driver/Service.pm
 msgid "External-source key"
+msgstr ""
+
+#. Perl Module: Kernel/System/DynamicField/Driver/Service.pm
+msgid "Service restrictions"
+msgstr ""
+
+#. Perl Module: Kernel/System/DynamicField/Driver/Service.pm
+msgid "Select one or more Services to restrict selectable Services by"
 msgstr ""
 
 #. Database XML / SOPM Definition: ITSMCore.sopm

@@ -74,6 +74,9 @@ sub Data {
 
     # Perl Module: Kernel/System/DynamicField/Driver/Service.pm
     $Self->{Translation}->{'External-source key'} = '';
+    $Self->{Translation}->{'Service restrictions'} = '';
+    $Self->{Translation}->{'Select one or more Services to restrict selectable Services by'} =
+        '';
 
     # Database XML / SOPM Definition: ITSMCore.sopm
     $Self->{Translation}->{'Operational'} = 'Operační';
